@@ -1,0 +1,14 @@
+.container{
+    height:100vh;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	text-align: center;
+	font-family: karla;
+	background: white;
+	z-index: 9999;
+}
+.container img{
+	width:60%;
+}

@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+button{
+    background:transparent;
+    border:none;
+    outline:none;
+}
+.header__logo{
+    width:5rem;
+    height:5.5rem;
+}
+.nav-link{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 620px){
+    .bsnav li button{
+        font-size:0.8rem;
+    }
+}
+.header {
+  height: 70vh;
+  margin: 5rem 0 0;
+  background-image: linear-gradient(
+        to right bottom,
+       #383e56d1,
+      #1687a7d1
+      ),
+      url('../../assets/pcell.jpg');
+  background-size: cover;
+  background-position: top;
+  /* position: relative; */
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+  only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+  only screen and (min-width: 125em) {
+  .header {
+      background-color:red;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right bottom,
+        from(#383e56),
+      to(#1687a7)
+      ),
+      url('../../assets/pcell.jpg');
+
+    background-image: linear-gradient(
+        to right bottom,
+       #383e56,
+      #1687a7
+      ),
+      url('../../assets/pcell.jpg');
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .header {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+  
+}
+.header__text-box {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+@media (max-width: 576px){
+  .header__text-box {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+}
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  margin-bottom: 2rem;
+}
+.heading-primary--main {
+  display: block;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  -webkit-animation-name: moveInLeft;
+  animation-name: moveInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+@media only screen and (max-width: 37.5em) {
+  .heading-primary--main {
+    letter-spacing: 1rem;
+    font-size: 2.5rem;
+  }
+}
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1rem;
+  font-family:karla;
+  margin: 1rem 0 0;
+  -webkit-animation: moveInRight 1s ease-out;
+  animation: moveInRight 1s ease-out;
+}
+@media only screen and (max-width: 37.5em) {
+  .heading-primary--sub {
+    letter-spacing: 0.5rem;
+    font-size: 1.5rem;
+  }
+}
+.landing-about{
+  padding: 2rem;
+  
+}
+.landing-about h1{
+  font-weight: 650;
+  background: linear-gradient(to top right, #383e56, #1687a7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.4rem;
+  text-align: center;
+  margin: 3rem 0 4rem;
+}
+.margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
+.heading-tert {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.landing-about .about{
+  padding: 0 2rem;
+  margin: 3rem 0;
+  font-family:karla;
+  color: #666
+}
+.paragraph {
+  font-size: 1.2rem;
+}
