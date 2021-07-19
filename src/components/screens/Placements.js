@@ -46,7 +46,38 @@ export default function Placements({ navigation }) {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
     console.log(pOpp[index]);
     const dbRef = firebase.database().ref("placements/" + pOpp[index].id);
-    const userRef = firebase.database().ref("users/" + loggedUserId);
+    const userRef = firebase
+      .database()
+      .ref("users/" + loggedUserId)
+      .once("value")
+      .then((resp) => {
+        var data = resp.val();
+        if (data) {
+          var name = data.uName;
+          var mobile = data.uMobile;
+          var email = data.uEmail;
+          var resume = data.resume.uriResume;
+          var description = data.desc;
+          dbRef
+            .child("applicants/" + loggedUserId + "_" + name + "_" + mobile)
+            .set({
+              name: name,
+              mobile: mobile,
+              resume: resume,
+              email: email,
+              description: description,
+            }, (err)=>{
+              if(err) {
+                displaySnackBar("error", "Couldn't Apply , Please try again");
+              }
+              else{
+                displaySnackBar('success', 'Applied Successfully')
+              }
+            });
+        }
+      }).catch((err) => {
+        displaySnackBar("error", "Couldn't Apply , Please try again")
+      });
     console.log(dbRef, userRef, loggedUserId);
   }
 
@@ -57,19 +88,20 @@ export default function Placements({ navigation }) {
   return (
     <ScrollView>
       <div className="d-flex justify-content-around">
-      <div className="row placements">
-        {pOpp.map((item, index) => {
-          return (
-            <PlacementOppurtunity
-              key={index}
-              img={item.companyImage || "https://picsum.photos/200/300"}
-              jd={item.jd}
-              companyName={item.name}
-              role={item.profile}
-              onApply={() => onApplyClick(index)}
-            />
-          );
-        })}
+        <div className="row placements">
+          {pOpp.map((item, index) => {
+            return (
+              <PlacementOppurtunity
+                key={index}
+                img={item.companyImage || "https://picsum.photos/200/300"}
+                jd={item.jd}
+                companyName={item.name}
+                role={item.profile}
+                deadline = {item.deadline}
+                onApply={() => onApplyClick(index)}
+              />
+            );
+          })}
         </div>
 
         {snackBarVisible ? (

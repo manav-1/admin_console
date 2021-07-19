@@ -50,8 +50,8 @@ export default function Placements({ navigation }) {
   function markDone(index) {
     const node = firebase.database().ref("placements").child(pOpp[index].id);
     node.remove();
-    pOpp.splice(index, 1);
-    setPOpp(pOpp);
+    // pOpp.splice(index, 1);
+    // setPOpp(pOpp);
   }
   return (
     <div>

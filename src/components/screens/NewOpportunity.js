@@ -6,6 +6,7 @@ export default function NewOpportunity({ navigation }) {
   const [profile,setProfile] = useState("")
   const [companyImage,setCompanyImage] = useState("")
   const [jd,setJd] = useState("")
+  const [deadline,setDeadline] = useState("")
 
 
   function addPlacementOpportunity(){
@@ -15,6 +16,7 @@ export default function NewOpportunity({ navigation }) {
         profile: profile,
         jd: jd,
         companyImage: companyImage,
+        deadline: deadline,
     }
     dbRef.push(newTask)
   }
@@ -49,6 +51,10 @@ export default function NewOpportunity({ navigation }) {
         value={jd}
         onChange={(e) => setJd(e.target.value)}
       />
+      <label>Deadline</label>
+      <input type="date"
+      value={deadline}
+      onChange={(e) => setDeadline(e.target.value)}/>
       <button onClick={addPlacementOpportunity}>Add new Opportunity</button>
     </div>
   );

@@ -20,7 +20,6 @@ export default function AdminPlacementOppurtunity({
         </div>
       </div>
       <div class="btn-container">
-        <button className="adminApplyButton">Apply</button>
         <button className="removeButton" onClick={onRemoveClicked}>
           Remove Opportunity
         </button>
