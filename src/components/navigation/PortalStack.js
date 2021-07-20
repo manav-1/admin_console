@@ -76,7 +76,7 @@ export default function PortalStack({ navigation }) {
     <div className= "main-portal">
       <div className="toggle-container">
         <button onClick={hideNav}>
-          <img src={icon} alt="menu" />
+          <img src={icon} alt="menu" style={{width: '3rem'}} />
         </button>
 
         <h1>Placement Portal</h1>
