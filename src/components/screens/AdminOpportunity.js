@@ -88,28 +88,32 @@ export default function Placements({ navigation }) {
     // console.log(node)
   }
   return (
-    <div>
-      <ScrollView>
-        {pOpp.map((item, index) => {
-          return (
-            <AdminPlacementOppurtunity
-              img={item.companyImage || "https://picsum.photos/200/300"}
-              companyName={item.name}
-              role={item.profile}
-              onRemoveClicked={() => markDone(index)}
-              onCheckApplicants={() => getApplicants(index)}
-            />
-          );
-        })}
-      </ScrollView>
-      {snackBarVisible ? (
-        <SnackBar
-          isVisible={snackBarVisible}
-          text={snackBarText}
-          type={snackBarType}
-          onClose={hideSnackBar}
-        />
-      ) : null}
-    </div>
+    <ScrollView>
+      <div className="d-flex justify-content-around">
+        <div className="row placements">
+          {pOpp.map((item, index) => {
+            return (
+              <AdminPlacementOppurtunity
+                img={item.companyImage || "https://picsum.photos/200/300"}
+                companyName={item.name}
+                role={item.profile}
+                onRemoveClicked={() => markDone(index)}
+                onCheckApplicants={() => getApplicants(index)}
+                deadline={item.deadline}
+              />
+            );
+          })}
+        </div>
+
+        {snackBarVisible ? (
+          <SnackBar
+            isVisible={snackBarVisible}
+            text={snackBarText}
+            type={snackBarType}
+            onClose={hideSnackBar}
+          />
+        ) : null}
+      </div>
+    </ScrollView>
   );
 }
