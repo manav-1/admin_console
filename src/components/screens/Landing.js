@@ -2,7 +2,7 @@ import "../css/landing.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/logo.png";
 import team from "../../assets/team.png";
-import $ from "jquery";
+import $ from "jquery"; // eslint-disable-line
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 export default function Landing({ navigation }) {
