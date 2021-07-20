@@ -57,3 +57,15 @@
   display: flex;
   align-items:center
 }
+@media (max-width: 768px){
+  .removeButton {
+  font-size: 0.8rem;
+  font-family: karla;
+  color: #fff;
+  border-radius: 1rem;
+  width: 11.5rem;
+  padding: 0.7rem;
+  margin: 0 0.8rem;
+  background-color: #0a1d37;
+}
+}
