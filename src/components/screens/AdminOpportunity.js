@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
-import companyLogo from "../../assets/logo192.png";
 import AdminPlacementOppurtunity from "../customComponents/AdminPlacementOpportunity";
 import SnackBar from "../customComponents/SnackBar";
 import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { cos } from "react-native-reanimated";
 
 export default function Placements({ navigation }) {
   const [pOpp, setPOpp] = useState([]);
@@ -18,7 +18,8 @@ export default function Placements({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
         const dbRef = firebase.database().ref("placements");
-        dbRef.on("value",
+        dbRef.on(
+          "value",
           function (resp) {
             const data = resp.val();
             const opportunities = [];
@@ -50,8 +51,41 @@ export default function Placements({ navigation }) {
   function markDone(index) {
     const node = firebase.database().ref("placements").child(pOpp[index].id);
     node.remove();
-    // pOpp.splice(index, 1);
-    // setPOpp(pOpp);
+  }
+
+  function getApplicants(index) {
+    const node = firebase.database().ref("placements").child(pOpp[index].id + "/applicants");
+    node.once('value').then((resp)=>{
+      var data = resp.val()
+      console.log(data,"data")
+      if(data){
+        var arr_data = [];
+        for (var id in data) {
+          arr_data.push(data[id]);
+        }
+        console.log(arr_data);
+        var arr_header = ['Additional Info','E-mail','Mobile','Name','Resume Url', 'Stream'].join(',')+'\n';
+        arr_data.forEach((obj) => {
+          let row = [];
+          for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              row.push(obj[key]);
+            }
+          }
+          arr_header += row.join(',') + "\n";
+        });
+        // console.log(arr_header);
+        let csvData = new Blob([arr_header], { type: "text/csv" });
+        let csvUrl = URL.createObjectURL(csvData);
+
+        let hiddenElement = document.createElement("a");
+        hiddenElement.href = csvUrl;
+        hiddenElement.target = "_blank";
+        hiddenElement.download = "Applicants.csv";
+        hiddenElement.click();
+      }
+    })
+    // console.log(node)
   }
   return (
     <div>
@@ -59,10 +93,11 @@ export default function Placements({ navigation }) {
         {pOpp.map((item, index) => {
           return (
             <AdminPlacementOppurtunity
-              img={"https://picsum.photos/200/300" || companyLogo}
+              img={item.companyImage || "https://picsum.photos/200/300"}
               companyName={item.name}
               role={item.profile}
               onRemoveClicked={() => markDone(index)}
+              onCheckApplicants={() => getApplicants(index)}
             />
           );
         })}

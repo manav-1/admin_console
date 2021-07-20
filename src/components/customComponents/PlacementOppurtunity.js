@@ -23,9 +23,6 @@ export default function PlacementOppurtunity({
           <Card.Subtitle style={{ margin: "0.5rem 0" }}>
             {deadline}
           </Card.Subtitle>
-          <Card.Text style={{ margin: "0.5rem 0" }}>
-            Some Description About this company
-          </Card.Text>
         </Card.Body>
       </Card>
       <div className="buttons">

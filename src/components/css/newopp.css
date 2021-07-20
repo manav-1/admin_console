@@ -1,0 +1,17 @@
+.newOpp input{
+    padding:5px;
+    outline:none;
+    background:transparent;
+    border:none;
+    border-bottom: 1px solid darkblue;
+    font-size:1.25rem;
+    width: 50%;
+}
+
+.newOpp h4{
+    font-family: karla;
+    padding:1rem 0 0.1rem;
+}
+.newOpp{
+    padding: 0 1rem;
+}

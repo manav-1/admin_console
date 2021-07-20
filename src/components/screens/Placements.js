@@ -58,6 +58,7 @@ export default function Placements({ navigation }) {
           var email = data.uEmail;
           var resume = data.resume.uriResume;
           var description = data.desc;
+          var stream = data.stream
           dbRef
             .child("applicants/" + loggedUserId + "_" + name + "_" + mobile)
             .set({
@@ -66,6 +67,7 @@ export default function Placements({ navigation }) {
               resume: resume,
               email: email,
               description: description,
+              stream:stream
             }, (err)=>{
               if(err) {
                 displaySnackBar("error", "Couldn't Apply , Please try again");

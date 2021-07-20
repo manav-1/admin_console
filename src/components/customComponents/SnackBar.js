@@ -52,7 +52,7 @@ export default function SnackBar({
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    bottom: 50,
+    top:800,
     left: 0,
     right: 0,
     justifyContent: "center",

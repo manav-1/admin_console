@@ -7,6 +7,7 @@ export default function AdminPlacementOppurtunity({
   onApply,
   onRemoveClicked,
   img,
+  onCheckApplicants
 }) {
   return (
     <div className="placement-container">
@@ -22,6 +23,9 @@ export default function AdminPlacementOppurtunity({
       <div class="btn-container">
         <button className="removeButton" onClick={onRemoveClicked}>
           Remove Opportunity
+        </button>
+        <button className="removeButton" onClick={onCheckApplicants}>
+          Applicants
         </button>
       </div>
     </div>
