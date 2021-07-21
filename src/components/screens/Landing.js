@@ -34,7 +34,7 @@ export default function Landing({ navigation }) {
           className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
           id="main-nav"
         >
-          <ul className="bsnav navbar-nav d-flex flex-column">
+          <ul className="bsnav navbar-nav">
             <li className="nav-item pl-4">
               <a href="#About" onClick={handleNavCollapse} className="nav-link">
                 About
