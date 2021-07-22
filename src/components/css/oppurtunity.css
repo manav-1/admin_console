@@ -47,7 +47,7 @@ a.applyButton:hover{
 .placements{
   width: 100%;
   display: flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:space-around;
   align-content:center;
   margin:auto

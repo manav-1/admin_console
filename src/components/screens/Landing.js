@@ -7,11 +7,153 @@ import { Popper } from "react-popper"; // eslint-disable-line
 // import {Navbar, Container, NavDropdown} from 'react-bootstrap'
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState } from "react";
+import { Dimensions } from "react-native";
 
 export default function Landing({ navigation }) {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+
+  function MobileComponent() {
+    return (
+      <>
+        <div
+          id="carouselExampleIndicators"
+          className="carousel slide  faculty"
+          data-ride="carousel"
+          // style={{ width: '80%', margin: "auto" }}
+        >
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img className="d-block w-100" src={team} alt="First slide" />
+              <div className="text-center bg-dark text-white">
+                <h5>Convener</h5>
+                <p>Mr Subodh Pandit</p>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src={team} alt="Second slide" />
+
+              <div className="text-center bg-dark text-white ">
+                <h5>Convener</h5>
+                <p>Mr Subodh Pandit</p>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src={team} alt="Third slide" />
+
+              <div className="text-center bg-dark text-white ">
+                <h5>Convener</h5>
+                <p>Mr Subodh Pandit</p>
+              </div>
+            </div>
+          </div>
+          <a
+            className="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only">Previous</span>
+          </a>
+          <a
+            className="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only">Next</span>
+          </a>
+        </div>
+      </>
+    );
+  }
+  function LaptopComponent() {
+    return (
+      <>
+        <div
+          id="carouselExampleIndicators"
+          className="carousel slide  faculty"
+          data-ride="carousel"
+          // style={{ width: '80%', margin: "auto" }}
+        >
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img className="d-block w-100" src={team} alt="First slide" />
+              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
+                <div>
+                  <h5>Convener</h5>
+                  <p>Mr Subodh Pandit</p>
+                </div>
+                <div>
+                  <h5>Convener</h5>
+                  <p>Mr Subodh Pandit</p>
+                </div>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src={team} alt="Second slide" />
+              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
+                <div>
+                  <h5>Convener</h5>
+                  <p>Mr Subodh Pandit</p>
+                </div>
+                <div>
+                  <h5>Convener</h5>
+                  <p>Mr Subodh Pandit</p>
+                </div>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src={team} alt="Third slide" />
+              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
+                <div>
+                  <h5>Convener</h5>
+                  <p>Mr Subodh Pandit</p>
+                </div>
+                <div>
+                  <h5>Convener</h5>
+                  <p>Mr Subodh Pandit</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a
+            className="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only">Previous</span>
+          </a>
+          <a
+            className="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only">Next</span>
+          </a>
+        </div>
+      </>
+    );
+  }
 
   return (
     <div style={{ width: "100%" }}>
@@ -127,95 +269,36 @@ export default function Landing({ navigation }) {
         className="landing-about row"
       >
         <h1 className="col-sm-12">Faculty</h1>
-        <div
-          id="carouselExampleIndicators"
-          className="carousel slide"
-          data-ride="carousel"
-          style={{ width: "90%", margin: "auto" }}
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img className="d-block w-100" src={team} alt="First slide" />
-              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
-                <div>
-                  <h5>Convener</h5>
-                  <p>Mr Subodh Pandit</p>
-                </div>
-                <div>
-                  <h5>Convener</h5>
-                  <p>Mr Subodh Pandit</p>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img className="d-block w-100" src={team} alt="Second slide" />
-              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
-                <div>
-                  <h5>Convener</h5>
-                  <p>Mr Subodh Pandit</p>
-                </div>
-                <div>
-                  <h5>Convener</h5>
-                  <p>Mr Subodh Pandit</p>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img className="d-block w-100" src={team} alt="Third slide" />
-              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
-                <div>
-                  <h5>Convener</h5>
-                  <p>Mr Subodh Pandit</p>
-                </div>
-                <div>
-                  <h5>Convener</h5>
-                  <p>Mr Subodh Pandit</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a
-            className="carousel-control-prev"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </div>
+        {Dimensions.get("screen").width > 576 ? (
+          <LaptopComponent />
+        ) : (
+          <MobileComponent />
+        )}
       </div>
       <footer id="contact" className="text-center py-5">
         <div className="social">
-          <a
-            href="https://www.instagram.com/placementcell_kmv/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <i className="fa fa-instagram"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/keshavmahavidyalaya/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <i className="fa fa-linkedin"></i>
-          </a>
+          <div className="mx-auto mb-2 ">
+            <a
+              href="https://www.instagram.com/placementcell_kmv/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i
+                style={{ fontSize: "3rem" }}
+                className="fab fa-instagram mr-3 text-dark"
+              ></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/keshavmahavidyalaya/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i
+                style={{ fontSize: "3rem" }}
+                className="fab fa-linkedin ml-3 text-dark"
+              ></i>
+            </a>
+          </div>
           <p className="copyright text-center">
             <b>Start@KMV, The Placement Cell</b>
             <br />
@@ -226,7 +309,9 @@ export default function Landing({ navigation }) {
           <p className="copyright mt-5 mb-0">
             Managed by
             <br />
-            <a href="https://github.com/manav-1">Manav Arora</a>
+            <a className="text-dark" target = "_blank" rel="noopener noreferrer" href="https://github.com/manav-1">
+              Manav Arora
+            </a>
           </p>
         </div>
       </footer>

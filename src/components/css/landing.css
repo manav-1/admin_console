@@ -151,3 +151,13 @@ button{
 .paragraph {
   font-size: 1.2rem;
 }
+.faculty{
+  width: 80%;
+  margin:auto
+}
+@media (max-width: 576px){
+  .faculty{
+    width:100%;
+    margin:auto
+  }
+}
