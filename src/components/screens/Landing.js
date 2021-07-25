@@ -2,7 +2,7 @@ import "../css/landing.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/logo.png";
 import team from "../../assets/team.png";
-import faculty1 from '../../assets/faculty1.png';
+import subodhSir from "../../assets/subodhSir.jpg";
 import $ from "jquery"; // eslint-disable-line
 import { Popper } from "react-popper"; // eslint-disable-line
 // import {Navbar, Container, NavDropdown} from 'react-bootstrap'
@@ -26,14 +26,22 @@ export default function Landing({ navigation }) {
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="d-block w-100" src={team} alt="First slide" />
+              <img
+                className="d-block w-100"
+                src={subodhSir}
+                alt="First slide"
+              />
               <div className="text-center bg-dark text-white">
                 <h5>Convener</h5>
                 <p>Mr Subodh Pandit</p>
               </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={team} alt="Second slide" />
+              <img
+                className="d-block w-100"
+                src={subodhSir}
+                alt="Second slide"
+              />
 
               <div className="text-center bg-dark text-white ">
                 <h5>Convener</h5>
@@ -41,7 +49,11 @@ export default function Landing({ navigation }) {
               </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={team} alt="Third slide" />
+              <img
+                className="d-block w-100"
+                src={subodhSir}
+                alt="Third slide"
+              />
 
               <div className="text-center bg-dark text-white ">
                 <h5>Convener</h5>
@@ -88,39 +100,72 @@ export default function Landing({ navigation }) {
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="d-block w-100" src={faculty1} alt="First slide" />
-              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
-                <div>
+              <div className="w-100 d-flex justify-content-around my-2">
+                <img
+                  style={{ width: "30%" }}
+                  src={subodhSir}
+                  alt="First slide"
+                />
+                <img
+                  style={{ width: "30%" }}
+                  src={subodhSir}
+                  alt="First slide"
+                />
+              </div>
+              <div className="d-flex flex-direction-row justify-content-around  text-center text-white">
+                <div className="bg-dark mx-3 w-50">
                   <h5>Convener</h5>
                   <p>Mr Subodh Pandit</p>
                 </div>
-                <div>
+                <div className="bg-dark mx-3 w-50">
                   <h5>Convener</h5>
                   <p>Mr Subodh Pandit</p>
                 </div>
               </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={faculty1} alt="Second slide" />
-              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
-                <div>
+              <div className="w-100 d-flex justify-content-around my-2">
+                <img
+                  style={{ width: "30%" }}
+                  src={subodhSir}
+                  alt="First slide"
+                />
+                <img
+                  style={{ width: "30%" }}
+                  src={subodhSir}
+                  alt="First slide"
+                />
+              </div>
+              <div className="d-flex flex-direction-row justify-content-around  text-center text-white">
+                <div className="bg-dark mx-3 w-50">
                   <h5>Convener</h5>
                   <p>Mr Subodh Pandit</p>
                 </div>
-                <div>
+                <div className="bg-dark mx-3 w-50">
                   <h5>Convener</h5>
                   <p>Mr Subodh Pandit</p>
                 </div>
               </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={faculty1} alt="Third slide" />
-              <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
-                <div>
+              <div className="w-100 d-flex justify-content-around my-2">
+                <img
+                  style={{ width: "30%" }}
+                  src={subodhSir}
+                  alt="First slide"
+                />
+                <img
+                  style={{ width: "30%" }}
+                  src={subodhSir}
+                  alt="First slide"
+                />
+              </div>
+              <div className="d-flex flex-direction-row justify-content-around  text-center text-white">
+                <div className="bg-dark mx-3 w-50">
                   <h5>Convener</h5>
                   <p>Mr Subodh Pandit</p>
                 </div>
-                <div>
+                <div className="bg-dark mx-3 w-50">
                   <h5>Convener</h5>
                   <p>Mr Subodh Pandit</p>
                 </div>
@@ -276,45 +321,88 @@ export default function Landing({ navigation }) {
           <MobileComponent />
         )}
       </div>
-      <footer id="contact" className="text-center py-5">
-        <div className="social">
-          <div className="mx-auto mb-2 ">
-            <a
-              href="https://www.instagram.com/placementcell_kmv/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i
-                style={{ fontSize: "3rem" }}
-                className="fab fa-instagram mr-3 text-dark"
-              ></i>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/keshavmahavidyalaya/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i
-                style={{ fontSize: "3rem" }}
-                className="fab fa-linkedin ml-3 text-dark"
-              ></i>
-            </a>
+      <footer
+        style={{ width: "100%", margin: "auto" }}
+        id="contact"
+        className="text-center py-5"
+      >
+        <div style={{ width: "100%", margin: "auto" }} className="row justify-content-around">
+          <div className="col-sm-3 my-3">
+            <div className="social">
+              <div className="mx-auto mb-2 ">
+                <a
+                  href="https://www.instagram.com/placementcell_kmv/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i
+                    style={{ fontSize: "3rem" }}
+                    className="fab fa-instagram mr-3 text-dark"
+                  ></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/keshavmahavidyalaya/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i
+                    style={{ fontSize: "3rem" }}
+                    className="fab fa-linkedin ml-3 text-dark"
+                  ></i>
+                </a>
+              </div>
+              <p className="copyright text-center">
+                <b>Start@KMV, The Placement Cell</b>
+                <br />
+                Keshav Mahavidyalaya
+                <br />
+                University of Delhi
+              </p>
+            </div>
           </div>
-          <p className="copyright text-center">
-            <b>Start@KMV, The Placement Cell</b>
-            <br />
-            Keshav Mahavidyalaya
-            <br />
-            University of Delhi
-          </p>
-          <p className="copyright mt-5 mb-0">
-            Managed by
-            <br />
-            <a className="text-dark" target = "_blank" rel="noopener noreferrer" href="https://github.com/manav-1">
-              Manav Arora
-            </a>
-          </p>
+          <div className="col-sm-3 my-3">
+            <div className="social">
+              <h4><b>Quick Links</b></h4>
+              <a style={{ fontSize: "1.25rem" }} href="#About">
+                About
+              </a>
+              <br></br>
+              <a style={{ fontSize: "1.25rem" }} href="#Faculty">
+                Faculty
+              </a>
+              <br></br>
+              <a style={{ fontSize: "1.25rem" }} href="https://google.com">
+                Placement Brochure
+              </a>
+              <br></br>
+            </div>
+          </div>
+          <div className="col-sm-3 my-3">
+            <div className="social">
+              <h3>
+                <b>Contact Us</b>
+              </h3>
+              <h5>
+                <b>Aarushi</b>: 12345678899
+              </h5>
+              <h5>
+                <b>Raghav</b>: 12345678899
+              </h5>
+            </div>
+          </div>
         </div>
+
+        <p className="copyright mt-5 mb-0">
+          <b style={{fontSize:'0.8rem'}}>Managed by</b>
+          <br />
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/manav-1"
+          >
+            Manav Arora
+          </a>
+        </p>
       </footer>
     </div>
   );
