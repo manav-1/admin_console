@@ -1,5 +1,5 @@
 import "../css/oppurtunity.css";
-import {Card} from 'react-bootstrap'
+import { Card } from "react-bootstrap";
 export default function PlacementOppurtunity({
   navigation,
   companyName,
@@ -19,9 +19,13 @@ export default function PlacementOppurtunity({
         />
         <Card.Body>
           <Card.Title>{companyName}</Card.Title>
-          <Card.Subtitle >{role}</Card.Subtitle>
+
+          <Card.Subtitle>
+            Role : {role}
+          </Card.Subtitle>
+
           <Card.Subtitle style={{ margin: "0.5rem 0" }}>
-            {deadline}
+            Deadline : {deadline}
           </Card.Subtitle>
         </Card.Body>
       </Card>

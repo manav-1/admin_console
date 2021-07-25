@@ -2,6 +2,7 @@ import "../css/landing.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/logo.png";
 import team from "../../assets/team.png";
+import faculty1 from '../../assets/faculty1.png';
 import $ from "jquery"; // eslint-disable-line
 import { Popper } from "react-popper"; // eslint-disable-line
 // import {Navbar, Container, NavDropdown} from 'react-bootstrap'
@@ -87,7 +88,7 @@ export default function Landing({ navigation }) {
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="d-block w-100" src={team} alt="First slide" />
+              <img className="d-block w-100" src={faculty1} alt="First slide" />
               <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
                 <div>
                   <h5>Convener</h5>
@@ -100,7 +101,7 @@ export default function Landing({ navigation }) {
               </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={team} alt="Second slide" />
+              <img className="d-block w-100" src={faculty1} alt="Second slide" />
               <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
                 <div>
                   <h5>Convener</h5>
@@ -113,7 +114,7 @@ export default function Landing({ navigation }) {
               </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={team} alt="Third slide" />
+              <img className="d-block w-100" src={faculty1} alt="Third slide" />
               <div className="d-flex flex-direction-row justify-content-around bg-dark text-center text-white">
                 <div>
                   <h5>Convener</h5>
@@ -259,7 +260,7 @@ export default function Landing({ navigation }) {
             individuals.
           </p>
         </div>
-        <div className="col-sm-6">
+        <div className="col-sm-6 d-flex justify-content-center">
           <img style={{ width: "100%" }} src={team} alt="Team" />
         </div>
       </div>
