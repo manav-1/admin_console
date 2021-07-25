@@ -5,7 +5,6 @@ import team from "../../assets/team.png";
 import subodhSir from "../../assets/subodhSir.jpg";
 import $ from "jquery"; // eslint-disable-line
 import { Popper } from "react-popper"; // eslint-disable-line
-// import {Navbar, Container, NavDropdown} from 'react-bootstrap'
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState } from "react";
 import { Dimensions } from "react-native";
