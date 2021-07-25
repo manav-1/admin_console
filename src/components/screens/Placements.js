@@ -4,7 +4,6 @@ import PlacementOppurtunity from "../customComponents/PlacementOppurtunity";
 import SnackBar from "../customComponents/SnackBar";
 import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from 'axios'
 
 export default function Placements({ navigation }) {
   const [pOpp, setPOpp] = useState([]);
@@ -74,7 +73,7 @@ export default function Placements({ navigation }) {
                 displaySnackBar("error", "Couldn't Apply , Please try again");
               }
               else{
-                axios.get(
+                fetch(
                   `https://manavar81101.pythonanywhere.com/?email=${email}&companyname=${dbRef.name}&profile=${dbRef.profile}`
                 )
                 displaySnackBar('success','Applied successfully')
