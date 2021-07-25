@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import "../css/style.css";
 import logo from "../../assets/logo.png";
 import React, { useState } from "react";
-import SnackBar from '../customComponents/SnackBar';
-import firebase from '../FirebaseConfig';
+import SnackBar from "../customComponents/SnackBar";
+import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
@@ -41,11 +42,9 @@ export default function Login({ navigation }) {
             await AsyncStorage.setItem("loggedUserEmail", email);
             await AsyncStorage.setItem("loggedUserId", userId);
 
-           
             displaySnackBar("success", "Logged in Successfully");
             navigation.navigate("Portal");
           } catch {
-            
             displaySnackBar("error", "Something went wrong");
           }
         })
@@ -53,7 +52,7 @@ export default function Login({ navigation }) {
           var errorCode = error.code;
           var errorMessage = error.message;
 
-          displaySnackBar("error", errorMessage+errorCode);
+          displaySnackBar("error", errorMessage + errorCode);
         });
     } else {
       alert("Enter Keshav Id");
@@ -63,11 +62,30 @@ export default function Login({ navigation }) {
   function handleSignUpClick() {
     navigation.navigate("SignUp");
   }
+  function forgotPasswordClick() {
+    var email = window.prompt("Enter your email address");
+    if (email.trim().includes("@keshav.du.ac.in")) {
+      firebase
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then(function () {
+          // Password reset email sent.
+          displaySnackBar('success','Password reset email sent')
+        })
+        .catch(function (error) {
+          // Error occurred. Inspect error.code.
+          // var message = error.message
+          displaySnackBar("error","User not Found")
+        });
+    } else {
+      displaySnackBar("error", "Please enter your Keshav Id");
+    }
+  }
   return (
     <>
       <div class="main-container">
         <button
-          onClick={() => navigation.navigate('Landing')}
+          onClick={() => navigation.navigate("Landing")}
           className="header-logo"
         >
           <img src={logo} alt="Logo" />
@@ -119,7 +137,7 @@ export default function Login({ navigation }) {
             >
               Sign in
             </button>
-            <a href="./reset-password.php" className="login__forgot">
+            <a href="#" onClick={forgotPasswordClick} className="login__forgot">
               Forgot Password?
             </a>
 
