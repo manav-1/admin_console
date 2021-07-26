@@ -44,7 +44,6 @@ export default function Placements({ navigation }) {
 
   async function onApplyClick(index) {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
-    console.log(pOpp[index]);
     const dbRef = firebase.database().ref("placements/" + pOpp[index].id);
     const userRef = firebase
       .database()
@@ -74,7 +73,7 @@ export default function Placements({ navigation }) {
               }
               else{
                 fetch(
-                  `https://manavar81101.pythonanywhere.com/?email=${email}&companyname=${dbRef.name}&profile=${dbRef.profile}`
+                  `https://manavar81101.pythonanywhere.com/?email=${email}&companyname=${pOpp[index].name}&profile=${pOpp[index].profile}`
                 )
                 displaySnackBar('success','Applied successfully')
               }
@@ -83,7 +82,6 @@ export default function Placements({ navigation }) {
       }).catch((err) => {
         displaySnackBar("error", "Couldn't Apply , Please try again")
       });
-    console.log(dbRef, userRef, loggedUserId);
   }
 
   //function to hide snackbar

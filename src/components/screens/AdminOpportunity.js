@@ -57,13 +57,12 @@ export default function Placements({ navigation }) {
     const node = firebase.database().ref("placements").child(pOpp[index].id + "/applicants");
     node.once('value').then((resp)=>{
       var data = resp.val()
-      console.log(data,"data")
       if(data){
         var arr_data = [];
         for (var id in data) {
           arr_data.push(data[id]);
         }
-        console.log(arr_data);
+
         var arr_header = ['Additional Info','E-mail','Mobile','Name','Resume Url', 'Stream'].join(',')+'\n';
         arr_data.forEach((obj) => {
           let row = [];
@@ -74,7 +73,6 @@ export default function Placements({ navigation }) {
           }
           arr_header += row.join(',') + "\n";
         });
-        // console.log(arr_header);
         let csvData = new Blob([arr_header], { type: "text/csv" });
         let csvUrl = URL.createObjectURL(csvData);
 
@@ -85,7 +83,6 @@ export default function Placements({ navigation }) {
         hiddenElement.click();
       }
     })
-    // console.log(node)
   }
   return (
     <ScrollView>
