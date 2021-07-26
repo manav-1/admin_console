@@ -45,6 +45,7 @@ export default function Placements({ navigation }) {
   async function onApplyClick(index) {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
     const dbRef = firebase.database().ref("placements/" + pOpp[index].id);
+    //eslint-disable-next-line
     const userRef = firebase
       .database()
       .ref("users/" + loggedUserId)
