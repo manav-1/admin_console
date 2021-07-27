@@ -21,7 +21,7 @@ export default function Landing({ navigation }) {
           id="carouselExampleIndicators"
           className="carousel slide  faculty"
           data-ride="carousel"
-          // style={{ width: '80%', margin: "auto" }}
+          style={{ width: '80%', margin: "auto" }}
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
@@ -283,7 +283,7 @@ export default function Landing({ navigation }) {
           className="landing-about row"
         >
           <h1 className="col-sm-12">About Us</h1>
-          <div className="about col-sm-6">
+          <div className="about col-sm-5">
             <h3 className="heading-tert margin-bottom-small">Our Aim</h3>
             <p className="paragraph">
               Start@KMV, the Placement Cell of the college works diligently
@@ -306,7 +306,7 @@ export default function Landing({ navigation }) {
               proficient industry ready individuals.
             </p>
           </div>
-          <div className="col-sm-6 d-flex justify-content-center">
+          <div className="col-sm-7 d-flex justify-content-center">
             <img style={{ width: "100%" }} src={team} alt="Team" />
           </div>
         </div>
