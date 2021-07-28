@@ -1,3 +1,7 @@
+import Aarushi from '../../assets/Members/Aarushi.jpeg'
+import Raghav from '../../assets/Members/Raghav.jpeg'
+import Manav from '../../assets/Members/manav.jpg'
+import Deepti from '../../assets/Members/Deepti.jpg'
 export default function TeamComponent() {
   return (
     <div
@@ -16,7 +20,7 @@ export default function TeamComponent() {
               <div className="card-body p-0">
                 <div className="profile">
                   {" "}
-                  <img src="https://i.imgur.com/J6l19aF.jpg" alt="team" />{" "}
+                  <img src={Aarushi} alt="team" />{" "}
                 </div>
                 <div className="card-title">
                   {" "}
@@ -41,7 +45,7 @@ export default function TeamComponent() {
               <div className="card-body p-0">
                 <div className="profile">
                   {" "}
-                  <img src="https://i.imgur.com/8RKXAIV.jpg" alt="team" />{" "}
+                  <img src={Raghav} alt="team" />{" "}
                 </div>
                 <div className="card-title">
                   {" "}
@@ -66,7 +70,7 @@ export default function TeamComponent() {
               <div className="card-body p-0">
                 <div className="profile">
                   {" "}
-                  <img src="https://i.imgur.com/Ur43esv.jpg" alt="team" />{" "}
+                  <img src={Manav} alt="team" />{" "}
                 </div>
                 <div className="card-title">
                   {" "}
@@ -91,7 +95,7 @@ export default function TeamComponent() {
               <div className="card-body p-0">
                 <div className="profile">
                   {" "}
-                  <img src="https://i.imgur.com/J6l19aF.jpg" alt="team" />{" "}
+                  <img src={Deepti} alt="team" />{" "}
                 </div>
                 <div className="card-title">
                   {" "}
