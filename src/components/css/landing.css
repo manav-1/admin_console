@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 button {
   background: transparent;
@@ -22,7 +22,7 @@ button {
 } */
 .header {
   height: 80vh;
-  margin: 5rem 0 0;
+  margin: 0 0;
   background-image: linear-gradient(to right bottom, #383e56d1, #1687a7d1),
     url("../../assets/pcell.jpg");
   background-size: cover;
