@@ -18,9 +18,10 @@ export default function Landing({ navigation }) {
       <Header />
       <div className="main-landing-content">
         <AboutUs />
-        <TeamComponent />
         <Faculty />
+        
       </div>
+      <TeamComponent />
       <Footer />
     </div>
   );
