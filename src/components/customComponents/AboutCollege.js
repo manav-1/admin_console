@@ -34,7 +34,7 @@ export default function AboutCollege() {
           </p>
         </div>
         <div className="col-sm-6">
-          <img src={college} alt="College" />
+          <img style ={{width: "100%" }}src={college} alt="College" />
         </div>
       </div>
     </div>
