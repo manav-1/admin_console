@@ -29,17 +29,7 @@ export default function NavBar({ navigation }) {
               About
             </a>
           </li>
-          <li className="nav-item pl-4">
-            <button
-              className="nav-link"
-              onClick={() => {
-                handleNavCollapse();
-                navigation.navigate("Dashboard");
-              }}
-            >
-              Placement Portal
-            </button>
-          </li>
+
           <li className="nav-item pl-4">
             <a href="#Faculty" onClick={handleNavCollapse} className="nav-link">
               Faculty
@@ -50,6 +40,17 @@ export default function NavBar({ navigation }) {
             <a href="#Team" onClick={handleNavCollapse} className="nav-link">
               Team
             </a>
+          </li>
+          <li className="nav-item pl-4">
+            <button
+              className="nav-link"
+              onClick={() => {
+                handleNavCollapse();
+                navigation.navigate("Dashboard");
+              }}
+            >
+              Placement Portal
+            </button>
           </li>
           <li className="nav-item pl-4">
             <a

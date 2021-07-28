@@ -3,11 +3,11 @@ export default function AboutUs() {
   return (
     <div
       id="About"
-      style={{ width: "100%", margin: "auto" }}
+      style={{ width: "90%", margin: "auto" }}
       className="landing-about row"
     >
       <h1 className="col-sm-12">About Us</h1>
-      <div className="about col-sm-5">
+      <div className="about col-sm-6">
         <h3 className="heading-tert margin-bottom-small">Our Aim</h3>
         <p className="paragraph">
           Start@KMV, the Placement Cell of the college works diligently
@@ -28,7 +28,7 @@ export default function AboutUs() {
           niche for itself by grooming proficient industry ready individuals.
         </p>
       </div>
-      <div className="col-sm-7 d-flex justify-content-center align-items-center">
+      <div className="col-sm-6 d-flex justify-content-center align-items-center">
         <img style={{ width: "100%" }} src={team} alt="Team" />
       </div>
     </div>

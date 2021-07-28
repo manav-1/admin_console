@@ -9,13 +9,13 @@ export default function TeamComponent() {
       style={{ width: "100%", margin: "auto" }}
       className="landing-about row"
     >
-      <h1 className="col-sm-12">Meet the Team</h1>
+      {/* <h1 className="col-sm-12">Meet the Team</h1> */}
       <div
         style={{ background: "transparent", height:'auto' }}
         className="container mx-auto py-3 my-0 col-md-10 "
       >
         <div className="row m-0 p-0" style={{ justifyContent: "center" }}>
-          <div className="card border-info col-sm mx-1 my-0 py-3">
+          <div className="card border-info col-sm mx-1 my-2 py-3">
             <div className="card-content">
               <div className="card-body p-0">
                 <div className="profile">
@@ -40,7 +40,7 @@ export default function TeamComponent() {
               </div>
             </div>
           </div>
-          <div className="card border-success col-sm mx-1 my-0 py-3">
+          <div className="card border-success col-sm mx-1 my-2 py-3">
             <div className="card-content">
               <div className="card-body p-0">
                 <div className="profile">
@@ -65,7 +65,7 @@ export default function TeamComponent() {
               </div>
             </div>
           </div>
-          <div className="card border-warning col-sm mx-1 my-0 py-3 ">
+          <div className="card border-warning col-sm mx-1 my-2 py-3 ">
             <div className="card-content">
               <div className="card-body p-0">
                 <div className="profile">
@@ -90,7 +90,7 @@ export default function TeamComponent() {
               </div>
             </div>
           </div>
-          <div className="card border-danger col-sm mx-1 my-0 py-3">
+          <div className="card border-danger col-sm mx-1 my-2 py-3">
             <div className="card-content">
               <div className="card-body p-0">
                 <div className="profile">

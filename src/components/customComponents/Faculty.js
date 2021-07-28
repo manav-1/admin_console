@@ -1,21 +1,32 @@
 import subodhSir from "../../assets/subodhSir.jpg"; //eslint-disable-line
-import React from "react";
+import React , {useEffect, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import SwiperCore, { Pagination } from "swiper/core";
 SwiperCore.use([Pagination]);
 
-export default function faculty() {
+export default function Faculty() {
+
+  const [slides,setSlides] = useState(3)
+
+  useEffect(()=>{
+    if(window.screen.width > 576){
+      setSlides(3)
+    }
+    else{
+      setSlides(1)
+    }
+  },[])
   return (
     <div
       style={{ width: "80%", margin: "auto" }}
       id="Faculty"
       className="landing-about row"
     >
-      <h1 className="col-sm-12">Faculty</h1>
+      {/* <h1 className="col-sm-12">Faculty</h1> */}
       <Swiper
-        slidesPerView={3}
+        slidesPerView={slides}
         spaceBetween={30}
         pagination={{
           clickable: true,

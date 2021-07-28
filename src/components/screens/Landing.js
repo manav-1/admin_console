@@ -7,8 +7,10 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "../customComponents/Navbar";
 import Header from "../customComponents/Header";
 import AboutUs from "../customComponents/AboutUs";
-import Faculty from "../customComponents/Faculty";
-import TeamComponent from "../customComponents/TeamComponent";
+import Faculty from "../customComponents/Faculty"; // eslint-disable-line
+import AboutCollege from "../customComponents/AboutCollege";
+import TeamComponent from "../customComponents/TeamComponent"; // eslint-disable-line
+import TeamFacultySlider from "../customComponents/TeamFacultySlider";
 import Footer from "../customComponents/Footer";
 
 export default function Landing({ navigation }) {
@@ -17,11 +19,11 @@ export default function Landing({ navigation }) {
       <Navbar navigation={navigation} />
       <Header />
       <div className="main-landing-content">
-        <AboutUs />
-        <Faculty />
-        
+        <AboutUs /> <TeamFacultySlider />
+        <AboutCollege />
+        {/* <Faculty/> */}
       </div>
-      <TeamComponent />
+      {/* <TeamComponent/> */}
       <Footer />
     </div>
   );
