@@ -456,3 +456,8 @@ p {
   border-radius: 1rem;
   font-size: 1rem;
 }
+@media (max-width: 768px){
+  .landing-button{
+    margin: 1rem 0 0 ;
+  }
+}
