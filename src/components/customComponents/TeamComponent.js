@@ -1,6 +1,6 @@
 import Aarushi from '../../assets/Members/Aarushi.jpeg'
 import Raghav from '../../assets/Members/Raghav.jpeg'
-import Manav from '../../assets/Members/manav.jpg'
+import Manav from '../../assets/Members/Manav.jpg'
 import Deepti from '../../assets/Members/Deepti.jpg'
 export default function TeamComponent() {
   return (
