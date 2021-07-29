@@ -70,7 +70,7 @@ export default function NavBar({ navigation }) {
             >
               For Recruiters
             </button>
-            <ul className={`${isDrop ? "show" : ""} dropdown-menu`}>
+            <ul className={`${isDrop ? "show" : ""} dropdown-menu mb-3`}>
               <li className="nav-item">
                 <a
                   href="https://drive.google.com/file/d/1qnBysbXSoW-vn6FzRmfa-5DFymsZmJcx/view?usp=sharing"
