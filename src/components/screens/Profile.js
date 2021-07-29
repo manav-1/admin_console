@@ -383,7 +383,7 @@ export default function Profile({ navigation }) {
             </button>
           </div>
 
-          <div className="d-flex flex-row flex-wrap ">
+          <div className="d-flex flex-row flex-wrap projectContainer">
             {projects.map((item, index) => {
               return (
                 <div className="sProject" key={index}>

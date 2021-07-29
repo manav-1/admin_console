@@ -42,58 +42,64 @@
   padding: 0 1rem;
 }
 
-.profile-container h4{
-    font-family: karla;
-    padding:1rem 0 0.1rem;
+.profile-container h4 {
+  font-family: karla;
+  padding: 1rem 0 0.1rem;
 }
-.profile-container input{
-    padding:5px;
-    outline:none;
-    background:transparent;
-    border:none;
-    border-bottom: 1px solid darkblue;
-    font-size:1.25rem;
-    width: 50%;
+.profile-container input {
+  padding: 5px;
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid darkblue;
+  font-size: 1.25rem;
+  width: 50%;
 }
-.form-container select{
-    font-size: 1.25rem;
+.form-container select {
+  font-size: 1.25rem;
 }
 
-.profile-button-container{
-  width:50%;
-  display:flex;
+.profile-button-container {
+  width: 50%;
+  display: flex;
   padding: 0 2rem;
   justify-content: space-between;
 }
-.profileInput{
-  display:none;
+.profileInput {
+  display: none;
 }
-.profile-img{
+.profile-img {
   border-radius: 50%;
 }
 
-.projectName p{
+.projectName p {
   font-size: 1rem !important;
   color: #fff;
-  margin:0;
+  margin: 0;
 }
-.sProject{
+.sProject {
   border-radius: 1rem;
   margin: 0.5rem;
   padding: 0;
-  text-align:center;
+  text-align: center;
   word-wrap: break-word;
   background-color: rgb(83, 83, 83);
 }
-.projects{
+.projectContainer {
+  width: 50%;
+}
+.projects {
   width: 50%;
 }
 
-@media (max-width: 576px){
-  .profile-button-container{
+@media (max-width: 576px) {
+  .profile-button-container {
     width: 100%;
   }
-  .projects{
+  .projects {
     width: 100%;
   }
+  .projectContainer {
+  width: 100%;
+}
 }
