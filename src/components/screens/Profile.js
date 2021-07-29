@@ -352,10 +352,10 @@ export default function Profile({ navigation }) {
           />
 
           <h4>Enter your Projects</h4>
-          <div className="w-50 d-flex align-items-center">
+          <div className="projects d-flex align-items-center p-0">
             <input
               style={{ flex: 2 }}
-              className="mx-3"
+              className="mr-3"
               placeholder="Enter Project Name"
               type="text"
               value={projName}
@@ -383,7 +383,7 @@ export default function Profile({ navigation }) {
             </button>
           </div>
 
-          <div className="d-flex flex-row flex-wrap w-50">
+          <div className="d-flex flex-row flex-wrap ">
             {projects.map((item, index) => {
               return (
                 <div className="sProject" key={index}>
