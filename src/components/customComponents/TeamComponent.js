@@ -30,11 +30,11 @@ export default function TeamComponent() {
                 <div className="card-subtitle">
                   <p>
                     {" "}
-                    <small className="text-muted">
+                    {/* <small className="text-muted">
                       {" "}
                       I expected anything less than perfect for the team of
                       experts. They are the best team ever!{" "}
-                    </small>{" "}
+                    </small>{" "} */}
                   </p>
                 </div>
               </div>
@@ -55,11 +55,11 @@ export default function TeamComponent() {
                 <div className="card-subtitle">
                   <p>
                     {" "}
-                    <small className="text-muted">
+                    {/* <small className="text-muted">
                       {" "}
                       I really enjoyed working with them, they are Group of
                       Professionals and they know what they're Doing{" "}
-                    </small>{" "}
+                    </small>{" "} */}
                   </p>
                 </div>
               </div>
@@ -80,11 +80,11 @@ export default function TeamComponent() {
                 <div className="card-subtitle">
                   <p>
                     {" "}
-                    <small className="text-muted">
+                    {/* <small className="text-muted">
                       {" "}
                       I always wanted cool videos of my concerts never knew whom
                       to talk to but they are amazing!{" "}
-                    </small>{" "}
+                    </small>{" "} */}
                   </p>
                 </div>
               </div>
@@ -105,11 +105,11 @@ export default function TeamComponent() {
                 <div className="card-subtitle">
                   <p>
                     {" "}
-                    <small className="text-muted">
+                    {/* <small className="text-muted">
                       {" "}
                       I expected anything less than perfect for the team of
                       experts. They are the best team ever!{" "}
-                    </small>{" "}
+                    </small>{" "} */}
                   </p>
                 </div>
               </div>

@@ -463,6 +463,7 @@ p {
 }
 @media (max-width: 768px) {
   .landing-button {
-    margin: 1rem 0 0;
+    margin: 1rem 0.5rem  0;
+    padding: 0.5rem 1rem 0.3rem;
   }
 }

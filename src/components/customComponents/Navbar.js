@@ -77,7 +77,7 @@ export default function NavBar({ navigation }) {
                   onClick={handleNavCollapse}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="dropdown-item"
+                  className="dropdown-item "
                 >
                   Placement Brochure
                 </a>

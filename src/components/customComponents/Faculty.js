@@ -12,7 +12,7 @@ export default function Faculty() {
 
   useEffect(()=>{
     if(window.screen.width > 576){
-      setSlides(3)
+      setSlides(4)
     }
     else{
       setSlides(1)
