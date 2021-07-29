@@ -45,8 +45,7 @@ export default function Placements({ navigation }) {
   async function onApplyClick(index) {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
     const dbRef = firebase.database().ref("placements/" + pOpp[index].id);
-    //eslint-disable-next-line
-    const userRef = firebase
+    firebase
       .database()
       .ref("users/" + loggedUserId)
       .once("value")
@@ -58,30 +57,42 @@ export default function Placements({ navigation }) {
           var email = data.uEmail;
           var resume = data.resume.uriResume;
           var description = data.desc;
-          var stream = data.stream
+          var stream = data.stream;
+          var tenth = data.tenth;
+          var twelve = data.twelve;
+          var college = data.college;
+          var projects = data.projects;
           dbRef
             .child("applicants/" + loggedUserId + "_" + name + "_" + mobile)
-            .set({
-              name: name,
-              mobile: mobile,
-              resume: resume,
-              email: email,
-              description: description,
-              stream:stream
-            }, (err)=>{
-              if(err) {
-                displaySnackBar("error", "Couldn't Apply , Please try again");
+            .set(
+              {
+                name: name,
+                mobile: mobile,
+                resume: resume,
+                email: email,
+                description: description,
+                stream: stream,
+                tenth: tenth,
+                twelve: twelve,
+                college: college,
+                projects: projects,
+              },
+              (err) => {
+                if (err) {
+                  displaySnackBar("error", "Couldn't Apply , Please try again");
+                } else {
+                  fetch(
+                    `https://manavar81101.pythonanywhere.com/?email=${email}&companyname=${pOpp[index].name}&profile=${pOpp[index].profile}`
+                  );
+                  displaySnackBar("success", "Applied successfully");
+                }
               }
-              else{
-                fetch(
-                  `https://manavar81101.pythonanywhere.com/?email=${email}&companyname=${pOpp[index].name}&profile=${pOpp[index].profile}`
-                )
-                displaySnackBar('success','Applied successfully')
-              }
-            });
+            );
         }
-      }).catch((err) => {
-        displaySnackBar("error", "Couldn't Apply , Please try again")
+      })
+      .catch((err) => {
+        console.log(err);
+        displaySnackBar("error", "Couldn't Apply , Please try again");
       });
   }
 
@@ -101,7 +112,9 @@ export default function Placements({ navigation }) {
                 jd={item.jd}
                 companyName={item.name}
                 role={item.profile}
-                deadline = {item.deadline}
+                deadline={item.deadline}
+                companySite={item.companySite}
+                linkedinUrl={item.linkedin}
                 onApply={() => onApplyClick(index)}
               />
             );

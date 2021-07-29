@@ -1,5 +1,7 @@
 import "../css/oppurtunity.css";
 import { Card } from "react-bootstrap";
+import linkedin from "../../assets/linkedin.png";
+import website from "../../assets/internet.png";
 export default function PlacementOppurtunity({
   navigation,
   companyName,
@@ -8,6 +10,8 @@ export default function PlacementOppurtunity({
   img,
   jd,
   deadline,
+  companySite,
+  linkedinUrl,
 }) {
   return (
     <div className="placement-main-container">
@@ -20,15 +24,22 @@ export default function PlacementOppurtunity({
         <Card.Body>
           <Card.Title>{companyName}</Card.Title>
 
-          <Card.Subtitle>
-            Role : {role}
-          </Card.Subtitle>
+          <Card.Subtitle>Role : {role}</Card.Subtitle>
 
           <Card.Subtitle style={{ margin: "0.5rem 0" }}>
             Deadline : {deadline}
           </Card.Subtitle>
         </Card.Body>
+        <div className="w-100 d-flex align-items-center justify-content-around">
+          <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">
+            <img src={linkedin} alt="LinkedIn" />
+          </a>
+          <a href={companySite} target="_blank" rel="noopener noreferrer">
+            <img src={website} alt="Website" />
+          </a>
+        </div>
       </Card>
+
       <div className="buttons">
         <a
           href={jd}

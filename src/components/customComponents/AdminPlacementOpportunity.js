@@ -1,5 +1,7 @@
 import "../css/adminOppurtunity.css";
 import { Card } from "react-bootstrap";
+import linkedin from "../../assets/linkedin.png";
+import website from "../../assets/internet.png";
 export default function AdminPlacementOppurtunity({
   navigation,
   companyName,
@@ -7,7 +9,9 @@ export default function AdminPlacementOppurtunity({
   onRemoveClicked,
   img,
   onCheckApplicants,
-  deadline
+  deadline,
+  linkedinUrl,
+  companySite,
 }) {
   return (
     <div className="placement-main-container">
@@ -24,6 +28,14 @@ export default function AdminPlacementOppurtunity({
             {deadline}
           </Card.Subtitle>
         </Card.Body>
+        <div className="w-100 d-flex align-items-center justify-content-around">
+          <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">
+            <img src={linkedin} alt="LinkedIn" />
+          </a>
+          <a href={companySite} target="_blank" rel="noopener noreferrer">
+            <img src={website} alt="Website" />
+          </a>
+        </div>
       </Card>
       <div class="buttons">
         <button className="removeButton" onClick={onRemoveClicked}>

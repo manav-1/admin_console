@@ -76,3 +76,16 @@
     width: 100%;
   }
 }
+.projectName p{
+  font-size: 1rem !important;
+  color: #fff;
+  margin:0;
+}
+.sProject{
+  border-radius: 1rem;
+  margin: 0.5rem;
+  padding: 0;
+  text-align:center;
+  word-wrap: break-word;
+  background-color: rgb(83, 83, 83);
+}

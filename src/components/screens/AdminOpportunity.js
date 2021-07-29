@@ -71,8 +71,10 @@ export default function Placements({ navigation }) {
               row.push(obj[key]);
             }
           }
+          console.log(row)
           arr_header += row.join(',') + "\n";
         });
+        console.log(arr_header)
         let csvData = new Blob([arr_header], { type: "text/csv" });
         let csvUrl = URL.createObjectURL(csvData);
 
@@ -97,6 +99,8 @@ export default function Placements({ navigation }) {
                 onRemoveClicked={() => markDone(index)}
                 onCheckApplicants={() => getApplicants(index)}
                 deadline={item.deadline}
+                companySite={item.companySite}
+                linkedinUrl={item.linkedin}
               />
             );
           })}
