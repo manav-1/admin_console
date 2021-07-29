@@ -8,6 +8,7 @@ import NewOpportunity from "../screens/NewOpportunity";
 import AdminOpportunity from "../screens/AdminOpportunity";
 import { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function PortalStack({ navigation }) {
   const [component, setComponent] = useState(
@@ -16,8 +17,19 @@ export default function PortalStack({ navigation }) {
 
   const [open, setOpen] = useState(true);
   const [icon, setIcon] = useState(menuOpen);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    (async () => {
+      const loggedUserId = await AsyncStorage.getItem("loggedUserId");
+      const loggedUserEmail = await AsyncStorage.getItem("loggedUserEmail");
+      if (
+        loggedUserEmail === "manav190839@keshav.du.ac.in" &&
+        loggedUserId === "tH3D40Vb2Thy5dLGCBA8hk3ulZc2"
+      ) {
+        setIsAdmin(true);
+      }
+    })();
     if (window.screen.width > 768) {
       if (open) {
         document.getElementById("side").style.width = "20%";
@@ -73,10 +85,10 @@ export default function PortalStack({ navigation }) {
     }
   }
   return (
-    <div className= "main-portal">
+    <div className="main-portal">
       <div className="toggle-container">
         <button onClick={hideNav}>
-          <img src={icon} alt="menu" style={{width: '3rem'}} />
+          <img src={icon} alt="menu" style={{ width: "3rem" }} />
         </button>
 
         <h1>Placement Portal</h1>
@@ -90,38 +102,24 @@ export default function PortalStack({ navigation }) {
           <button id="Profile" onClick={profileClicked}>
             Profile
           </button>
-          <button onClick={newOppurtunityClicked}>
-            Adding New Opportunity
-          </button>
-          <button onClick={PlacementClicked}>Placement Cell Admin</button>
+          {isAdmin ? (
+            <>
+              <button onClick={newOppurtunityClicked}>
+                Adding New Opportunity
+              </button>
+              <button onClick={PlacementClicked}>Placement Cell Admin</button>
+            </>
+          ) : null}
           <button onClick={() => navigation.navigate("Landing")}>
             Back to Website
           </button>
         </div>
         <div id="main" className="portal-main-container">
-          <ScrollView className="scrolls" style={{height:'100vh'}}>{component}</ScrollView>
+          <ScrollView className="scrolls" style={{ height: "100vh" }}>
+            {component}
+          </ScrollView>
         </div>
       </div>
     </div>
   );
 }
-// const Drawer = createDrawerNavigator();
-// export default function PortalStack({ navigation }) {
-//   return (
-//     <div>
-//       <div>
-//         <button
-//           onClick={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-//         >
-//           Open Drawer
-//         </button>
-//       </div>
-//       <Drawer.Navigator initialRouteName="Placements">
-//         <Drawer.Screen name="Placements" component={Placements} />
-//         <Drawer.Screen name="Profile" component={Profile} />
-//         <Drawer.Screen name="NewOpportunity" component={NewOpportunity} />
-//         {/* <Drawer.Screen name="Placements" component={Placements} /> */}
-//       </Drawer.Navigator>
-//     </div>
-//   );
-// }

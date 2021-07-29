@@ -19,8 +19,9 @@ export default function Landing({ navigation }) {
       <Navbar navigation={navigation} />
       <Header />
       <div className="main-landing-content">
-        <AboutUs /> <TeamFacultySlider />
+        <AboutUs />
         <AboutCollege />
+        <TeamFacultySlider />
         {/* <Faculty/> */}
       </div>
       {/* <TeamComponent/> */}
