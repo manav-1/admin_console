@@ -439,25 +439,30 @@ p {
   height: 100%;
   object-fit: cover;
 }
-.landing-college{
+.landing-college {
   background-image: linear-gradient(to right bottom, #34394bd1, #016681d1),
     url("../../assets/pcell.jpg");
   background-size: cover;
   background-position: top;
 }
-.about-college{
-  font-size: 1rem
+.about-college {
+  font-size: 1rem;
 }
-.landing-button{
+.landing-button {
   font-family: karla;
-  background-color: #34394b;
-  color:#fff;
+  /* background-color: #34394b; */
+  border: 2px solid #34394b;
+  color: #34394b;
   padding: 0.5rem 2rem 0.3rem;
   border-radius: 1rem;
   font-size: 1rem;
 }
-@media (max-width: 768px){
-  .landing-button{
-    margin: 1rem 0 0 ;
+.landing-button:hover{
+  background-color: #34394b;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .landing-button {
+    margin: 1rem 0 0;
   }
 }

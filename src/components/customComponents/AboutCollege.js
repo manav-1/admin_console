@@ -2,14 +2,14 @@ import college from "../../assets/College.png";
 export default function AboutCollege() {
   return (
     <div
-      style={{ width: "100%", margin: "auto", marginVertical: '3rem'}}
+      style={{ width: "100%", margin: "auto", marginVertical: "3rem" }}
       className="row landing-college py-5"
     >
       <div className="col-sm-8 row mx-auto p-3 text-white">
         <h1 className="font-weight-bold col-sm-12">
           About Keshav Mahavidyalaya
         </h1>
-        <div className="col-sm-6">
+        <div className="col-sm-6 ">
           <p className="about-college mt-4">
             Velit proident fugiat amet voluptate labore non eiusmod nulla anim
             commodo aute exercitation sunt nulla. Deserunt laborum nulla do
@@ -33,8 +33,8 @@ export default function AboutCollege() {
             aliqua culpa dolore. Dolore ullamco tempor qui ex.
           </p>
         </div>
-        <div className="col-sm-6">
-          <img style ={{width: "100%" }}src={college} alt="College" />
+        <div className="col-sm-6 d-flex align-items-center">
+          <img style={{ width: "100%" }} src={college} alt="College" />
         </div>
       </div>
     </div>
