@@ -51,8 +51,8 @@ export default function Faculty() {
               src="https://picsum.photos/200"
               alt="First slide"
             />
-            <p className="my-2">Dr Subodh Pandit</p>
-            <p>Convener, Placement Cell</p>
+            <p className="my-2">Dr Rubina Mittal</p>
+            {/* <p>Convener, Placement Cell</p> */}
           </div>
         </SwiperSlide>
         <SwiperSlide style={{ padding: 10, backgroundColor: "#f2f2f2" }}>
@@ -62,8 +62,8 @@ export default function Faculty() {
               src="https://picsum.photos/200"
               alt="First slide"
             />
-            <p className="my-2">Dr Subodh Pandit</p>
-            <p>Convener, Placement Cell</p>
+            <p className="my-2">Dr Anupama Sachdeva</p>
+            {/* <p>Convener, Placement Cell</p> */}
           </div>
         </SwiperSlide>
         <SwiperSlide style={{ padding: 10, backgroundColor: "#f2f2f2" }}>
@@ -73,8 +73,8 @@ export default function Faculty() {
               src="https://picsum.photos/200"
               alt="First slide"
             />
-            <p className="my-2">Dr Subodh Pandit</p>
-            <p>Convener, Placement Cell</p>
+            <p className="my-2">Dr Shalini Devi</p>
+            {/* <p>Convener, Placement Cell</p> */}
           </div>
         </SwiperSlide>
         <SwiperSlide style={{ padding: 10, backgroundColor: "#f2f2f2" }}>
@@ -84,8 +84,8 @@ export default function Faculty() {
               src="https://picsum.photos/200"
               alt="First slide"
             />
-            <p className="my-2">Dr Subodh Pandit</p>
-            <p>Convener, Placement Cell</p>
+            <p className="my-2">Dr Harpreet Bhatia</p>
+            {/* <p>Convener, Placement Cell</p> */}
           </div>
         </SwiperSlide>
         <SwiperSlide style={{ padding: 10, backgroundColor: "#f2f2f2" }}>
@@ -95,8 +95,8 @@ export default function Faculty() {
               src="https://picsum.photos/200"
               alt="First slide"
             />
-            <p className="my-2">Dr Subodh Pandit</p>
-            <p>Convener, Placement Cell</p>
+            <p className="my-2">Ms. Aastha Kanjila</p>
+            {/* <p>Convener, Placement Cell</p> */}
           </div>
         </SwiperSlide>
         <SwiperSlide style={{ padding: 10, backgroundColor: "#f2f2f2" }}>
@@ -106,8 +106,8 @@ export default function Faculty() {
               src="https://picsum.photos/200"
               alt="First slide"
             />
-            <p className="my-2">Dr Subodh Pandit</p>
-            <p>Convener, Placement Cell</p>
+            <p className="my-2">Dr Anil Sethi</p>
+            {/* <p>Convener, Placement Cell</p> */}
           </div>
         </SwiperSlide>
         <SwiperSlide style={{ padding: 10, backgroundColor: "#f2f2f2" }}>
@@ -117,8 +117,8 @@ export default function Faculty() {
               src="https://picsum.photos/200"
               alt="First slide"
             />
-            <p className="my-2">Dr Subodh Pandit</p>
-            <p>Convener, Placement Cell</p>
+            <p className="my-2">Mr. Vicky Kapoor</p>
+            {/* <p>Convener, Placement Cell</p> */}
           </div>
         </SwiperSlide>
       </Swiper>
