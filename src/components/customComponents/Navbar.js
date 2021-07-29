@@ -31,13 +31,13 @@ export default function NavBar({ navigation }) {
           </li>
 
           <li className="nav-item pl-4">
-            <a href="#Faculty" onClick={handleNavCollapse} className="nav-link">
+            <a href="#TeamFaculty" onClick={handleNavCollapse} className="nav-link">
               Faculty
             </a>
           </li>
 
           <li className="nav-item pl-4">
-            <a href="#Team" onClick={handleNavCollapse} className="nav-link">
+            <a href="#TeamFaculty" onClick={handleNavCollapse} className="nav-link">
               Team
             </a>
           </li>

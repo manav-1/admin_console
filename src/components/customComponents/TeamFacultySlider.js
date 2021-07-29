@@ -5,7 +5,7 @@ export default function TeamFacultySlider() {
 
     const [component, setComponent] = useState(<Faculty/>)
   return (
-    <div className="my-5">
+    <div id="TeamFaculty" className="my-5">
       <div
         style={{ width: "40%", margin: "auto", marginBottom: '2rem' }}
         className="row d-flex justify-content-around"
