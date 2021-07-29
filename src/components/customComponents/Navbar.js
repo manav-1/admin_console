@@ -74,7 +74,10 @@ export default function NavBar({ navigation }) {
               <li className="nav-item">
                 <a
                   href="https://drive.google.com/file/d/1qnBysbXSoW-vn6FzRmfa-5DFymsZmJcx/view?usp=sharing"
-                  onClick={handleNavCollapse}
+                  onClick={() => {
+                    handleDropdownClick();
+                    handleNavCollapse();
+                  }}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="dropdown-item "
@@ -85,8 +88,11 @@ export default function NavBar({ navigation }) {
               <li className="nav-item">
                 <a
                   href="#contact"
-                  onClick={handleNavCollapse}
-                  className="dropdown-item "
+                  className="dropdown-item"
+                  onClick={() => {
+                    handleDropdownClick();
+                    handleNavCollapse();
+                  }}
                 >
                   Contact Us
                 </a>
