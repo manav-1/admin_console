@@ -19,7 +19,7 @@ export default function NavBar({ navigation }) {
         type="button"
         onClick={handleNavCollapse}
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
       <div

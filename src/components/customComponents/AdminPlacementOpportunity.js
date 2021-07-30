@@ -37,7 +37,7 @@ export default function AdminPlacementOppurtunity({
           </a>
         </div>
       </Card>
-      <div class="buttons">
+      <div className="buttons">
         <button className="removeButton" onClick={onRemoveClicked}>
           Remove Opportunity
         </button>

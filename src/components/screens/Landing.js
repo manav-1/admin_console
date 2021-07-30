@@ -1,3 +1,4 @@
+/* eslint-disable */
 import "../css/landing.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery"; // eslint-disable-line

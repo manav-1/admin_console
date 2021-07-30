@@ -83,7 +83,7 @@ export default function Login({ navigation }) {
   }
   return (
     <>
-      <div class="main-container">
+      <div className="main-container">
         <button
           onClick={() => navigation.navigate("Landing")}
           className="header-logo"

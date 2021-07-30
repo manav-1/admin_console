@@ -1,11 +1,11 @@
 export default function Footer() {
   return (
-    <div id="contact" class="ftC">
-      <div class="orizcontatti">
-        <div class="colonnacontatti">
+    <div id="contact" className="ftC">
+      <div className="orizcontatti">
+        <div className="colonnacontatti">
           <a href="mailto:placementcell@keshav.du.ac.in">
             <svg
-              class="iconacontatti"
+              className="iconacontatti"
               version="1.1"
               id="play"
               xmlns="http://www.w3.org/2000/svg"
@@ -15,11 +15,11 @@ export default function Footer() {
               height="40px"
               width="40px"
               viewBox="0 0 40 40"
-              enable-background="new 0 0 40 40"
+              enableBackground="new 0 0 40 40"
               xmlSpace="preserve"
             >
               <circle
-                class="stroke-under"
+                className="stroke-under"
                 fill="none"
                 stroke="#808080"
                 cx="20"
@@ -27,18 +27,18 @@ export default function Footer() {
                 r="19.3"
               />
               <path
-                class="stroke-solid"
+                className="stroke-solid"
                 fill="none"
                 stroke="#dcdcdc"
                 d="M39.3,20.1c0,10.7-8.7,19.3-19.3,19.3S0.7,30.7,0.7,20.1"
               />
               <path
-                class="stroke-solid"
+                className="stroke-solid"
                 fill="none"
                 stroke="#dcdcdc"
                 d="M0.7,20.1C0.7,9.4,9.3,0.7,20,0.7s19.3,8.7,19.3,19.3"
               />
-              <g class="st0">
+              <g className="st0">
                 <g>
                   <path
                     d="M29.2,13.3c-0.5-0.5-1.2-0.8-1.9-0.8H13.1c-1.5,0-2.7,1.2-2.7,2.7v9.7c0,1.5,1.2,2.7,2.7,2.7h14.2
@@ -66,13 +66,13 @@ export default function Footer() {
           </p>
         </div>
 
-        <div class="vl"></div>
-        <div class="ol"></div>
+        <div className="vl"></div>
+        <div className="ol"></div>
 
-        <div class="colonnacontatti">
+        <div className="colonnacontatti">
           <center>
             <svg
-              class="iconacontatti"
+              className="iconacontatti"
               version="1.1"
               id="play"
               xmlns="http://www.w3.org/2000/svg"
@@ -82,11 +82,11 @@ export default function Footer() {
               height="40px"
               width="40px"
               viewBox="0 0 40 40"
-              enable-background="new 0 0 40 40"
+              enableBackground="new 0 0 40 40"
               xmlSpace="preserve"
             >
               <circle
-                class="stroke-under"
+                className="stroke-under"
                 fill="none"
                 stroke="#808080"
                 cx="20"
@@ -94,18 +94,18 @@ export default function Footer() {
                 r="19.3"
               />
               <path
-                class="stroke-solid"
+                className="stroke-solid"
                 fill="none"
                 stroke="#dcdcdc"
                 d="M39.3,20.1c0,10.7-8.7,19.3-19.3,19.3S0.7,30.7,0.7,20.1"
               />
               <path
-                class="stroke-solid"
+                className="stroke-solid"
                 fill="none"
                 stroke="#dcdcdc"
                 d="M0.7,20.1C0.7,9.4,9.3,0.7,20,0.7s19.3,8.7,19.3,19.3"
               />
-              <g class="st0">
+              <g className="st0">
                 <g>
                   <path
                     d="M20.3,29.4c5.4,0,9.7-4.3,9.7-9.7c0-5.3-4.4-9.7-9.7-9.7c-5.4,0-9.7,4.3-9.7,9.7c0,1.8,0.5,3.5,1.4,5
@@ -132,12 +132,12 @@ export default function Footer() {
           <p>+91 1234567890 +91 1234567890 </p>
         </div>
 
-        <div class="vl"></div>
-        <div class="ol"></div>
+        <div className="vl"></div>
+        <div className="ol"></div>
 
-        <div class="colonnacontatti">
+        <div className="colonnacontatti">
           <a
-            class="iconacontatti"
+            className="iconacontatti"
             href="https://www.google.it/maps/place/Sushi+Design+Studio/@45.4313977,12.3192803,17z/data=!3m1!4b1!4m5!3m4!1s0x477eb1d8ae53fdaf:0x1c923f25ffddd403!8m2!3d45.431394!4d12.321469?hl=it"
           >
             <svg
@@ -150,11 +150,11 @@ export default function Footer() {
               height="40px"
               width="40px"
               viewBox="0 0 40 40"
-              enable-background="new 0 0 40 40"
+              enableBackground="new 0 0 40 40"
               xmlSpace="preserve"
             >
               <circle
-                class="stroke-under"
+                className="stroke-under"
                 fill="none"
                 stroke="#808080"
                 cx="20"
@@ -162,18 +162,18 @@ export default function Footer() {
                 r="19.3"
               />
               <path
-                class="stroke-solid"
+                className="stroke-solid"
                 fill="none"
                 stroke="#dcdcdc"
                 d="M39.3,20.1c0,10.7-8.7,19.3-19.3,19.3S0.7,30.7,0.7,20.1"
               />
               <path
-                class="stroke-solid"
+                className="stroke-solid"
                 fill="none"
                 stroke="#dcdcdc"
                 d="M0.7,20.1C0.7,9.4,9.3,0.7,20,0.7s19.3,8.7,19.3,19.3"
               />
-              <g class="st0">
+              <g className="st0">
                 <g>
                   <path
                     d="M13.1,26.7l6.9,6.8l6.9-6.8c1.9-1.8,2.9-4.2,2.9-6.8s-1-5-2.9-6.8c-1.9-1.8-4.3-2.8-6.9-2.8

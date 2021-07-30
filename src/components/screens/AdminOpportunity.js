@@ -54,24 +54,53 @@ export default function Placements({ navigation }) {
   }
 
   function getApplicants(index) {
-    const node = firebase.database().ref("placements").child(pOpp[index].id + "/applicants");
-    node.once('value').then((resp)=>{
-      var data = resp.val()
-      if(data){
+    const node = firebase
+      .database()
+      .ref("placements")
+      .child(pOpp[index].id + "/applicants");
+    node.once("value").then((resp) => {
+      var data = resp.val();
+      console.log(data);
+      if (data) {
         var arr_data = [];
         for (var id in data) {
           arr_data.push(data[id]);
         }
 
-        var arr_header = ['Additional Info','E-mail','Mobile','Name','Resume Url', 'Stream'].join(',')+'\n';
+        var arr_header =
+          [
+            "CollegeMarks",
+            "Description",
+            "Email",
+            "Mobile",
+            "Name",
+            "Projects",
+            "Resume",
+            "Stream",
+            "Marks in 10th",
+            "Marks in 12th",
+          ].join(",") + "\n";
+        console.log("array data", arr_data);
         arr_data.forEach((obj) => {
+          var projString = ""
+          var projects = obj.projects
+          console.log("projects", projects)
+          for (var i of projects){
+            console.log(i)
+            projString += "Name :" + i.name +": " +i.url + ";" 
+          }
+          console.log("projString", projString)
+
           let row = [];
-          for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              row.push(obj[key]);
+          // console.log(obj)
+          for (var prop in obj) {
+            if (prop === "projects") {
+              row.push(projString)
+            } else {
+              row.push(obj[prop]);
             }
           }
-          console.log(row)
+          console.log(row);
           arr_header += row.join(',') + "\n";
         });
         console.log(arr_header)
@@ -84,7 +113,7 @@ export default function Placements({ navigation }) {
         hiddenElement.download = "Applicants.csv";
         hiddenElement.click();
       }
-    })
+    });
   }
   return (
     <ScrollView>

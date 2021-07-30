@@ -87,7 +87,7 @@ export default function SignUp({ navigation }) {
     navigation.navigate("Login");
   }
   return (
-    <div class="main-container">
+    <div className="main-container">
       <button onClick={() => navigation.navigate('Landing')} className="header-logo">
         <img src={logo} alt="Logo" />
       </button>
