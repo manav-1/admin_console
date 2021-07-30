@@ -47,7 +47,7 @@ export default function Profile({ navigation }) {
           setDescription(data.desc);
           setTenth(data.tenth);
           setTwelve(data.twelve);
-          setCollege(data.college)
+          setCollege(data.college);
           if (data.projects) {
             setProjects(data.projects);
           }
@@ -132,6 +132,7 @@ export default function Profile({ navigation }) {
     const dbRef = firebase.database().ref("users/");
     if (
       stream === undefined ||
+      stream === "" ||
       description === undefined ||
       tenth === undefined ||
       twelve === undefined ||
@@ -150,9 +151,9 @@ export default function Profile({ navigation }) {
           profilePic: profilePicUri,
           stream: stream,
           desc: description,
-          tenth:tenth,
-          twelve:twelve,
-          college:college,
+          tenth: tenth,
+          twelve: twelve,
+          college: college,
           projects: projects,
         },
         (error) => {
@@ -234,8 +235,8 @@ export default function Profile({ navigation }) {
     } else {
       projects.push({ name: projName, url: projUrl });
       setProjects([...projects]);
-      setProjName("")
-      setProjUrl("")
+      setProjName("");
+      setProjUrl("");
     }
   }
 
@@ -309,13 +310,16 @@ export default function Profile({ navigation }) {
           />
           <h4>Stream</h4>
           <select
+            className="select-stream"
             value={stream}
             onChange={(val) => {
               console.log(val.target.value);
               setStream(val.target.value);
             }}
           >
-            <option disabled>Please Select a Course</option>
+            <option selected disabled value="">
+              Please Select a Course
+            </option>
             <option value="BSc. Hons. Computer Science">
               BSc. Hons. Computer Science
             </option>
@@ -386,7 +390,7 @@ export default function Profile({ navigation }) {
           </div>
 
           <div className="d-flex flex-row flex-wrap  projectContainer">
-            {projects.reverse().map((item, index) => {
+            {projects.map((item, index) => {
               return (
                 <div
                   className="sProject d-flex flex-row pr-2 align-items-center"

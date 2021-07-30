@@ -51,7 +51,7 @@
   outline: none;
   background: transparent;
   border: none;
-  border-bottom: 1px solid darkblue;
+  border-bottom: 1px solid #0a1d37;
   font-size: 1.25rem;
   width: 50%;
 }
@@ -110,4 +110,10 @@
   border-radius: 50%;
   padding: 0;
   margin: 0;
+}
+select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #0a1d37;
+  border-radius: 5px;
 }
