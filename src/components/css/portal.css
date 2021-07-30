@@ -108,4 +108,7 @@
     height: max(100vh, 100%px);
     background-color: #ccc;
   }
+  .pHeading{
+    font-size: 1.5rem !important;
+  }
 }

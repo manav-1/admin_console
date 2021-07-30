@@ -1,6 +1,7 @@
 import "../css/newopp.css";
 import React, { useState } from "react";
 import firebase from "../FirebaseConfig";
+import SnackBar from "../customComponents/SnackBar";
 
 export default function NewOpportunity({ navigation }) {
   const [companyName, setCompanyName] = useState("");
@@ -8,28 +9,61 @@ export default function NewOpportunity({ navigation }) {
   const [companyImage, setCompanyImage] = useState("");
   const [jd, setJd] = useState("");
   const [deadline, setDeadline] = useState("");
-  const [linkedin, setLinkedIn] = useState("")
-  const [cSite, setCSite] = useState("")
+  const [linkedin, setLinkedIn] = useState("");
+  const [cSite, setCSite] = useState("");
 
+  const [snackBarVisible, setSnackBarVisible] = useState(false);
+  const [snackBarText, setSnackBarText] = useState("");
+  const [snackBarType, setSnackBarType] = useState("");
+
+  function displaySnackBar(type, text) {
+    setSnackBarType(type);
+    setSnackBarText(text);
+    setSnackBarVisible(true);
+  }
+  function hideSnackBar() {
+    setSnackBarVisible(false);
+  }
   function addPlacementOpportunity() {
     const dbRef = firebase.database().ref("placements");
-    var newTask = {
-      name: companyName,
-      profile: profile,
-      jd: jd,
-      companyImage: companyImage,
-      deadline: deadline,
-      linkedin: linkedin,
-      companySite: cSite
-    };
-    dbRef.push(newTask);
-    setCompanyName("");
-    setProfile("");
-    setDeadline("")
-    setCompanyImage("");
-    setJd("");
-    setLinkedIn("")
-    setCSite("")
+    if (
+      !(
+        companyImage === "" ||
+        companyImage === "" ||
+        profile === "" ||
+        jd === "" ||
+        deadline === "" ||
+        linkedin === ""
+      )
+    ) {
+      var newTask = {
+        name: companyName,
+        profile: profile,
+        jd: jd,
+        companyImage: companyImage,
+        deadline: deadline,
+        linkedin: linkedin,
+        companySite: cSite,
+      };
+      dbRef.push(newTask, (err) => {
+        if(err){
+          displaySnackBar("error", "Failed to add Placement Opportunity")
+        }
+        else{
+          displaySnackBar("success","Added Placement Opportunity")
+        }
+      });
+      setCompanyName("");
+      setProfile("");
+      setDeadline("");
+      setCompanyImage("");
+      setJd("");
+      setLinkedIn("");
+      setCSite("");
+    }
+    else{
+      displaySnackBar("error", "Please Fill all the fields")
+    }
   }
 
   return (
@@ -86,6 +120,14 @@ export default function NewOpportunity({ navigation }) {
       <button className="removeButton" onClick={addPlacementOpportunity}>
         Add new Opportunity
       </button>
+      {snackBarVisible ? (
+        <SnackBar
+          isVisible={snackBarVisible}
+          text={snackBarText}
+          type={snackBarType}
+          onClose={hideSnackBar}
+        />
+      ) : null}
     </div>
   );
 }

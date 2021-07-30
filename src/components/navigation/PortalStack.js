@@ -94,21 +94,12 @@ export default function PortalStack({ navigation }) {
     }
   return (
     <div className="main-portal">
-      {/* <div className="toggle-container">
+      <div className="d-flex flex-row align-items-center justify-content-between p-3">
         <button onClick={hideNav}>
           <img src={icon} alt="menu" style={{ width: "3rem" }} />
         </button>
 
-        <h1>Placement Portal</h1>
-
-        <button>Logout</button>
-      </div> */}
-      <div className="d-flex flex-row justify-content-between p-3">
-        <button onClick={hideNav}>
-          <img src={icon} alt="menu" style={{ width: "3rem" }} />
-        </button>
-
-        <h1>Placement Portal</h1>
+        <h1 className="pHeading">Placement Portal</h1>
 
         <button onClick={logoutClicked} className="logout">Logout</button>
       </div>
