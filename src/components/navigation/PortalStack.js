@@ -84,14 +84,33 @@ export default function PortalStack({ navigation }) {
       setOpen(!open);
     }
   }
+    async function logoutClicked() {
+      try {
+        await AsyncStorage.removeItem("loggedUserEmail");
+        await AsyncStorage.removeItem("loggedUserId");
+        navigation.navigate("Landing");
+      } catch (exception) {
+      }
+    }
   return (
     <div className="main-portal">
-      <div className="toggle-container">
+      {/* <div className="toggle-container">
         <button onClick={hideNav}>
           <img src={icon} alt="menu" style={{ width: "3rem" }} />
         </button>
 
         <h1>Placement Portal</h1>
+
+        <button>Logout</button>
+      </div> */}
+      <div className="d-flex flex-row justify-content-between p-3">
+        <button onClick={hideNav}>
+          <img src={icon} alt="menu" style={{ width: "3rem" }} />
+        </button>
+
+        <h1>Placement Portal</h1>
+
+        <button onClick={logoutClicked} className="logout">Logout</button>
       </div>
       <div className="portal">
         <div id="side" className="portal-side-container">
