@@ -13,6 +13,7 @@ export default function Placements({ navigation }) {
   const [snackBarType, setSnackBarType] = useState("");
 
   useEffect(() => {
+    let isMounted = true; //eslint-disable-line
     async function fetchOpportunities() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
@@ -25,7 +26,9 @@ export default function Placements({ navigation }) {
             for (var id in data) {
               opportunities.push({ id, ...data[id] });
             }
-            setPOpp(opportunities);
+            if (isMounted) {
+              setPOpp(opportunities);
+            }
           },
           (error) => {
             displaySnackBar("error", "Failed to fetch placements");
@@ -33,7 +36,11 @@ export default function Placements({ navigation }) {
         );
       }
     }
+
     fetchOpportunities();
+    return () => {
+      isMounted = false; //eslint-disable-line
+    };
   }, []);
 
   function displaySnackBar(type, text) {

@@ -13,10 +13,10 @@ export default function Profile({ navigation }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  const [description, setDescription] = useState(null);
-  const [stream, setStream] = useState(null);
+  const [description, setDescription] = useState("");
+  const [stream, setStream] = useState("");
   const [resume, setResume] = useState("");
-  const [resumeName, setResumeName] = useState(null);
+  const [resumeName, setResumeName] = useState("");
   const [tenth, setTenth] = useState("");
   const [twelve, setTwelve] = useState("");
   const [college, setCollege] = useState("");
@@ -300,13 +300,11 @@ export default function Profile({ navigation }) {
           <input
             type="email"
             value={email}
-            onInput={(val) => setEmail(val.target.value)}
           />
           <h4>Mobile Number</h4>
           <input
             type="number"
             value={mobile}
-            onInput={(val) => setMobile(val.target.value)}
           />
           <h4>Stream</h4>
           <select
@@ -317,7 +315,7 @@ export default function Profile({ navigation }) {
               setStream(val.target.value);
             }}
           >
-            <option selected disabled value="">
+            <option defaultValue disabled value="">
               Please Select a Course
             </option>
             <option value="BSc. Hons. Computer Science">
@@ -371,7 +369,7 @@ export default function Profile({ navigation }) {
               style={{ flex: 2 }}
               className="mx-3"
               placeholder="Enter Project Url"
-              type="text"
+              type="url"
               value={projUrl}
               onInput={(val) => setProjUrl(val.target.value)}
             />

@@ -26,7 +26,7 @@ export default function Placements({ navigation }) {
             for (var id in data) {
               opportunities.push({ id, ...data[id] });
             }
-            setPOpp(opportunities);
+            setPOpp([...opportunities]);
           },
           (error) => {
             displaySnackBar("error", "Failed to fetch placements");
@@ -122,6 +122,7 @@ export default function Placements({ navigation }) {
           {pOpp.map((item, index) => {
             return (
               <AdminPlacementOppurtunity
+                key={index}
                 img={item.companyImage || "https://picsum.photos/200/300"}
                 companyName={item.name}
                 role={item.profile}
