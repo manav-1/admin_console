@@ -10,7 +10,8 @@ export default function NavBar({ navigation }) {
     <nav className="navbar navbar-expand-lg bg-light py-0 navbar-light">
       <button
         className="navbar-brand"
-        onClick={() => navigation.navigate("Landing")}
+        // onClick={() => navigation.navigate("Landing")}
+        onClick={() => navigation.navigate("Login")}
       >
         <img src={logo} alt="Logo" className="header__logo" />
       </button>

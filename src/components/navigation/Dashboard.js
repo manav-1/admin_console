@@ -2,12 +2,13 @@ import "../css/dashboard.css";
 import logo from "../../assets/logo.png";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../screens/Login";
-import SignUp from "../screens/SignUp";
+import SignUp from "../screens/SignUp"; //eslint-disable-line
 import PortalStack from "./PortalStack";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
+//eslint-disable-next-line
 function App({ navigation }) {
   useEffect(() => {
     (async () => {
@@ -47,21 +48,21 @@ function App({ navigation }) {
 export default function DashNav({ navigation }) {
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="DashBoard"
         component={App}
         options={{ headerShown: false }}
-      />
+      /> */}
       <Stack.Screen
         name="Login"
         component={Login}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="SignUp"
         component={SignUp}
         options={{ headerShown: false }}
-      />
+      /> */}
       <Stack.Screen
         name="Portal"
         component={PortalStack}

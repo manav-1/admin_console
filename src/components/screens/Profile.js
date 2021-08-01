@@ -6,6 +6,7 @@ import profile from "../../assets/user.png";
 import SnackBar from "../customComponents/SnackBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import firebase from "../FirebaseConfig";
+import validator from "validator";
 // import * as ImagePicker from "expo-image-picker";
 
 export default function Profile({ navigation }) {
@@ -232,6 +233,12 @@ export default function Profile({ navigation }) {
   function addProject() {
     if (projName === "") {
       displaySnackBar("error", "Please fill the name of the project");
+    } else if (
+      !validator.isURL(projUrl) ||
+      !projUrl.startsWith("http") ||
+      !projUrl.startsWith("https")
+    ) {
+      displaySnackBar("error", "Please fill a valid http/https Url");
     } else {
       projects.push({ name: projName, url: projUrl });
       setProjects([...projects]);
@@ -297,15 +304,9 @@ export default function Profile({ navigation }) {
             onInput={(val) => setName(val.target.value)}
           />
           <h4>Email</h4>
-          <input
-            type="email"
-            value={email}
-          />
+          <input type="email" value={email} />
           <h4>Mobile Number</h4>
-          <input
-            type="number"
-            value={mobile}
-          />
+          <input type="number" value={mobile} />
           <h4>Stream</h4>
           <select
             className="select-stream"

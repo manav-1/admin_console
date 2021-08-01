@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import "../css/style.css";
 import logo from "../../assets/logo.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SnackBar from "../customComponents/SnackBar";
 import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,6 +14,16 @@ export default function Login({ navigation }) {
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("");
+  useEffect(()=>{
+    (async () => {
+      //checking if any user is already logged or not
+      const loggedUserId = await AsyncStorage.getItem("loggedUserId");
+
+      if (loggedUserId) {
+        navigation.navigate("Portal");
+      }
+    })();
+  })
 
   function displaySnackBar(type, text) {
     setSnackBarType(type);
@@ -59,6 +69,7 @@ export default function Login({ navigation }) {
     }
   }
 
+  //eslint-disable-next-line
   function handleSignUpClick() {
     navigation.navigate("SignUp");
   }
@@ -141,12 +152,12 @@ export default function Login({ navigation }) {
               Forgot Password?
             </a>
 
-            <p className="login__forgot">
+            {/* <p className="login__forgot">
               Haven't signed up <br />
               <button type="button" className="reg" onClick={handleSignUpClick}>
                 Register Here
               </button>
-            </p>
+            </p> */}
           </form>
         </div>
       </div>
