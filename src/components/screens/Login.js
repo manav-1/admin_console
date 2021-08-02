@@ -14,7 +14,7 @@ export default function Login({ navigation }) {
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("");
-  useEffect(()=>{
+  useEffect(() => {
     (async () => {
       //checking if any user is already logged or not
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
@@ -23,7 +23,7 @@ export default function Login({ navigation }) {
         navigation.navigate("Portal");
       }
     })();
-  })
+  });
 
   function displaySnackBar(type, text) {
     setSnackBarType(type);
@@ -40,33 +40,28 @@ export default function Login({ navigation }) {
     setShowPass(!showPass);
   }
   function loginButtonClicked() {
-    if (email.includes("@keshav.du.ac.in")) {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(async (user) => {
-          try {
-            const userId = user.user.uid;
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(async (user) => {
+        try {
+          const userId = user.user.uid;
 
-            //making cookie of the logged user
-            await AsyncStorage.setItem("loggedUserEmail", email);
-            await AsyncStorage.setItem("loggedUserId", userId);
+          //making cookie of the logged user
+          await AsyncStorage.setItem("loggedUserEmail", email);
+          await AsyncStorage.setItem("loggedUserId", userId);
+          displaySnackBar("success", "Logged in Successfully");
+          navigation.navigate("Portal");
+        } catch {
+          displaySnackBar("error", "Something went wrong");
+        }
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
 
-            displaySnackBar("success", "Logged in Successfully");
-            navigation.navigate("Portal");
-          } catch {
-            displaySnackBar("error", "Something went wrong");
-          }
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-
-          displaySnackBar("error", errorMessage + errorCode);
-        });
-    } else {
-      alert("Enter Keshav Id");
-    }
+        displaySnackBar("error", errorMessage + errorCode);
+      });
   }
 
   //eslint-disable-next-line
@@ -81,12 +76,12 @@ export default function Login({ navigation }) {
         .sendPasswordResetEmail(email)
         .then(function () {
           // Password reset email sent.
-          displaySnackBar('success','Password reset email sent')
+          displaySnackBar("success", "Password reset email sent");
         })
         .catch(function (error) {
           // Error occurred. Inspect error.code.
           // var message = error.message
-          displaySnackBar("error","User not Found")
+          displaySnackBar("error", "User not Found");
         });
     } else {
       displaySnackBar("error", "Please enter your Keshav Id");
@@ -108,7 +103,7 @@ export default function Login({ navigation }) {
                 <a href="https://google.com">LogIn</a>
               </li>
             </ul>
-            <label for="username" className="login__label">
+            <label htmlFor="username" className="login__label">
               Email
             </label>
             <input
@@ -120,7 +115,7 @@ export default function Login({ navigation }) {
               onInput={(e) => setEmail(e.target.value)}
             />
 
-            <label for="pass" className="login__label mt-3">
+            <label htmlFor="pass" className="login__label mt-3">
               Password
             </label>
             <input
@@ -131,7 +126,7 @@ export default function Login({ navigation }) {
               value={password}
               onInput={(e) => setPassword(e.target.value)}
             />
-            <label className="login__label--checkbox" for="cbox">
+            <label className="login__label--checkbox" htmlFor="cbox">
               <input
                 className="login__input--checkbox"
                 id="cbox"

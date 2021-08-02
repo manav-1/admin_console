@@ -98,7 +98,7 @@ export default function SignUp({ navigation }) {
               <a href="https://google.com">SignUp</a>
             </li>
           </ul>
-          <label for="username" className="login__label">
+          <label htmlFor="username" className="login__label">
             Name
           </label>
           <input
@@ -109,7 +109,7 @@ export default function SignUp({ navigation }) {
             value={name}
             onInput={(e) => setName(e.target.value)}
           />
-          <label for="username" className="login__label">
+          <label htmlFor="username" className="login__label">
             Email
           </label>
           <input
@@ -121,7 +121,7 @@ export default function SignUp({ navigation }) {
             onInput={(e) => setEmail(e.target.value)}
           />
 
-          <label for="pass" className="login__label mt-3">
+          <label htmlFor="pass" className="login__label mt-3">
             Password
           </label>
           <input
@@ -133,7 +133,7 @@ export default function SignUp({ navigation }) {
             onInput={(e) => setPassword(e.target.value)}
           />
 
-          <label for="pass" className="login__label mt-3">
+          <label htmlFor="pass" className="login__label mt-3">
             Confirm Password
           </label>
           <input
@@ -144,7 +144,7 @@ export default function SignUp({ navigation }) {
             value={confirmPassword}
             onInput={(e) => setConfirmPassword(e.target.value)}
           />
-          <label for="pass" className="login__label mt-3">
+          <label htmlFor="pass" className="login__label mt-3">
             Mobile
           </label>
           <input
@@ -155,7 +155,7 @@ export default function SignUp({ navigation }) {
             value={mobile}
             onInput={(e) => setMobile(e.target.value)}
           />
-          <label className="login__label--checkbox" for="cbox">
+          <label className="login__label--checkbox" htmlFor="cbox">
             <input
               className="login__input--checkbox"
               id="cbox"
