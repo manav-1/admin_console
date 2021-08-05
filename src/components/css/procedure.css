@@ -1,0 +1,59 @@
+.procedure-container {
+  text-align: center;
+  height: 80vh;
+  margin: 5vh 10vh;
+  background: #22758bd1;
+  border-radius: 5vh;
+  padding: 5vh;
+}
+.procedure .heading-secondary {
+  text-align: center;
+  font-weight: bold;
+  font-size: 4rem;
+  margin-top: 1rem;
+  background: linear-gradient(to top right, #383e56, #1687a7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.procedure-container ul {
+  list-style-type: none;
+  background: white;
+  height: 5px;
+  display: flex;
+  justify-content: space-around;
+  text-align: justify;
+  margin-top: 5rem;
+}
+.procedure-container ul li {
+  width: 5px;
+  background: #fff;
+  height: 10rem;
+  margin: 0 3rem;
+}
+.procedure-container ul li div {
+  position: relative;
+  bottom: 0;
+  left:-10rem;
+  top: 10rem;
+  width: 18vw;
+}
+.procedure-container ul li:nth-child(even) {
+  width: 5px;
+  background: #fff;
+  height: 20rem;
+}
+.procedure-container ul li:nth-child(even) div {
+  position: relative;
+  bottom: 0;
+  left:-10rem;
+  top: 20rem;
+  width: 18vw;
+}
+.lightgray{
+    color: lightgray;
+    text-align: left;
+}
+.procedure-container ul li div p{
+  font-size:0.9em
+}

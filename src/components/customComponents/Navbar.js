@@ -87,6 +87,18 @@ export default function NavBar({ navigation }) {
                 </a>
               </li>
               <li className="nav-item">
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    navigation.navigate("Procedure")
+                    handleDropdownClick();
+                    handleNavCollapse();
+                  }}
+                >
+                  Placement Procedure
+                </button>
+              </li>
+              <li className="nav-item">
                 <a
                   href="#contact"
                   className="dropdown-item"
