@@ -41,14 +41,18 @@ export default function PlacementProcedure({ navigation }) {
       </button>
       <h1 className="heading-secondary">Placement Procedure</h1>
       <div className="procedure-container">
-        <Chrono
-          items={items}
-          mode={
-            Dimensions.get("screen").width > 768
-              ? "VERTICAL_ALTERNATING"
-              : "VERTICAL"
-          }
-        />
+        <div className="procedure-container-chrono">
+          <Chrono
+            cardHeight={300}
+            useReadMore={false}
+            items={items}
+            mode={
+              Dimensions.get("screen").width > 768
+                ? "VERTICAL_ALTERNATING"
+                : "VERTICAL"
+            }
+          />
+        </div>
       </div>
     </div>
   );
