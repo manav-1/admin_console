@@ -14,7 +14,7 @@ export default function AdminPlacementOppurtunity({
   companySite,
 }) {
   return (
-    <div className="placement-main-container">
+    <div style={{ width: "30rem" }} className="placement-main-container">
       <Card style={{ width: "20rem", padding: "2rem 0 0.5rem" }}>
         <Card.Img
           style={{ width: "50%", margin: "auto", height: "10rem" }}

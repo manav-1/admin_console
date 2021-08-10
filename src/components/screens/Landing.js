@@ -9,6 +9,7 @@ import Navbar from "../customComponents/Navbar";
 import Header from "../customComponents/Header";
 import AboutUs from "../customComponents/AboutUs";
 import AboutCollege from "../customComponents/AboutCollege";
+import Society from "../customComponents/Society";
 import TeamFacultySlider from "../customComponents/TeamFacultySlider";
 import Footer from "../customComponents/Footer";
 
@@ -20,8 +21,9 @@ export default function Landing({ navigation }) {
       <div className="main-landing-content">
         <AboutUs />
         <AboutCollege />
-        <TeamFacultySlider />
+        <Society />
       </div>
+      <TeamFacultySlider />
       <Footer />
     </div>
   );

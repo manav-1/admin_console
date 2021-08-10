@@ -100,7 +100,7 @@ export default function TeamComponent() {
                 <div className="card-title">
                   {" "}
                   Deepti Jain
-                  <br /> <small>Head of Personal Relationship</small>{" "}
+                  <br /> <small>Head of Public Relations</small>{" "}
                 </div>
                 <div className="card-subtitle">
                   <p>

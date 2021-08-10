@@ -450,20 +450,38 @@ p {
 }
 .landing-button {
   font-family: karla;
-  /* background-color: #34394b; */
+  /* background-color: #34394b;  */
   border: 2px solid #34394b;
   color: #34394b;
   padding: 0.5rem 2rem 0.3rem;
   border-radius: 1rem;
   font-size: 1rem;
 }
-.landing-button:hover{
+.landing-button:hover {
   background-color: #34394b;
   color: #fff;
 }
+/* .landing-button {
+  font-family: karla;
+  /* background-color: #34394b; 
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0.5rem 2rem 0.3rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+.landing-button:hover {
+  border: 2px solid #34394b;
+  background-color: #34394b;
+  color: #fff;
+} */
 @media (max-width: 768px) {
   .landing-button {
-    margin: 1rem 0.5rem  0;
+    margin: 1rem 0.5rem 0;
     padding: 0.5rem 1rem 0.3rem;
   }
+}
+.team-faculty {
+  /* background-image: linear-gradient(to right bottom, #383e56d1, #1687a7d1); */
+  border-radius: 0.5rem;
 }
