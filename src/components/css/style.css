@@ -321,3 +321,10 @@ input::-webkit-inner-spin-button {
   font-weight: 700;
   text-transform: uppercase;
 }
+
+.nav-item{
+  padding-left: 0.8rem;
+}
+.navbar-brand{
+  margin-left: 0.5rem;
+}
