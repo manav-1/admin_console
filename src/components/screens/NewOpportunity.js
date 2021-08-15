@@ -1,7 +1,7 @@
 import "../css/newopp.css";
 import React, { useState } from "react";
-import firebase from "../FirebaseConfig";
 import SnackBar from "../customComponents/SnackBar";
+import axios from 'axios'
 
 export default function NewOpportunity({ navigation }) {
   const [companyName, setCompanyName] = useState("");
@@ -25,7 +25,6 @@ export default function NewOpportunity({ navigation }) {
     setSnackBarVisible(false);
   }
   function addPlacementOpportunity() {
-    const dbRef = firebase.database().ref("placements");
     if (
       !(
         companyImage === "" ||
@@ -45,14 +44,7 @@ export default function NewOpportunity({ navigation }) {
         linkedin: linkedin,
         companySite: cSite,
       };
-      dbRef.push(newTask, (err) => {
-        if(err){
-          displaySnackBar("error", "Failed to add Placement Opportunity")
-        }
-        else{
-          displaySnackBar("success","Added Placement Opportunity")
-        }
-      });
+      axios.post(`https://placement-portal-server.herokuapp.com/newOppurtunity`, newTask);
       setCompanyName("");
       setProfile("");
       setDeadline("");

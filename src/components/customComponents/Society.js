@@ -92,7 +92,7 @@ export default function Society() {
         </div>
       </div>
       <div className="row w-100 mx-auto px-5 d-flex justify-content-around ">
-        <div class="col-offset-1"></div>
+        <div className="col-offset-1"></div>
         <div className="col-sm-2 text-center">
           <img
             src="https://i.ibb.co/0J1Q7LW/17.png"
@@ -162,7 +162,7 @@ export default function Society() {
             KMV
           </p>
         </div>
-        <div class="col-offset-1"></div>
+        <div className="col-offset-1"></div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import edit from "../../assets/edit.png";
 import profile from "../../assets/user.png";
 import SnackBar from "../customComponents/SnackBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 import firebase from "../FirebaseConfig";
 import validator from "validator";
 // import * as ImagePicker from "expo-image-picker";
@@ -25,6 +26,8 @@ export default function Profile({ navigation }) {
   const [projUrl, setProjUrl] = useState("");
   const [projects, setProjects] = useState([]);
 
+  // const [firebase, setFirebase] = useState(null);
+
   const [uploadImage, setUploadImage] = useState(false);
   const [uploadResume, setUploadResume] = useState(false);
 
@@ -35,12 +38,10 @@ export default function Profile({ navigation }) {
   useEffect(() => {
     async function fetchUserProfile() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
-      const dbRef = firebase.database().ref("users");
-      dbRef
-        .child(loggedUserId)
-        .once("value")
-        .then((val) => {
-          var data = val.val();
+      axios
+        .get(`https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`)
+        .then((res) => {
+          const data = res.data;
           setName(data.uName);
           setEmail(data.uEmail);
           setMobile(data.uMobile);
@@ -81,8 +82,6 @@ export default function Profile({ navigation }) {
 
     const response = await fetch(profilePic.uri);
     const blob = await response.blob();
-
-    //putting image in firebase
     const storageRef = firebase
       .app()
       .storage()
@@ -130,7 +129,6 @@ export default function Profile({ navigation }) {
     }
   }
   function saveUpdatedProfile(loggedUserId, profilePicUri) {
-    const dbRef = firebase.database().ref("users/");
     if (
       stream === undefined ||
       stream === "" ||
@@ -145,26 +143,29 @@ export default function Profile({ navigation }) {
         "Please fill up all fields before updating profile"
       );
     } else {
-      dbRef.child(loggedUserId).update(
-        {
-          uName: name,
-          uEmail: email,
-          profilePic: profilePicUri,
-          stream: stream,
-          desc: description,
-          tenth: tenth,
-          twelve: twelve,
-          college: college,
-          projects: projects,
-        },
-        (error) => {
-          if (error) {
-            displaySnackBar("error", "Failed to update profile");
+      const updatedProfile = {
+        uName: name,
+        uEmail: email,
+        profilePic: profilePicUri,
+        stream: stream,
+        desc: description,
+        tenth: tenth,
+        twelve: twelve,
+        college: college,
+        projects: projects,
+      };
+      axios
+        .post("https://placement-portal-server.herokuapp.com/updateProfile", [
+          loggedUserId,
+          updatedProfile,
+        ])
+        .then((res) => {
+          if (res.data) {
+            displaySnackBar("success", "Updated Profile Successfully");
           } else {
-            displaySnackBar("success", "Profile updated");
+            displaySnackBar("error", "Failed to update profile");
           }
-        }
-      );
+        });
     }
   }
 
@@ -224,10 +225,18 @@ export default function Profile({ navigation }) {
   }
 
   function saveUpdatedResume(loggedUserId, resume) {
-    const usersDbRef = firebase.app().database().ref("users/");
-    usersDbRef
-      .child(loggedUserId)
-      .update({ resume: resume, resumeName: resumeName });
+    axios
+      .post("https://placement-portal-server.herokuapp.com/updateResume", [
+        loggedUserId,
+        { resume: resume, resumeName: resumeName },
+      ])
+      .then((res) => {
+        if (res.data) {
+          displaySnackBar("Updated Resume Successfully");
+        } else {
+          displaySnackBar("error", "Failed to update resume");
+        }
+      });
     saveProfile();
   }
   function addProject() {
@@ -304,9 +313,9 @@ export default function Profile({ navigation }) {
             onInput={(val) => setName(val.target.value)}
           />
           <h4>Email</h4>
-          <input type="email" value={email} />
+          <input type="email" readOnly value={email} />
           <h4>Mobile Number</h4>
-          <input type="number" value={mobile} />
+          <input type="number" readOnly value={mobile} />
           <h4>Stream</h4>
           <select
             className="select-stream"

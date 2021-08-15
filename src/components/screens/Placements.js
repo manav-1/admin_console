@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import PlacementOppurtunity from "../customComponents/PlacementOppurtunity";
 import SnackBar from "../customComponents/SnackBar";
-import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export default function Placements({ navigation }) {
   const [pOpp, setPOpp] = useState([]);
@@ -17,23 +17,11 @@ export default function Placements({ navigation }) {
     async function fetchOpportunities() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
-        const dbRef = firebase.database().ref("placements");
-        dbRef.on(
-          "value",
-          function (resp) {
-            const data = resp.val();
-            const opportunities = [];
-            for (var id in data) {
-              opportunities.push({ id, ...data[id] });
-            }
-            if (isMounted) {
-              setPOpp(opportunities);
-            }
-          },
-          (error) => {
-            displaySnackBar("error", "Failed to fetch placements");
-          }
-        );
+        axios
+          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
+          .then((resp) => {
+            setPOpp([...resp.data]);
+          });
       }
     }
 
@@ -51,55 +39,17 @@ export default function Placements({ navigation }) {
 
   async function onApplyClick(index) {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
-    const dbRef = firebase.database().ref("placements/" + pOpp[index].id);
-    firebase
-      .database()
-      .ref("users/" + loggedUserId)
-      .once("value")
+
+    axios
+      .get(
+        `https://placement-portal-server.herokuapp.com/applyPlacements?pid=${pOpp[index].id}&uid=${loggedUserId}&cName=$${pOpp[index].name}&profile=${pOpp[index].profile}`
+      )
       .then((resp) => {
-        var data = resp.val();
-        if (data) {
-          var name = data.uName;
-          var mobile = data.uMobile;
-          var email = data.uEmail;
-          var resume = data.resume.uriResume;
-          var description = data.desc;
-          var stream = data.stream;
-          var tenth = data.tenth;
-          var twelve = data.twelve;
-          var college = data.college;
-          var projects = data.projects;
-          dbRef
-            .child("applicants/" + loggedUserId + "_" + name + "_" + mobile)
-            .set(
-              {
-                name: name,
-                mobile: mobile,
-                resume: resume,
-                email: email,
-                description: description,
-                stream: stream,
-                tenth: tenth,
-                twelve: twelve,
-                college: college,
-                projects: projects,
-              },
-              (err) => {
-                if (err) {
-                  displaySnackBar("error", "Couldn't Apply , Please try again");
-                } else {
-                  fetch(
-                    `https://manavar81101.pythonanywhere.com/?email=${email}&companyname=${pOpp[index].name}&profile=${pOpp[index].profile}`
-                  );
-                  displaySnackBar("success", "Applied successfully");
-                }
-              }
-            );
+        if (resp.data) {
+          displaySnackBar("success", "Applied Successfully");
+        } else {
+          displaySnackBar("error", " Couldn't Apply Please try Again later");
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        displaySnackBar("error", "Couldn't Apply , Please try again");
       });
   }
 

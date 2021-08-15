@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import AdminPlacementOppurtunity from "../customComponents/AdminPlacementOpportunity";
 import SnackBar from "../customComponents/SnackBar";
-import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 // import { cos } from "react-native-reanimated";
 
 export default function Placements({ navigation }) {
@@ -17,21 +17,18 @@ export default function Placements({ navigation }) {
     async function fetchOpportunities() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
-        const dbRef = firebase.database().ref("placements");
-        dbRef.on(
-          "value",
-          function (resp) {
-            const data = resp.val();
-            const opportunities = [];
-            for (var id in data) {
-              opportunities.push({ id, ...data[id] });
+        axios
+          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
+          .then((resp) => {
+            if (resp.data === "Error") {
+              displaySnackBar("error", "Failed to Fetch Placements");
+            } else {
+              setPOpp([...resp.data]);
             }
-            setPOpp([...opportunities]);
-          },
-          (error) => {
-            displaySnackBar("error", "Failed to fetch placements");
-          }
-        );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     }
     fetchOpportunities();
@@ -49,71 +46,80 @@ export default function Placements({ navigation }) {
   }
 
   function markDone(index) {
-    const node = firebase.database().ref("placements").child(pOpp[index].id);
-    node.remove();
+    axios
+      .get(`https://placement-portal-server.herokuapp.com/deletePlacements?node=${pOpp[index].id}`)
+      .then((resp) => {
+        if (resp.data === "Error") {
+          displaySnackBar("error", "Failed to Fetch Placements");
+        } else {
+          setPOpp([...resp.data]);
+        }
+      });
   }
 
   function getApplicants(index) {
-    const node = firebase
-      .database()
-      .ref("placements")
-      .child(pOpp[index].id + "/applicants");
-    node.once("value").then((resp) => {
-      var data = resp.val();
-      console.log(data);
-      if (data) {
-        var arr_data = [];
-        for (var id in data) {
-          arr_data.push(data[id]);
-        }
-
-        var arr_header =
-          [
-            "CollegeMarks",
-            "Description",
-            "Email",
-            "Mobile",
-            "Name",
-            "Projects",
-            "Resume",
-            "Stream",
-            "Marks in 10th",
-            "Marks in 12th",
-          ].join(",") + "\n";
-        console.log("array data", arr_data);
-        arr_data.forEach((obj) => {
-          var projString = ""
-          var projects = obj.projects
-          console.log("projects", projects)
-          for (var i of projects){
-            console.log(i)
-            projString += "Name :" + i.name +": " +i.url + ";" 
-          }
-          console.log("projString", projString)
-
-          let row = [];
-          // console.log(obj)
-          for (var prop in obj) {
-            if (prop === "projects") {
-              row.push(projString)
-            } else {
-              row.push(obj[prop]);
+    axios
+      .get(`https://placement-portal-server.herokuapp.com/applicants?pid=${pOpp[index].id}`)
+      .then((resp) => {
+        if (resp.data) {
+          var data = resp.data.val();
+          console.log(data);
+          if (data) {
+            var arr_data = [];
+            for (var id in data) {
+              arr_data.push(data[id]);
             }
-          }
-          console.log(row);
-          arr_header += row.join(',') + "\n";
-        });
-        console.log(arr_header)
-        let csvData = new Blob([arr_header], { type: "text/csv" });
-        let csvUrl = URL.createObjectURL(csvData);
 
-        let hiddenElement = document.createElement("a");
-        hiddenElement.href = csvUrl;
-        hiddenElement.target = "_blank";
-        hiddenElement.download = "Applicants.csv";
-        hiddenElement.click();
-      }
-    });
+            var arr_header =
+              [
+                "CollegeMarks",
+                "Description",
+                "Email",
+                "Mobile",
+                "Name",
+                "Projects",
+                "Resume",
+                "Stream",
+                "Marks in 10th",
+                "Marks in 12th",
+              ].join(",") + "\n";
+            console.log("array data", arr_data);
+            arr_data.forEach((obj) => {
+              var projString = "";
+              var projects = obj.projects;
+              console.log("projects", projects);
+              for (var i of projects) {
+                console.log(i);
+                projString += "Name :" + i.name + ": " + i.url + ";";
+              }
+              console.log("projString", projString);
+
+              let row = [];
+              // console.log(obj)
+              for (var prop in obj) {
+                if (prop === "projects") {
+                  row.push(projString);
+                } else {
+                  row.push(obj[prop]);
+                }
+              }
+              console.log(row);
+              arr_header += row.join(",") + "\n";
+            });
+            console.log(arr_header);
+            let csvData = new Blob([arr_header], { type: "text/csv" });
+            let csvUrl = URL.createObjectURL(csvData);
+
+            let hiddenElement = document.createElement("a");
+            hiddenElement.href = csvUrl;
+            hiddenElement.target = "_blank";
+            hiddenElement.download = "Applicants.csv";
+            hiddenElement.click();
+          }
+        } else {
+          displaySnackBar("error", "No Applicants for this Oppurtunity");
+        }
+      });
   }
   return (
     <ScrollView>
