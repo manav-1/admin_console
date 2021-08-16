@@ -6,7 +6,6 @@ import profile from "../../assets/user.png";
 import SnackBar from "../customComponents/SnackBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import firebase from "../FirebaseConfig";
 import validator from "validator";
 
 // import * as ImagePicker from "expo-image-picker";
@@ -74,40 +73,29 @@ export default function Profile({ navigation }) {
       .getElementById("file")
       .addEventListener("change", function (event) {
         try {
-          setProfilePic({ uri: URL.createObjectURL(event.target.files[0]) });
+          setProfilePic(event.target.files[0]);
           setUploadImage(true);
         } catch (e) {}
       });
   }
-
   async function uploadImageInFirebase(loggedUserId) {
-    const imageName = loggedUserId + ".jpg";
-
-    const response = await fetch(profilePic.uri);
-    const blob = await response.blob();
-    const storageRef = firebase
-      .app()
-      .storage()
-      .ref()
-      .child("profile_image/" + imageName);
-    const resp = storageRef.put(blob);
-    resp.on(
-      firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {
-        // const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      },
-      (error) => {},
-      () => {
-        storageRef.getDownloadURL().then((downloadUrl) => {
-          setProfilePic({ uri: downloadUrl });
-
-          //updating the uploaded image url in firebase db
-          saveUpdatedProfile(loggedUserId, { uri: downloadUrl });
-        });
-      }
-    );
-
-    return resp;
+    const imgName = loggedUserId + ".jpg";
+    var formData = new FormData();
+    formData.append("type", "profile_image");
+    formData.append("file", profilePic);
+    formData.append("name", imgName);
+    formData.append("uid", loggedUserId);
+    axios
+      .post("http://127.0.0.1:3001/uploadFirebase", formData)
+      .then((response) => {
+        if (response.data) {
+          setProfilePic({ uri: response.data });
+          saveUpdatedProfile(loggedUserId, { uri: response.data });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   async function saveProfile() {
@@ -173,12 +161,9 @@ export default function Profile({ navigation }) {
   }
 
   async function handleResumeEdit(event) {
-    try {
-      setResumeName(event.target.files[0].name);
-      setResume({ uri: URL.createObjectURL(event.target.files[0]) });
-      // setResume(event.target.files[0]);
-      setUploadResume(true);
-    } catch (e) {}
+    setResumeName(event.target.files[0].name);
+    setResume(event.target.files[0]);
+    setUploadResume(true);
   }
 
   async function updateResume() {
@@ -190,42 +175,34 @@ export default function Profile({ navigation }) {
             displaySnackBar("success", "Resume Updated Successfully");
           })
           .catch((error) => {
-            displaySnackBar("error", "Failed to aaa update Resume");
+            console.log(error);
+            displaySnackBar("error", "Failed to update Resume");
           });
       }
-    } catch {
-      displaySnackBar("error", "Failed to bbb Update Resume");
+    } catch (e) {
+      console.log(e);
+      displaySnackBar("error", "Failed to Update Resume");
     }
   }
+
   async function uploadResumeInFirebase(loggedUserId) {
     const resumeName = loggedUserId + ".pdf";
-    const resp = await fetch(resume.uri);
-    const blob = await resp.blob();
-
-    const storageRef = firebase
-      .storage()
-      .ref()
-      .child("resume/" + resumeName);
-    const response = storageRef.put(blob);
-    response.on(
-      firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {
-        // const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      },
-      (error) => {
-        displaySnackBar("error", "Failed to Upload Resume");
-      },
-      () => {
-        storageRef.getDownloadURL().then((downloadUrl) => {
-          setResume({ uriResume: downloadUrl });
-
-          //updating the uploaded image url in firebase db
-          saveUpdatedResume(loggedUserId, { uriResume: downloadUrl });
-        });
-      }
-    );
-
-    return resp;
+    var formData = new FormData();
+    formData.append("type", "resume");
+    formData.append("file", resume);
+    formData.append("name", resumeName);
+    formData.append("uid", loggedUserId);
+    axios
+      .post("http://127.0.0.1:3001/uploadFirebase", formData)
+      .then((response) => {
+        if (response.data) {
+          setResume({ uriResume: response.data });
+          saveUpdatedResume(loggedUserId, { uriResume: response.data });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function saveUpdatedResume(loggedUserId, resume) {
@@ -290,7 +267,8 @@ export default function Profile({ navigation }) {
         <div className="profile-image">
           <img
             className="profile-img"
-            src={profilePic.uri || profile}
+            src={uploadImage? URL.createObjectURL(profilePic): profilePic.uri
+            }
             alt="Profile"
           ></img>
           <button
