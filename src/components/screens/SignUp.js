@@ -2,12 +2,12 @@ import "../css/style.css";
 import logo from "../../assets/logo.png";
 import React, { useState } from "react";
 import SnackBar from "../customComponents/SnackBar";
-import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export default function SignUp({ navigation }) {
   const [email, setEmail] = useState("");
-  const [name,setName] = useState("")
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [mobile, setMobile] = useState("");
@@ -33,50 +33,23 @@ export default function SignUp({ navigation }) {
   }
   function registerButtonClicked() {
     if (email.includes("@keshav.du.ac.in")) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((user) => {
-          try {
-            //inserting user data in firebase db
-            const userId = user.user.uid;
-            const uEmail = email;
-            const uMobile = mobile;
-            const uName = name
-
-            const usersDbRef = firebase.app().database().ref("users/");
-            usersDbRef.child(userId).set(
-              {
-                userId,
-                uEmail,
-                uMobile,
-                uName,
-              },
-              async (error) => {
-                if (error) {
-                  displaySnackBar("error", "Something went wrong");
-                } else {
-                  try {
-                    //making cookie of the logged user
-                    await AsyncStorage.setItem("loggedUserEmail", email);
-                    await AsyncStorage.setItem("loggedUserId", userId);
-
-                    displaySnackBar("success", "Successfully Registered");
-                    navigation.navigate("Portal");
-                    // navigation.push("Dashboard");
-                  } catch {
-                    displaySnackBar("error", "Something went wrong");
-                  }
-                }
-              }
-            );
-          } catch {
-            displaySnackBar("error", "Something went wrong");
-          }
+      axios
+        .post("http://127.0.0.1:3001/signup", {
+          email,
+          password,
+          mobile,
+          name,
         })
-        .catch((error) => {
-          var errorMessage = error.message;
-          displaySnackBar("error", errorMessage);
+        .then(async (resp) => {
+          if (resp.data !== "Error") {
+            await AsyncStorage.setItem("loggedUserEmail", email);
+            await AsyncStorage.setItem("loggedUserId", resp.data.uid);
+
+            displaySnackBar("success", "Successfully Registered");
+            navigation.navigate("Portal");
+          } else {
+            displaySnackBar("error", "Failed to register user");
+          }
         });
     } else {
       displaySnackBar("error", "Please Enter your official college email-id");
@@ -88,7 +61,10 @@ export default function SignUp({ navigation }) {
   }
   return (
     <div className="main-container">
-      <button onClick={() => navigation.navigate('Landing')} className="header-logo">
+      <button
+        onClick={() => navigation.navigate("Landing")}
+        className="header-logo"
+      >
         <img src={logo} alt="Logo" />
       </button>
       <div className="sign-container">

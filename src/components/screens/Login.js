@@ -3,8 +3,8 @@ import "../css/style.css";
 import logo from "../../assets/logo.png";
 import React, { useState, useEffect } from "react";
 import SnackBar from "../customComponents/SnackBar";
-import firebase from "../FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -40,27 +40,19 @@ export default function Login({ navigation }) {
     setShowPass(!showPass);
   }
   function loginButtonClicked() {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(async (user) => {
-        try {
-          const userId = user.user.uid;
-
-          //making cookie of the logged user
+    axios
+      .post("http://127.0.0.1:3001/login", { email, password })
+      .then(async (resp) => {
+        if (resp.data !== "Error" && resp.data.result === "success") {
           await AsyncStorage.setItem("loggedUserEmail", email);
-          await AsyncStorage.setItem("loggedUserId", userId);
+          await AsyncStorage.setItem("loggedUserId", resp.data.uid);
           displaySnackBar("success", "Logged in Successfully");
           navigation.navigate("Portal");
-        } catch {
+        } else if (resp.data === "Error") {
           displaySnackBar("error", "Something went wrong");
+        } else {
+          displaySnackBar("error", resp.data.message + resp.data.code);
         }
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        displaySnackBar("error", errorMessage + errorCode);
       });
   }
 
@@ -71,17 +63,14 @@ export default function Login({ navigation }) {
   function forgotPasswordClick() {
     var email = window.prompt("Enter your email address");
     if (email.trim().includes("@keshav.du.ac.in")) {
-      firebase
-        .auth()
-        .sendPasswordResetEmail(email)
-        .then(function () {
-          // Password reset email sent.
-          displaySnackBar("success", "Password reset email sent");
-        })
-        .catch(function (error) {
-          // Error occurred. Inspect error.code.
-          // var message = error.message
-          displaySnackBar("error", "User not Found");
+      axios
+        .get(`http://127.0.0.1:3001/forgot-password?email=${email}`)
+        .then((response) => {
+          if (response.data !== "Error") {
+            displaySnackBar("success", "Password Reset Mail Sent Successfully");
+          } else {
+            displaySnackBar("error", "User not Found");
+          }
         });
     } else {
       displaySnackBar("error", "Please enter your Keshav Id");
@@ -147,12 +136,12 @@ export default function Login({ navigation }) {
               Forgot Password?
             </a>
 
-            {/* <p className="login__forgot">
+            <p className="login__forgot">
               Haven't signed up <br />
               <button type="button" className="reg" onClick={handleSignUpClick}>
                 Register Here
               </button>
-            </p> */}
+            </p>
           </form>
         </div>
       </div>

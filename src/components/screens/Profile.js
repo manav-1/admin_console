@@ -8,6 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import firebase from "../FirebaseConfig";
 import validator from "validator";
+
 // import * as ImagePicker from "expo-image-picker";
 
 export default function Profile({ navigation }) {
@@ -39,7 +40,9 @@ export default function Profile({ navigation }) {
     async function fetchUserProfile() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       axios
-        .get(`https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`)
+        .get(
+          `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
+        )
         .then((res) => {
           const data = res.data;
           setName(data.uName);
@@ -173,6 +176,7 @@ export default function Profile({ navigation }) {
     try {
       setResumeName(event.target.files[0].name);
       setResume({ uri: URL.createObjectURL(event.target.files[0]) });
+      // setResume(event.target.files[0]);
       setUploadResume(true);
     } catch (e) {}
   }
@@ -186,11 +190,11 @@ export default function Profile({ navigation }) {
             displaySnackBar("success", "Resume Updated Successfully");
           })
           .catch((error) => {
-            displaySnackBar("error", "Failed to update Resume");
+            displaySnackBar("error", "Failed to aaa update Resume");
           });
       }
     } catch {
-      displaySnackBar("error", "Failed to Update Resume");
+      displaySnackBar("error", "Failed to bbb Update Resume");
     }
   }
   async function uploadResumeInFirebase(loggedUserId) {
