@@ -86,7 +86,7 @@ export default function Profile({ navigation }) {
     formData.append("name", imgName);
     formData.append("uid", loggedUserId);
     axios
-      .post("http://127.0.0.1:3001/uploadFirebase", formData)
+      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
       .then((response) => {
         if (response.data) {
           setProfilePic({ uri: response.data });
@@ -193,7 +193,7 @@ export default function Profile({ navigation }) {
     formData.append("name", resumeName);
     formData.append("uid", loggedUserId);
     axios
-      .post("http://127.0.0.1:3001/uploadFirebase", formData)
+      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
       .then((response) => {
         if (response.data) {
           setResume({ uriResume: response.data });

@@ -34,7 +34,7 @@ export default function SignUp({ navigation }) {
   function registerButtonClicked() {
     if (email.includes("@keshav.du.ac.in")) {
       axios
-        .post("http://127.0.0.1:3001/signup", {
+        .post("https://placement-portal-server.herokuapp.com/signup", {
           email,
           password,
           mobile,
