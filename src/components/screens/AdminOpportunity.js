@@ -27,7 +27,7 @@ export default function Placements({ navigation }) {
             }
           })
           .catch((err) => {
-            console.log(err);
+            displaySnackBar("error", "Failed to Fetch Placements, Please try again")
           });
       }
     }
@@ -63,7 +63,6 @@ export default function Placements({ navigation }) {
       .then((resp) => {
         if (resp.data) {
           var data = resp.data.val();
-          console.log(data);
           if (data) {
             var arr_data = [];
             for (var id in data) {
@@ -83,19 +82,13 @@ export default function Placements({ navigation }) {
                 "Marks in 10th",
                 "Marks in 12th",
               ].join(",") + "\n";
-            console.log("array data", arr_data);
             arr_data.forEach((obj) => {
               var projString = "";
               var projects = obj.projects;
-              console.log("projects", projects);
               for (var i of projects) {
-                console.log(i);
                 projString += "Name :" + i.name + ": " + i.url + ";";
               }
-              console.log("projString", projString);
-
               let row = [];
-              // console.log(obj)
               for (var prop in obj) {
                 if (prop === "projects") {
                   row.push(projString);
@@ -103,10 +96,8 @@ export default function Placements({ navigation }) {
                   row.push(obj[prop]);
                 }
               }
-              console.log(row);
               arr_header += row.join(",") + "\n";
             });
-            console.log(arr_header);
             let csvData = new Blob([arr_header], { type: "text/csv" });
             let csvUrl = URL.createObjectURL(csvData);
 

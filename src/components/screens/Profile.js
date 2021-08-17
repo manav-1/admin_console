@@ -86,7 +86,10 @@ export default function Profile({ navigation }) {
     formData.append("name", imgName);
     formData.append("uid", loggedUserId);
     axios
-      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
+      .post(
+        "https://placement-portal-server.herokuapp.com/uploadFirebase",
+        formData
+      )
       .then((response) => {
         if (response.data) {
           setProfilePic({ uri: response.data });
@@ -94,7 +97,7 @@ export default function Profile({ navigation }) {
         }
       })
       .catch((error) => {
-        console.log(error);
+        displaySnackBar("error", "Failed to Upload Image, Please try again");
       });
   }
 
@@ -116,7 +119,6 @@ export default function Profile({ navigation }) {
       }
     } catch (error) {
       displaySnackBar("error", "Failed to Update Profile");
-      console.log(error);
     }
   }
   function saveUpdatedProfile(loggedUserId, profilePicUri) {
@@ -128,7 +130,6 @@ export default function Profile({ navigation }) {
       twelve === undefined ||
       college === undefined
     ) {
-      console.log(stream, description, tenth, twelve, college);
       displaySnackBar(
         "error",
         "Please fill up all fields before updating profile"
@@ -175,12 +176,10 @@ export default function Profile({ navigation }) {
             displaySnackBar("success", "Resume Updated Successfully");
           })
           .catch((error) => {
-            console.log(error);
             displaySnackBar("error", "Failed to update Resume");
           });
       }
     } catch (e) {
-      console.log(e);
       displaySnackBar("error", "Failed to Update Resume");
     }
   }
@@ -193,7 +192,10 @@ export default function Profile({ navigation }) {
     formData.append("name", resumeName);
     formData.append("uid", loggedUserId);
     axios
-      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
+      .post(
+        "https://placement-portal-server.herokuapp.com/uploadFirebase",
+        formData
+      )
       .then((response) => {
         if (response.data) {
           setResume({ uriResume: response.data });
@@ -201,7 +203,7 @@ export default function Profile({ navigation }) {
         }
       })
       .catch((error) => {
-        console.log(error);
+        displaySnackBar("error", "Failed to Save Resume, Please try Again");
       });
   }
 
@@ -267,8 +269,7 @@ export default function Profile({ navigation }) {
         <div className="profile-image">
           <img
             className="profile-img"
-            src={uploadImage? URL.createObjectURL(profilePic): profilePic.uri
-            }
+            src={uploadImage ? URL.createObjectURL(profilePic) : profilePic.uri}
             alt="Profile"
           ></img>
           <button
@@ -303,7 +304,6 @@ export default function Profile({ navigation }) {
             className="select-stream"
             value={stream}
             onChange={(val) => {
-              console.log(val.target.value);
               setStream(val.target.value);
             }}
           >
@@ -383,6 +383,7 @@ export default function Profile({ navigation }) {
             {projects.map((item, index) => {
               return (
                 <div
+                  style={{ paddingRight: "1rem" }}
                   className="sProject d-flex flex-row pr-2 align-items-center"
                   key={index}
                 >

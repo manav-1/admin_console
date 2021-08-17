@@ -18,9 +18,13 @@ export default function Placements({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
         axios
-          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
+          .get(
+            `https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`
+          )
           .then((resp) => {
-            setPOpp([...resp.data]);
+            if (isMounted) {
+              setPOpp([...resp.data]);
+            }
           });
       }
     }
