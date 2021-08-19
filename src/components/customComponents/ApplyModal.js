@@ -108,11 +108,19 @@ export default function ApplyModal({
         style={{ position: "absolute", bottom: 20, width: "100%" }}
         className="d-flex justify-content-around"
       >
-        <button className="btn btn-info text-white" onClick={hideModal}>
+        <button
+          style={{ fontSize: "1.2rem", borderRadius: 10 }}
+          className="btn btn-info text-white"
+          onClick={hideModal}
+        >
           Close
         </button>
 
-        <button className="btn btn-danger" onClick={onModalApplyClick}>
+        <button
+          style={{ fontSize: "1.2rem", borderRadius: 10 }}
+          className="btn btn-danger"
+          onClick={onModalApplyClick}
+        >
           Apply
         </button>
       </div>

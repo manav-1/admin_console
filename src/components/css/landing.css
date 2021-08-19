@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-
+*{
+  scrollbar-width: none;
+}
 
 button {
   background: transparent;
