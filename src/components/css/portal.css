@@ -39,13 +39,16 @@
   
 }
 
-.portal-main-container ::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
 }
-
-.portal-main-container::-moz-scrollbar {
+body{
   scrollbar-width: none;
 }
+
+/* .portal-main-container {
+  overflow-y:scroll;
+} */
 
 
 .toggle-container {

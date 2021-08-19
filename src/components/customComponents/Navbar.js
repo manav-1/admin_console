@@ -17,6 +17,7 @@ export default function NavBar({ navigation }) {
       </button>
       <button
         className="navbar-toggler"
+        style={{marginRight:'0.5rem'}}
         type="button"
         onClick={handleNavCollapse}
       >
