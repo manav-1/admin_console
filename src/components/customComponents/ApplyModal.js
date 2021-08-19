@@ -50,6 +50,10 @@ export default function ApplyModal({
           Are you sure you want to apply to this profile
         </p>
         <p className="h6 py-2">
+          <b>Name: </b> {profileData.uName}
+        </p>
+
+        <p className="h6 py-2">
           <b>Email: </b> {profileData.uEmail}
         </p>
         <p className="h6 py-2">
@@ -57,9 +61,6 @@ export default function ApplyModal({
         </p>
         <p className="h6 py-2">
           <b>Profile : </b> {pProfile}
-        </p>
-        <p className="h6 py-2">
-          <b>Email: </b> {profileData.uEmail}
         </p>
         <p className="h6 py-2">
           <b>College GPA: </b> {profileData.college}
@@ -85,7 +86,11 @@ export default function ApplyModal({
         <div>
           {profileData.projects.map((item, index) => {
             return (
-              <p style={{display:'inline'}} key={index} className="h6 mx-2 py-2">
+              <p
+                style={{ display: "inline" }}
+                key={index}
+                className="h6 mx-2 py-2"
+              >
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
@@ -128,9 +133,9 @@ const styles = StyleSheet.create({
     position: "sticky",
     top: 50,
     bottom: 10,
-    height: '80vh',
+    height: "80vh",
     // marginVertical:'auto',
-    width: Dimensions.get('screen').width > 768 ? "50%" : "80%",
+    width: Dimensions.get("screen").width > 768 ? "50%" : "80%",
     backgroundColor: "#aaa",
     borderRadius: 10,
   },
