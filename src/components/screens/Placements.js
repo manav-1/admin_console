@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, Dimensions } from "react-native";
 import PlacementOppurtunity from "../customComponents/PlacementOppurtunity";
+//eslint-disable-next-line
 import SnackBar from "../customComponents/SnackBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ApplyModal from "../customComponents/ApplyModal";
 import axios from "axios";
 
 export default function Placements({ navigation }) {
@@ -11,6 +13,11 @@ export default function Placements({ navigation }) {
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("");
+  const [applyClicked, setApplyClicked] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
+  const [pId, setPId] = useState(null);
+  const [pName, setPName] = useState(null);
+  const [mProfile, setMProfile] = useState(null);
 
   useEffect(() => {
     let isMounted = true; //eslint-disable-line
@@ -31,40 +38,56 @@ export default function Placements({ navigation }) {
 
     fetchOpportunities();
     return () => {
-      isMounted = false; //eslint-disable-line
+      isMounted = false;
     };
   }, []);
 
+  var onApplyClick = async (index) => {
+    const loggedUserId = await AsyncStorage.getItem("loggedUserId");
+    await axios
+      .get(
+        `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
+      )
+      .then((resp) => {
+        setUserProfile(resp.data);
+      });
+
+    setPId(pOpp[index].id);
+    setPName(pOpp[index].name);
+    setMProfile(pOpp[index].profile);
+
+    setApplyClicked(true);
+  };
+  //eslint-disable-next-line
   function displaySnackBar(type, text) {
     setSnackBarType(type);
     setSnackBarText(text);
     setSnackBarVisible(true);
   }
 
-  async function onApplyClick(index) {
-    const loggedUserId = await AsyncStorage.getItem("loggedUserId");
-
-    axios
-      .get(
-        `https://placement-portal-server.herokuapp.com/applyPlacements?pid=${pOpp[index].id}&uid=${loggedUserId}&cName=$${pOpp[index].name}&profile=${pOpp[index].profile}`
-      )
-      .then((resp) => {
-        if (resp.data) {
-          displaySnackBar("success", "Applied Successfully");
-        } else {
-          displaySnackBar("error", " Couldn't Apply Please try Again later");
-        }
-      });
-  }
-
   //function to hide snackbar
+  //eslint-disable-next-line
   function hideSnackBar() {
     setSnackBarVisible(false);
   }
+  function hideModal() {
+    console.log("hide modal");
+    setApplyClicked(false);
+  }
   return (
-    <ScrollView>
+    <ScrollView style={{ height: "100vh", position: "relative" }}>
       <div className="d-flex justify-content-around">
-        <div className="row placements">
+        <div
+          style={{
+            display:
+              Dimensions.get("screen").width > 768
+                ? "flex"
+                : applyClicked
+                ? "none"
+                : "flex",
+          }}
+          className="row placements"
+        >
           {pOpp.map((item, index) => {
             return (
               <PlacementOppurtunity
@@ -81,6 +104,16 @@ export default function Placements({ navigation }) {
             );
           })}
         </div>
+        {applyClicked ? (
+          <ApplyModal
+            profileData={userProfile}
+            applyClicked={applyClicked}
+            hideModal={hideModal}
+            pid={pId}
+            pName={pName}
+            pProfile={mProfile}
+          />
+        ) : null}
 
         {snackBarVisible ? (
           <SnackBar
