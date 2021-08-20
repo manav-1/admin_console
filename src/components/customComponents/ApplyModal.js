@@ -24,6 +24,9 @@ export default function ApplyModal({
       .then((resp) => {
         if (resp.data) {
           displaySnackBar("success", "Applied Successfully");
+          setTimeout(() => {
+            hideModal();
+          }, 2000);
         } else {
           displaySnackBar("error", " Couldn't Apply Please try Again later");
         }
@@ -104,16 +107,24 @@ export default function ApplyModal({
         className="d-flex justify-content-around"
       >
         <button
-          style={{ fontSize: "1.2rem", borderRadius: 10 }}
-          className="btn btn-info text-white"
+          style={{
+            fontSize: "1.2rem",
+            borderRadius: 10,
+          }}
+          className="btn btn-danger text-white"
           onClick={hideModal}
         >
           Close
         </button>
 
         <button
-          style={{ fontSize: "1.2rem", borderRadius: 10 }}
-          className="btn btn-danger"
+          style={{
+            fontSize: "1.2rem",
+            borderRadius: 10,
+            backgroundColor: "#49A0AE",
+            color:'#fff'
+          }}
+          className="btn "
           onClick={onModalApplyClick}
         >
           Apply
@@ -134,7 +145,7 @@ export default function ApplyModal({
 const styles = StyleSheet.create({
   container: {
     position: "fixed",
-    top:'5vh',
+    top: "5vh",
     height: "80vh",
     width: Dimensions.get("screen").width > 768 ? "40%" : "80%",
     backgroundColor: "#aaa",
