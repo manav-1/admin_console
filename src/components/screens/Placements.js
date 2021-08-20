@@ -71,7 +71,6 @@ export default function Placements({ navigation }) {
     setSnackBarVisible(false);
   }
   function hideModal() {
-    console.log("hide modal");
     setApplyClicked(false);
   }
   return (

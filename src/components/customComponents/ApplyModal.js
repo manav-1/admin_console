@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SnackBar from "../customComponents/SnackBar";
@@ -15,13 +15,8 @@ export default function ApplyModal({
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("");
-  useEffect(() => {
-    console.log(profileData);
-  });
-
   async function onModalApplyClick(index) {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
-    console.log("Modal Apply Clicked");
     axios
       .get(
         `https://placement-portal-server.herokuapp.com/applyPlacements?pid=${pid}&uid=${loggedUserId}&cName=$${pName}&profile=${pProfile}`
@@ -138,14 +133,11 @@ export default function ApplyModal({
 
 const styles = StyleSheet.create({
   container: {
-    position: "sticky",
-    top: 50,
-    bottom: 10,
+    position: "fixed",
+    top:'5vh',
     height: "80vh",
-    // marginVertical:'auto',
-    width: Dimensions.get("screen").width > 768 ? "50%" : "80%",
+    width: Dimensions.get("screen").width > 768 ? "40%" : "80%",
     backgroundColor: "#aaa",
     borderRadius: 10,
   },
 });
-// 8218602386

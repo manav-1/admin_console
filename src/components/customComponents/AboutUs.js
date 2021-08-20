@@ -6,7 +6,7 @@ export default function AboutUs() {
       style={{ width: "100%", margin: "auto" }}
       className="landing-about row"
     >
-      <div class="col-sm-10 row mx-auto">
+      <div className="col-sm-10 row mx-auto">
         <h1 className="col-sm-12">About Us</h1>
         <div className="about col-sm-6">
           <h3 className="heading-tert margin-bottom-small">Our Aim</h3>
