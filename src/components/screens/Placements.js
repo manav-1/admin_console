@@ -43,7 +43,15 @@ export default function Placements({ navigation }) {
   }, []);
 
   var onApplyClick = async (index) => {
+    // console.log(pOpp[index].applicants);
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
+    // try {
+    //   if (Object.keys(pOpp[index].applicants)[0].includes(loggedUserId)) {
+    //     console.log(true);
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
     await axios
       .get(
         `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`

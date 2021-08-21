@@ -18,7 +18,9 @@ export default function Placements({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
         axios
-          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
+          .get(
+            `https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`
+          )
           .then((resp) => {
             if (resp.data === "Error") {
               displaySnackBar("error", "Failed to Fetch Placements");
@@ -27,7 +29,10 @@ export default function Placements({ navigation }) {
             }
           })
           .catch((err) => {
-            displaySnackBar("error", "Failed to Fetch Placements, Please try again")
+            displaySnackBar(
+              "error",
+              "Failed to Fetch Placements, Please try again"
+            );
           });
       }
     }
@@ -47,7 +52,9 @@ export default function Placements({ navigation }) {
 
   function markDone(index) {
     axios
-      .get(`https://placement-portal-server.herokuapp.com/deletePlacements?node=${pOpp[index].id}`)
+      .get(
+        `https://placement-portal-server.herokuapp.com/deletePlacements?node=${pOpp[index].id}`
+      )
       .then((resp) => {
         if (resp.data === "Error") {
           displaySnackBar("error", "Failed to Fetch Placements");
@@ -59,10 +66,12 @@ export default function Placements({ navigation }) {
 
   function getApplicants(index) {
     axios
-      .get(`https://placement-portal-server.herokuapp.com/applicants?pid=${pOpp[index].id}`)
+      .get(
+        `https://placement-portal-server.herokuapp.com/applicants?pid=${pOpp[index].id}`
+      )
       .then((resp) => {
         if (resp.data) {
-          var data = resp.data.val();
+          var data = resp.data;
           if (data) {
             var arr_data = [];
             for (var id in data) {
@@ -85,8 +94,9 @@ export default function Placements({ navigation }) {
             arr_data.forEach((obj) => {
               var projString = "";
               var projects = obj.projects;
-              for (var i of projects) {
-                projString += "Name :" + i.name + ": " + i.url + ";";
+              for (var i in projects) {
+                projString +=
+                  "Name :" + projects[i].name + ": " + projects[i].url + ";";
               }
               let row = [];
               for (var prop in obj) {
