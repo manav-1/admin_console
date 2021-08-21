@@ -43,28 +43,56 @@ export default function Placements({ navigation }) {
   }, []);
 
   var onApplyClick = async (index) => {
-    // console.log(pOpp[index].applicants);
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
-    // try {
-    //   if (Object.keys(pOpp[index].applicants)[0].includes(loggedUserId)) {
-    //     console.log(true);
-    //   }
-    // } catch (e) {
-    //   console.log(e);
-    // }
-    await axios
-      .get(
-        `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
-      )
-      .then((resp) => {
-        setUserProfile(resp.data);
-      });
+    if (loggedUserId) {
+      axios
+        .get(
+          `https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`
+        )
+        .then((resp) => {
+          setPOpp([...resp.data]);
+        });
+    }
+    if (pOpp[index].applicants) {
+      try {
+        if (!Object.keys(pOpp[index].applicants)[0].includes(loggedUserId)) {
+          await axios
+            .get(
+              `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
+            )
+            .then((resp) => {
+              setUserProfile(resp.data);
+            });
 
-    setPId(pOpp[index].id);
-    setPName(pOpp[index].name);
-    setMProfile(pOpp[index].profile);
+          setPId(pOpp[index].id);
+          setPName(pOpp[index].name);
+          setMProfile(pOpp[index].profile);
 
-    setApplyClicked(true);
+          setApplyClicked(true);
+        } else {
+          displaySnackBar(
+            "error",
+            "You Have already applied to this Opportunity"
+          );
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      await axios
+        .get(
+          `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
+        )
+        .then((resp) => {
+          setUserProfile(resp.data);
+        });
+
+      setPId(pOpp[index].id);
+      setPName(pOpp[index].name);
+      setMProfile(pOpp[index].profile);
+
+      setApplyClicked(true);
+    }
   };
   //eslint-disable-next-line
   function displaySnackBar(type, text) {
