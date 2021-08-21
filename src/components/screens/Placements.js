@@ -62,13 +62,24 @@ export default function Placements({ navigation }) {
             )
             .then((resp) => {
               setUserProfile(resp.data);
+              if (
+                resp.data.tenth === undefined ||
+                resp.data.twelve === undefined ||
+                resp.data.resume === undefined ||
+                resp.data.resumeName === undefined ||
+                resp.data.college === undefined
+              ) {
+                displaySnackBar(
+                  "error",
+                  "Please fill in all the fields of profile first"
+                );
+              } else {
+                setPId(pOpp[index].id);
+                setPName(pOpp[index].name);
+                setMProfile(pOpp[index].profile);
+                setApplyClicked(true);
+              }
             });
-
-          setPId(pOpp[index].id);
-          setPName(pOpp[index].name);
-          setMProfile(pOpp[index].profile);
-
-          setApplyClicked(true);
         } else {
           displaySnackBar(
             "error",
@@ -76,7 +87,7 @@ export default function Placements({ navigation }) {
           );
         }
       } catch (e) {
-        console.log(e);
+        displaySnackBar("error", "Something went wrong please try again");
       }
     } else {
       await axios
@@ -85,13 +96,24 @@ export default function Placements({ navigation }) {
         )
         .then((resp) => {
           setUserProfile(resp.data);
+          if (
+            resp.data.tenth === undefined ||
+            resp.data.twelve === undefined ||
+            resp.data.resume === undefined ||
+            resp.data.resumeName === undefined ||
+            resp.data.college === undefined
+          ) {
+            displaySnackBar(
+              "error",
+              "Please fill in all the fields of profile first"
+            );
+          } else {
+            setPId(pOpp[index].id);
+            setPName(pOpp[index].name);
+            setMProfile(pOpp[index].profile);
+            setApplyClicked(true);
+          }
         });
-
-      setPId(pOpp[index].id);
-      setPName(pOpp[index].name);
-      setMProfile(pOpp[index].profile);
-
-      setApplyClicked(true);
     }
   };
   //eslint-disable-next-line

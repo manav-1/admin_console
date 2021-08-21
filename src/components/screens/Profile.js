@@ -44,9 +44,9 @@ export default function Profile({ navigation }) {
         )
         .then((res) => {
           const data = res.data;
-          setName(data.uName);
-          setEmail(data.uEmail);
-          setMobile(data.uMobile);
+          setName(data.name);
+          setEmail(data.email);
+          setMobile(data.mobile);
           setStream(data.stream);
           setDescription(data.desc);
           setTenth(data.tenth);

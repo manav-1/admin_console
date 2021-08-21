@@ -40,7 +40,6 @@ export default function ApplyModal({
   function hideSnackBar() {
     setSnackBarVisible(false);
   }
-
   return applyClicked ? (
     <View style={styles.container}>
       <div className="m-3">
@@ -76,31 +75,35 @@ export default function ApplyModal({
           <b>12th Marks : </b> {profileData.twelve}
         </p>
         <p className="h6 py-2">
-          <b>Mobile : </b> {profileData.uMobile}
+          <b>Mobile : </b> {profileData.mobile}
         </p>
-        <p className="h6 py-2">
-          <b>Projects : </b>
-        </p>
-        <div>
-          {profileData.projects.map((item, index) => {
-            return (
-              <p
-                style={{ display: "inline" }}
-                key={index}
-                className="h6 mx-2 py-2"
-              >
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark"
-                  href={item.url}
-                >
-                  {item.name}
-                </a>
-              </p>
-            );
-          })}
-        </div>
+        {profileData.projects ? (
+          <>
+            <p className="h6 py-2">
+              <b>Projects : </b>
+            </p>
+            <div>
+              {profileData.projects.map((item, index) => {
+                return (
+                  <p
+                    style={{ display: "inline" }}
+                    key={index}
+                    className="h6 mx-2 py-2"
+                  >
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-dark"
+                      href={item.url}
+                    >
+                      {item.name}
+                    </a>
+                  </p>
+                );
+              })}
+            </div>
+          </>
+        ) : null}
       </div>
       <div
         style={{ position: "absolute", bottom: 20, width: "100%" }}
@@ -122,7 +125,7 @@ export default function ApplyModal({
             fontSize: "1.2rem",
             borderRadius: 10,
             backgroundColor: "#49A0AE",
-            color:'#fff'
+            color: "#fff",
           }}
           className="btn "
           onClick={onModalApplyClick}
