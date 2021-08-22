@@ -99,13 +99,12 @@ export default function PortalStack({ navigation }) {
           <img src={icon} alt="menu" style={{ width: "3rem" }} />
         </button>
 
-        <h1 className="pHeading">Placement Portal</h1>
+        <h1 className="pHeading ">Placement Portal</h1>
 
         <button onClick={logoutClicked} className="logout">Logout</button>
       </div>
       <div className="portal">
         <div id="side" className="portal-side-container">
-          {/* <p>Placement Portal</p> */}
           <button id="Placements" onClick={placmentClicked}>
             Placements
           </button>
@@ -125,7 +124,7 @@ export default function PortalStack({ navigation }) {
           </button>
         </div>
         <div id="main" className="portal-main-container">
-          <ScrollView className="scrolls" style={{ height: "100vh" }}>
+          <ScrollView style={{ backgroundColor:'#c8d8e4cc',height: "100vh" }}>
             {component}
           </ScrollView>
         </div>

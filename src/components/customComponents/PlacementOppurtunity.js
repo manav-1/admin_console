@@ -14,8 +14,22 @@ export default function PlacementOppurtunity({
   linkedinUrl,
 }) {
   return (
-    <div style={{width:'20rem'}} className="placement-main-container">
-      <Card style={{ width: "20rem", padding: "2rem 0 0.5rem" }}>
+    <div
+      style={{
+        width: "20rem",
+        borderRadius: "0.5rem",
+        backgroundColor: "#f2f2f2",
+      }}
+      className="placement-main-container"
+    >
+      <Card
+        style={{
+          width: "20rem",
+          padding: "2rem 0 0.5rem",
+          backgroundColor: "#f2f2f2",
+          border:'none'
+        }}
+      >
         <Card.Img
           style={{ width: "50%", margin: "auto", height: "10rem" }}
           variant="top"

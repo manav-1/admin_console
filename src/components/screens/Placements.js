@@ -99,7 +99,7 @@ export default function Placements({ navigation }) {
                 ? "none"
                 : "flex",
           }}
-          className="row placements"
+          className="row placements py-2"
         >
           {pOpp.map((item, index) => {
             return (
