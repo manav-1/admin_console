@@ -19,9 +19,10 @@ export default function ApplyModal({
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
     axios
       .get(
-        `https://placement-portal-server.herokuapp.com/applyPlacements?pid=${pid}&uid=${loggedUserId}&cName=$${pName}&profile=${pProfile}`
+        `https://placement-portal-server.herokuapp.com//applyPlacements?pid=${pid}&uid=${loggedUserId}&cName=$${pName}&profile=${pProfile}`
       )
       .then((resp) => {
+        console.log(resp.data)
         if (resp.data) {
           displaySnackBar("success", "Applied Successfully");
           setTimeout(() => {
