@@ -19,7 +19,7 @@ export default function Placements({ navigation }) {
       if (loggedUserId) {
         axios
           .get(
-            `https://placement-portal-server.herokuapp.com//placements?loggedUserId=${loggedUserId}`
+            `https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`
           )
           .then((resp) => {
             if (resp.data === "Error") {
@@ -53,7 +53,7 @@ export default function Placements({ navigation }) {
   function markDone(index) {
     axios
       .get(
-        `https://placement-portal-server.herokuapp.com//deletePlacements?node=${pOpp[index].id}`
+        `https://placement-portal-server.herokuapp.com/deletePlacements?node=${pOpp[index].id}`
       )
       .then((resp) => {
         if (resp.data === "Error") {
@@ -67,7 +67,7 @@ export default function Placements({ navigation }) {
   function getApplicants(index) {
     axios
       .get(
-        `https://placement-portal-server.herokuapp.com//applicants?pid=${pOpp[index].id}`
+        `https://placement-portal-server.herokuapp.com/applicants?pid=${pOpp[index].id}`
       )
       .then((resp) => {
         if (resp.data) {

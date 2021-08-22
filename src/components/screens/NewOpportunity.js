@@ -44,7 +44,7 @@ export default function NewOpportunity({ navigation }) {
         linkedin: linkedin,
         companySite: cSite,
       };
-      axios.post(`https://placement-portal-server.herokuapp.com//newOppurtunity`, newTask);
+      axios.post(`https://placement-portal-server.herokuapp.com/newOppurtunity`, newTask);
       setCompanyName("");
       setProfile("");
       setDeadline("");

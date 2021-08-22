@@ -40,7 +40,7 @@ export default function Profile({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       axios
         .get(
-          `https://placement-portal-server.herokuapp.com//fetchProfile?uid=${loggedUserId}`
+          `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
         )
         .then((res) => {
           const data = res.data;
@@ -87,7 +87,7 @@ export default function Profile({ navigation }) {
     formData.append("uid", loggedUserId);
     axios
       .post(
-        "https://placement-portal-server.herokuapp.com//uploadFirebase",
+        "https://placement-portal-server.herokuapp.com/uploadFirebase",
         formData
       )
       .then((response) => {
@@ -147,7 +147,7 @@ export default function Profile({ navigation }) {
         projects: projects,
       };
       axios
-        .post("https://placement-portal-server.herokuapp.com//updateProfile", [
+        .post("https://placement-portal-server.herokuapp.com/updateProfile", [
           loggedUserId,
           updatedProfile,
         ])
@@ -193,7 +193,7 @@ export default function Profile({ navigation }) {
     formData.append("uid", loggedUserId);
     axios
       .post(
-        "https://placement-portal-server.herokuapp.com//uploadFirebase",
+        "https://placement-portal-server.herokuapp.com/uploadFirebase",
         formData
       )
       .then((response) => {
@@ -209,7 +209,7 @@ export default function Profile({ navigation }) {
 
   function saveUpdatedResume(loggedUserId, resume) {
     axios
-      .post("https://placement-portal-server.herokuapp.com//updateResume", [
+      .post("https://placement-portal-server.herokuapp.com/updateResume", [
         loggedUserId,
         { resume: resume, resumeName: resumeName },
       ])

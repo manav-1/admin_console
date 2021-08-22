@@ -25,7 +25,7 @@ export default function Placements({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
         axios
-          .get(`https://placement-portal-server.herokuapp.com//placements?loggedUserId=${loggedUserId}`)
+          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
           .then((resp) => {
             if (isMounted) {
               setPOpp([...resp.data]);
@@ -40,87 +40,12 @@ export default function Placements({ navigation }) {
     };
   }, []);
 
-  // var onApplyClick = async (index) => {
-  //   const loggedUserId = await AsyncStorage.getItem("loggedUserId");
-  //   if (loggedUserId) {
-  //     axios
-  //       .get(
-  //         `https://placement-portal-server.herokuapp.com//placements?loggedUserId=${loggedUserId}`
-  //       )
-  //       .then((resp) => {
-  //         setPOpp([...resp.data]);
-  //       });
-  //   }
-  //   if (pOpp[index].applicants) {
-  //     try {
-  //       if (!Object.keys(pOpp[index].applicants)[0].includes(loggedUserId)) {
-  //         await axios
-  //           .get(
-  //             `https://placement-portal-server.herokuapp.com//fetchProfile?uid=${loggedUserId}`
-  //           )
-  //           .then((resp) => {
-  //             setUserProfile(resp.data);
-  //             if (
-  //               resp.data.tenth === undefined ||
-  //               resp.data.twelve === undefined ||
-  //               resp.data.resume === undefined ||
-  //               resp.data.resumeName === undefined ||
-  //               resp.data.college === undefined
-  //             ) {
-  //               displaySnackBar(
-  //                 "error",
-  //                 "Please fill in all the fields of profile first"
-  //               );
-  //             } else {
-  //               setPId(pOpp[index].id);
-  //               setPName(pOpp[index].name);
-  //               setMProfile(pOpp[index].profile);
-  //               setApplyClicked(true);
-  //             }
-  //           });
-  //       } else {
-  //         displaySnackBar(
-  //           "error",
-  //           "You Have already applied to this Opportunity"
-  //         );
-  //       }
-  //     } catch (e) {
-  //       displaySnackBar("error", "Something went wrong please try again");
-  //     }
-  //   } else {
-  //     await axios
-  //       .get(
-  //         `https://placement-portal-server.herokuapp.com//fetchProfile?uid=${loggedUserId}`
-  //       )
-  //       .then((resp) => {
-  //         setUserProfile(resp.data);
-  //         if (
-  //           resp.data.tenth === undefined ||
-  //           resp.data.twelve === undefined ||
-  //           resp.data.resume === undefined ||
-  //           resp.data.resumeName === undefined ||
-  //           resp.data.college === undefined
-  //         ) {
-  //           displaySnackBar(
-  //             "error",
-  //             "Please fill in all the fields of profile first"
-  //           );
-  //         } else {
-  //           setPId(pOpp[index].id);
-  //           setPName(pOpp[index].name);
-  //           setMProfile(pOpp[index].profile);
-  //           setApplyClicked(true);
-  //         }
-  //       });
-  //   }
-  // };
-
   var onApplyClick = async (index) => {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
 
     axios
       .get(
-        `https://placement-portal-server.herokuapp.com//checkApplied?loggedUserId=${loggedUserId}&pid=${pOpp[index].id}`
+        `https://placement-portal-server.herokuapp.com/checkApplied?loggedUserId=${loggedUserId}&pid=${pOpp[index].id}`
       )
       .then((resp) => {
         if (resp.data.flag === "Applied") {
