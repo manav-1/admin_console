@@ -84,14 +84,13 @@ export default function PortalStack({ navigation }) {
       setOpen(!open);
     }
   }
-    async function logoutClicked() {
-      try {
-        await AsyncStorage.removeItem("loggedUserEmail");
-        await AsyncStorage.removeItem("loggedUserId");
-        navigation.navigate("Landing");
-      } catch (exception) {
-      }
-    }
+  async function logoutClicked() {
+    try {
+      await AsyncStorage.removeItem("loggedUserEmail");
+      await AsyncStorage.removeItem("loggedUserId");
+      navigation.navigate("Landing");
+    } catch (exception) {}
+  }
   return (
     <div className="main-portal">
       <div className="d-flex flex-row align-items-center justify-content-between p-3">
@@ -101,7 +100,9 @@ export default function PortalStack({ navigation }) {
 
         <h1 className="pHeading ">Placement Portal</h1>
 
-        <button onClick={logoutClicked} className="logout">Logout</button>
+        <button onClick={logoutClicked} className="logout">
+          Logout
+        </button>
       </div>
       <div className="portal">
         <div id="side" className="portal-side-container">
@@ -124,7 +125,7 @@ export default function PortalStack({ navigation }) {
           </button>
         </div>
         <div id="main" className="portal-main-container">
-          <ScrollView style={{ backgroundColor:'#c8d8e4cc',height: "100vh" }}>
+          <ScrollView style={{ backgroundColor: "#c8d8e4cc", height: "100vh" }}>
             {component}
           </ScrollView>
         </div>

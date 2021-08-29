@@ -4,27 +4,20 @@
 .portal-side-container {
   width: 30%;
   height:max(100vh, 100%px);
-  background-color: #205361;
+  background-color: #002c3e;
   text-align: center;
 }
 
-.portal-side-container p {
-  color: #fff;
-  font-size: 2rem;
-  margin: 1rem;
-  /* padding-right: 0.6rem;
-  padding-top: 1rem */
-}
 .portal-side-container button {
   display: block;
   padding: 1rem;
   background: #f2f2f2;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   margin: 2rem auto 3rem;
   width: 90%;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #205361;
+  color: #002c3e;
 }
 .portal-main-container {
   width: 70%;
@@ -61,7 +54,7 @@ body{
   border-radius: 1rem;
   padding: 0.8rem 1.5rem;
   margin: 0 0.5rem;
-  background-color: #183942;
+  background-color: #002c3e;
 }
 .logout:hover{
   text-decoration: none;
@@ -80,12 +73,12 @@ body{
     width: 90%;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #205361;
+    color: #002c3e;
   }
   .portal-side-container {
     width: 40%;
     height: 100vh;
-    background-color: #205361;
+    background-color: #002c3e;
     text-align: center;
   }
   .portal-main-container {
