@@ -12,6 +12,7 @@ export default function ApplyModal({
   pName,
   pProfile,
 }) {
+  console.log(applyClicked, profileData, hideModal, pid, pName, pProfile)
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("");
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   container: {
     position: "fixed",
     top: "5vh",
-    bottom: "5vh",
+    /* bottom: "5vh", */
     height: "80vh",
     width: Dimensions.get("screen").width > 768 ? "40%" : "80%",
     backgroundColor: "#aaa",

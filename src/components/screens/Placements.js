@@ -25,7 +25,9 @@ export default function Placements({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
         axios
-          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
+          .get(
+            `https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`
+          )
           .then((resp) => {
             if (isMounted) {
               setPOpp([...resp.data]);
@@ -41,6 +43,7 @@ export default function Placements({ navigation }) {
   }, []);
 
   var onApplyClick = async (index) => {
+    console.log("apply is clicked");
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
 
     axios
@@ -88,7 +91,7 @@ export default function Placements({ navigation }) {
     setApplyClicked(false);
   }
   return (
-    <ScrollView>
+    <ScrollView style={{ height: "100%", position: "relative" }}>
       <div
         style={{ position: "relative" }}
         className="d-flex justify-content-around"

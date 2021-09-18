@@ -71,7 +71,7 @@ body {
   .portal-main-container {
     width: 60%;
     height: max(100vh, 100%px);
-    background-color: #f2f2f2;
+    background-color: #c8d8e4cc;
   }
   .pHeading {
     font-size: 1.5rem !important;
