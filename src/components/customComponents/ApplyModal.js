@@ -22,7 +22,7 @@ export default function ApplyModal({
         `https://placement-portal-server.herokuapp.com/applyPlacements?pid=${pid}&uid=${loggedUserId}&cName=$${pName}&profile=${pProfile}`
       )
       .then((resp) => {
-        console.log(resp.data)
+        console.log(resp.data);
         if (resp.data) {
           displaySnackBar("success", "Applied Successfully");
           setTimeout(() => {
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
   container: {
     position: "fixed",
     top: "5vh",
+    bottom: "5vh",
     height: "80vh",
     width: Dimensions.get("screen").width > 768 ? "40%" : "80%",
     backgroundColor: "#aaa",
