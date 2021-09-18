@@ -62,10 +62,12 @@ export default function PortalStack({ navigation }) {
     if (window.screen.width > 768) {
       if (open) {
         document.getElementById("side").style.width = "0%";
+        document.getElementById("side").style.opacity = 0;
         document.getElementById("main").style.width = "100%";
         setIcon(menuClose);
       } else {
         document.getElementById("side").style.width = "20%";
+        document.getElementById("side").style.opacity = 1;
         document.getElementById("main").style.width = "80%";
         setIcon(menuOpen);
       }
@@ -73,10 +75,12 @@ export default function PortalStack({ navigation }) {
     } else {
       if (open) {
         document.getElementById("side").style.width = "0%";
+        document.getElementById("side").style.opacity = 0;
         document.getElementById("main").style.width = "100%";
         setIcon(menuClose);
       } else {
         document.getElementById("side").style.width = "40%";
+        document.getElementById("side").style.opacity = 1;
         document.getElementById("main").style.width = "60%";
         setIcon(menuOpen);
       }
