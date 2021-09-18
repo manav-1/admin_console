@@ -7,7 +7,6 @@ import Placements from "../screens/Placements";
 import NewOpportunity from "../screens/NewOpportunity";
 import AdminOpportunity from "../screens/AdminOpportunity";
 import { useState, useEffect } from "react";
-import { ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function PortalStack({ navigation }) {
@@ -92,8 +91,8 @@ export default function PortalStack({ navigation }) {
     } catch (exception) {}
   }
   return (
-    <div className="main-portal">
-      <div className="d-flex flex-row align-items-center justify-content-between p-3">
+    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+      <div className="d-flex flex-row align-items-center justify-content-between p-3 ">
         <button onClick={hideNav}>
           <img src={icon} alt="menu" style={{ width: "3rem" }} />
         </button>
@@ -105,7 +104,7 @@ export default function PortalStack({ navigation }) {
         </button>
       </div>
       <div className="portal">
-        <div id="side" className="portal-side-container">
+        <div className="portal-side-container" id="side">
           <button id="Placements" onClick={placmentClicked}>
             Placements
           </button>
@@ -124,10 +123,8 @@ export default function PortalStack({ navigation }) {
             Back to Website
           </button>
         </div>
-        <div id="main" className="portal-main-container">
-          <ScrollView style={{ backgroundColor: "#c8d8e4cc", height: "100vh" }}>
-            {component}
-          </ScrollView>
+        <div className="portal-main-container" id="main">
+          {component}
         </div>
       </div>
     </div>

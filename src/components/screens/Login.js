@@ -41,7 +41,10 @@ export default function Login({ navigation }) {
   }
   function loginButtonClicked() {
     axios
-      .post("https://placement-portal-server.herokuapp.com/login", { email, password })
+      .post("https://placement-portal-server.herokuapp.com/login", {
+        email,
+        password,
+      })
       .then(async (resp) => {
         if (resp.data !== "Error" && resp.data.result === "success") {
           await AsyncStorage.setItem("loggedUserEmail", email);
@@ -62,18 +65,25 @@ export default function Login({ navigation }) {
   }
   function forgotPasswordClick() {
     var email = window.prompt("Enter your email address");
-    if (email.trim().includes("@keshav.du.ac.in")) {
-      axios
-        .get(`https://placement-portal-server.herokuapp.com/forgot-password?email=${email}`)
-        .then((response) => {
-          if (response.data !== "Error") {
-            displaySnackBar("success", "Password Reset Mail Sent Successfully");
-          } else {
-            displaySnackBar("error", "User not Found");
-          }
-        });
-    } else {
-      displaySnackBar("error", "Please enter your Keshav Id");
+    if (email) {
+      if (email.trim().includes("@keshav.du.ac.in")) {
+        axios
+          .get(
+            `https://placement-portal-server.herokuapp.com/forgot-password?email=${email}`
+          )
+          .then((response) => {
+            if (response.data !== "Error") {
+              displaySnackBar(
+                "success",
+                "Password Reset Mail Sent Successfully"
+              );
+            } else {
+              displaySnackBar("error", "User not Found");
+            }
+          });
+      } else {
+        displaySnackBar("error", "Please enter your Keshav Id");
+      }
     }
   }
   return (

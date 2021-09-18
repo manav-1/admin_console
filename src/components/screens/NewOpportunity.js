@@ -45,13 +45,13 @@ export default function NewOpportunity({ navigation }) {
         companySite: cSite,
       };
       axios.post(`https://placement-portal-server.herokuapp.com/newOppurtunity`, newTask);
-      setCompanyName("");
+/*       setCompanyName("");
       setProfile("");
       setDeadline("");
       setCompanyImage("");
       setJd("");
       setLinkedIn("");
-      setCSite("");
+      setCSite(""); */
     }
     else{
       displaySnackBar("error", "Please Fill all the fields")

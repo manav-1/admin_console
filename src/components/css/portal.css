@@ -1,9 +1,19 @@
+::-webkit-scrollbar {
+  display: none;
+}
+body {
+  scrollbar-width: none;
+}
 .portal {
   display: flex;
+  height: 100%;
+  overflow-y: scroll;
 }
 .portal-side-container {
-  width: 30%;
-  height:max(100vh, 100%px);
+  padding: 1rem 0;
+  margin-top: 0;
+  width: 20%;
+  height: 100%;
   background-color: #002c3e;
   text-align: center;
 }
@@ -21,32 +31,11 @@
 }
 .portal-main-container {
   width: 70%;
-  height: max(100vh, 100%px);
-  background-color: #f2f2f2;
-
+  height: 100%;
+  background-color: #c8d8e4cc;
+  overflow-y: scroll;
 }
-::-webkit-scrollbar {
-  display: none;
-}
-body{
-  scrollbar-width: none;
-}
-
-.toggle-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-}
-.toggle-container button {
-  position: absolute;
-  left: 1rem;
-}
-.toggle-container h1 {
-  display: inline-block;
-}
-.logout{
+.logout {
   text-decoration: none;
   font-size: 1rem;
   font-family: karla;
@@ -56,14 +45,12 @@ body{
   margin: 0 0.5rem;
   background-color: #002c3e;
 }
-.logout:hover{
+.logout:hover {
   text-decoration: none;
   color: #fff;
 }
+
 @media (max-width: 576px) {
-  .toggle-container h1 {
-    font-size: 1.5rem;
-  }
   .portal-side-container button {
     display: block;
     padding: 0.8rem;
@@ -86,7 +73,7 @@ body{
     height: max(100vh, 100%px);
     background-color: #f2f2f2;
   }
-  .pHeading{
+  .pHeading {
     font-size: 1.5rem !important;
   }
 }

@@ -6,7 +6,7 @@ export default function Logo({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("LandingStack");
-    }, 3000);
+    }, 30);
   });
   return (
     <div
