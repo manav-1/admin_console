@@ -43,7 +43,7 @@ export default function PlacementProcedure({ navigation }) {
       <div className="procedure-container">
         <div className="procedure-container-chrono">
           <Chrono
-            cardHeight={300}
+            cardHeight={200}
             useReadMore={false}
             items={items}
             mode={
