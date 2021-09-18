@@ -46,7 +46,7 @@ export default function SignUp({ navigation }) {
             await AsyncStorage.setItem("loggedUserId", resp.data.uid);
 
             displaySnackBar("success", "Successfully Registered");
-            navigation.navigate("Portal");
+            navigation.push("Portal");
           } else {
             displaySnackBar("error", "Failed to register user");
           }
@@ -57,12 +57,12 @@ export default function SignUp({ navigation }) {
   }
 
   function handleLoginClick() {
-    navigation.navigate("Login");
+    navigation.push("Login");
   }
   return (
     <div className="main-container">
       <button
-        onClick={() => navigation.navigate("Landing")}
+        onClick={() => navigation.push("Landing")}
         className="header-logo"
       >
         <img src={logo} alt="Logo" />

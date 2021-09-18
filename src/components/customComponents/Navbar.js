@@ -11,7 +11,7 @@ export default function NavBar({ navigation }) {
       <button
         className="navbar-brand"
         // onClick={() => navigation.navigate("Landing")}
-        onClick={() => navigation.navigate("Login")}
+        onClick={() => navigation.push("Login")}
       >
         <img src={logo} alt="Logo" className="header__logo" />
       </button>

@@ -20,7 +20,7 @@ export default function Login({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
 
       if (loggedUserId) {
-        navigation.navigate("Portal");
+        navigation.push("Portal");
       }
     })();
   });
@@ -50,7 +50,7 @@ export default function Login({ navigation }) {
           await AsyncStorage.setItem("loggedUserEmail", email);
           await AsyncStorage.setItem("loggedUserId", resp.data.uid);
           displaySnackBar("success", "Logged in Successfully");
-          navigation.navigate("Portal");
+          navigation.push("Portal");
         } else if (resp.data === "Error") {
           displaySnackBar("error", "Something went wrong");
         } else {
@@ -61,7 +61,7 @@ export default function Login({ navigation }) {
 
   //eslint-disable-next-line
   function handleSignUpClick() {
-    navigation.navigate("SignUp");
+    navigation.push("SignUp");
   }
   function forgotPasswordClick() {
     var email = window.prompt("Enter your email address");
@@ -90,7 +90,7 @@ export default function Login({ navigation }) {
     <>
       <div className="main-container">
         <button
-          onClick={() => navigation.navigate("Landing")}
+          onClick={() => navigation.push("Landing")}
           className="header-logo"
         >
           <img src={logo} alt="Logo" />
