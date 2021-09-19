@@ -60,7 +60,7 @@ export default function ApplyModal({
           p: 5,
         }}
       >
-        <div>
+        <div className="applyModal">
           <p className="h5 mb-3 ">
             Are you sure you want to apply to this profile
           </p>
