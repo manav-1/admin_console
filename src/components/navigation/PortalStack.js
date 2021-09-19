@@ -24,7 +24,7 @@ export default function PortalStack({ navigation }) {
       const loggedUserEmail = await AsyncStorage.getItem("loggedUserEmail");
       if (
         loggedUserEmail === "manav190839@keshav.du.ac.in" &&
-        loggedUserId === "Gv7QoIXstBTCnS2rAuv3EgyM3KG3"
+        loggedUserId === "YE1uMCQrJKNCXa7DUQFrHS9k2K32"
       ) {
         setIsAdmin(true);
       }
