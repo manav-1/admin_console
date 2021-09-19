@@ -3,12 +3,11 @@ import { ScrollView } from "react-native";
 import "../css/profile.css";
 import edit from "../../assets/edit.png";
 import profile from "../../assets/user.png";
-import SnackBar from "../customComponents/SnackBar";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import validator from "validator";
-
-// import * as ImagePicker from "expo-image-picker";
 
 export default function Profile({ navigation }) {
   const [profilePic, setProfilePic] = useState({ uri: profile });
@@ -39,9 +38,7 @@ export default function Profile({ navigation }) {
     async function fetchUserProfile() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       axios
-        .get(
-          `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
-        )
+        .get(`https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`)
         .then((res) => {
           const data = res.data;
           setName(data.name);
@@ -86,10 +83,7 @@ export default function Profile({ navigation }) {
     formData.append("name", imgName);
     formData.append("uid", loggedUserId);
     axios
-      .post(
-        "https://placement-portal-server.herokuapp.com/uploadFirebase",
-        formData
-      )
+      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
       .then((response) => {
         if (response.data) {
           setProfilePic({ uri: response.data });
@@ -99,6 +93,25 @@ export default function Profile({ navigation }) {
       .catch((error) => {
         displaySnackBar("error", "Failed to Upload Image, Please try again");
       });
+  }
+
+  function validateData() {
+    if (tenth > 100 || tenth < 0) {
+      displaySnackBar("error", "10th Percentage Invalid");
+      return false;
+    }
+    if (twelve > 100 || twelve < 0) {
+      displaySnackBar("error", "12th Percentage Invalid");
+      return false;
+    }
+    if (college > 10 || college < 0) {
+      displaySnackBar("error", "College CGPA Invalid");
+      return false;
+    }
+    if (stream === "") {
+      displaySnackBar("error", "Please Enter a Stream");
+      return false;
+    }
   }
 
   async function saveProfile() {
@@ -122,42 +135,43 @@ export default function Profile({ navigation }) {
     }
   }
   function saveUpdatedProfile(loggedUserId, profilePicUri) {
-    if (
-      stream === undefined ||
-      stream === "" ||
-      description === undefined ||
-      tenth === undefined ||
-      twelve === undefined ||
-      college === undefined
-    ) {
-      displaySnackBar(
-        "error",
-        "Please fill up all fields before updating profile"
-      );
-    } else {
-      const updatedProfile = {
-        name: name,
-        email: email,
-        profilePic: profilePicUri,
-        stream: stream,
-        desc: description,
-        tenth: tenth,
-        twelve: twelve,
-        college: college,
-        projects: projects,
-      };
-      axios
-        .post("https://placement-portal-server.herokuapp.com/updateProfile", [
-          loggedUserId,
-          updatedProfile,
-        ])
-        .then((res) => {
-          if (res.data) {
-            displaySnackBar("success", "Updated Profile Successfully");
-          } else {
-            displaySnackBar("error", "Failed to update profile");
-          }
-        });
+    if (validateData()) {
+      if (
+        stream === undefined ||
+        stream === "" ||
+        tenth === undefined ||
+        twelve === undefined ||
+        college === undefined
+      ) {
+        displaySnackBar(
+          "error",
+          "Please fill up all fields before updating profile"
+        );
+      } else {
+        const updatedProfile = {
+          name: name,
+          email: email,
+          profilePic: profilePicUri,
+          stream: stream,
+          desc: description || "None",
+          tenth: tenth,
+          twelve: twelve,
+          college: college,
+          projects: projects,
+        };
+        axios
+          .post("https://placement-portal-server.herokuapp.com/updateProfile", [
+            loggedUserId,
+            updatedProfile,
+          ])
+          .then((res) => {
+            if (res.data) {
+              displaySnackBar("success", "Updated Profile Successfully");
+            } else {
+              displaySnackBar("error", "Failed to update profile");
+            }
+          });
+      }
     }
   }
 
@@ -192,10 +206,7 @@ export default function Profile({ navigation }) {
     formData.append("name", resumeName);
     formData.append("uid", loggedUserId);
     axios
-      .post(
-        "https://placement-portal-server.herokuapp.com/uploadFirebase",
-        formData
-      )
+      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
       .then((response) => {
         if (response.data) {
           setResume({ uriResume: response.data });
@@ -258,10 +269,6 @@ export default function Profile({ navigation }) {
     setSnackBarVisible(true);
   }
 
-  //function to hide snackbar
-  function hideSnackBar() {
-    setSnackBarVisible(false);
-  }
   return (
     <ScrollView>
       <div className="profile-container">
@@ -324,6 +331,7 @@ export default function Profile({ navigation }) {
           <input
             type="text"
             value={tenth}
+            placeholder="Enter your 10th percentage"
             onInput={(val) => setTenth(val.target.value)}
           />
           <h4>
@@ -331,18 +339,21 @@ export default function Profile({ navigation }) {
           </h4>
           <input
             type="text"
+            placeholder="Enter your 12th percentage"
             value={twelve}
             onInput={(val) => setTwelve(val.target.value)}
           />
           <h4>Enter Collge CGPA</h4>
           <input
             type="text"
+            placeholder="Enter your college CGPA"
             value={college}
             onInput={(val) => setCollege(val.target.value)}
           />
           <h4>Additional Information</h4>
           <input
             type="text"
+            placeholder="Enter any Additional Information"
             value={description}
             onInput={(val) => setDescription(val.target.value)}
           />
@@ -443,14 +454,23 @@ export default function Profile({ navigation }) {
           </button>
         </div>
       </div>
-      {snackBarVisible ? (
-        <SnackBar
-          isVisible={snackBarVisible}
-          text={snackBarText}
-          type={snackBarType}
-          onClose={hideSnackBar}
-        />
-      ) : null}
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={snackBarVisible}
+        autoHideDuration={3000}
+        onClose={() => {
+          setSnackBarVisible(false);
+        }}
+      >
+        <Alert
+          onClose={() => {
+            setSnackBarVisible(false);
+          }}
+          severity={snackBarType}
+        >
+          {snackBarText}
+        </Alert>
+      </Snackbar>
     </ScrollView>
   );
 }

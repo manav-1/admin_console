@@ -2,7 +2,8 @@
 import "../css/style.css";
 import logo from "../../assets/logo.png";
 import React, { useState, useEffect } from "react";
-import SnackBar from "../customComponents/SnackBar";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
@@ -29,11 +30,6 @@ export default function Login({ navigation }) {
     setSnackBarType(type);
     setSnackBarText(text);
     setSnackBarVisible(true);
-  }
-
-  //function to hide snackbar
-  function hideSnackBar() {
-    setSnackBarVisible(false);
   }
 
   function toggle() {
@@ -155,14 +151,23 @@ export default function Login({ navigation }) {
           </form>
         </div>
       </div>
-      {snackBarVisible ? (
-        <SnackBar
-          isVisible={snackBarVisible}
-          text={snackBarText}
-          type={snackBarType}
-          onClose={hideSnackBar}
-        />
-      ) : null}
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={snackBarVisible}
+        autoHideDuration={3000}
+        onClose={() => {
+          setSnackBarVisible(false);
+        }}
+      >
+        <Alert
+          onClose={() => {
+            setSnackBarVisible(false);
+          }}
+          severity={snackBarType}
+        >
+          {snackBarText}
+        </Alert>
+      </Snackbar>
     </>
   );
 }

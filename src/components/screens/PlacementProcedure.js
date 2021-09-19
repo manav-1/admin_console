@@ -41,7 +41,7 @@ export default function PlacementProcedure({ navigation }) {
       </button>
       <h1 className="heading-secondary">Placement Procedure</h1>
       <div className="procedure-container">
-        <div className="procedure-container-chrono">
+        <div className=" my-3 procedure-container-chrono">
           <Chrono
             cardHeight={200}
             useReadMore={false}

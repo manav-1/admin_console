@@ -1,7 +1,8 @@
 import "../css/style.css";
 import logo from "../../assets/logo.png";
 import React, { useState } from "react";
-import SnackBar from "../customComponents/SnackBar";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
@@ -23,15 +24,23 @@ export default function SignUp({ navigation }) {
     setSnackBarVisible(true);
   }
 
-  //function to hide snackbar
-  function hideSnackBar() {
-    setSnackBarVisible(false);
-  }
-
   function toggle() {
     setShowPass(!showPass);
   }
   function registerButtonClicked() {
+    if (password !== confirmPassword) {
+      displaySnackBar("error", "Passwords are not Same");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      displaySnackBar("error", "Email is not valid");
+      return;
+    }
+    if (!/^[0]?[789]\d{9}$/.test(mobile)) {
+      displaySnackBar("error", "Mobile Number is not valid");
+      return;
+    }
+
     if (email.includes("@keshav.du.ac.in")) {
       axios
         .post("https://placement-portal-server.herokuapp.com/signup", {
@@ -157,14 +166,31 @@ export default function SignUp({ navigation }) {
           </p>
         </form>
       </div>
-      {snackBarVisible ? (
+      {/* {snackBarVisible ? (
         <SnackBar
           isVisible={snackBarVisible}
           text={snackBarText}
           type={snackBarType}
           onClose={hideSnackBar}
         />
-      ) : null}
+      ) : null} */}
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={snackBarVisible}
+        autoHideDuration={3000}
+        onClose={() => {
+          setSnackBarVisible(false);
+        }}
+      >
+        <Alert
+          onClose={() => {
+            setSnackBarVisible(false);
+          }}
+          severity={snackBarType}
+        >
+          {snackBarText}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

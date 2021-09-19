@@ -1,7 +1,8 @@
 import "../css/newopp.css";
 import React, { useState } from "react";
-import SnackBar from "../customComponents/SnackBar";
-import axios from 'axios'
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import axios from "axios";
 
 export default function NewOpportunity({ navigation }) {
   const [companyName, setCompanyName] = useState("");
@@ -20,9 +21,6 @@ export default function NewOpportunity({ navigation }) {
     setSnackBarType(type);
     setSnackBarText(text);
     setSnackBarVisible(true);
-  }
-  function hideSnackBar() {
-    setSnackBarVisible(false);
   }
   function addPlacementOpportunity() {
     if (
@@ -44,17 +42,29 @@ export default function NewOpportunity({ navigation }) {
         linkedin: linkedin,
         companySite: cSite,
       };
-      axios.post(`https://placement-portal-server.herokuapp.com/newOppurtunity`, newTask);
-/*       setCompanyName("");
+      axios
+        .post(
+          `https://placement-portal-server.herokuapp.com/newOppurtunity`,
+          newTask
+        )
+        .then((resp) => {
+          displaySnackBar("success", "Added New Opportunity Successfully");
+        })
+        .catch((err) => {
+          displaySnackBar(
+            "error",
+            "Failed to add Opportunity, Please try again later"
+          );
+        });
+      setCompanyName("");
       setProfile("");
       setDeadline("");
       setCompanyImage("");
       setJd("");
       setLinkedIn("");
-      setCSite(""); */
-    }
-    else{
-      displaySnackBar("error", "Please Fill all the fields")
+      setCSite("");
+    } else {
+      displaySnackBar("error", "Please Fill all the fields");
     }
   }
 
@@ -112,14 +122,23 @@ export default function NewOpportunity({ navigation }) {
       <button className="removeButton" onClick={addPlacementOpportunity}>
         Add new Opportunity
       </button>
-      {snackBarVisible ? (
-        <SnackBar
-          isVisible={snackBarVisible}
-          text={snackBarText}
-          type={snackBarType}
-          onClose={hideSnackBar}
-        />
-      ) : null}
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={snackBarVisible}
+        autoHideDuration={3000}
+        onClose={() => {
+          setSnackBarVisible(false);
+        }}
+      >
+        <Alert
+          onClose={() => {
+            setSnackBarVisible(false);
+          }}
+          severity={snackBarType}
+        >
+          {snackBarText}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import SnackBar from "../customComponents/SnackBar";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 import axios from "axios";
 
 export default function ApplyModal({
@@ -12,7 +15,6 @@ export default function ApplyModal({
   pName,
   pProfile,
 }) {
-  console.log(applyClicked, profileData, hideModal, pid, pName, pProfile)
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("");
@@ -23,7 +25,6 @@ export default function ApplyModal({
         `https://placement-portal-server.herokuapp.com/applyPlacements?pid=${pid}&uid=${loggedUserId}&cName=$${pName}&profile=${pProfile}`
       )
       .then((resp) => {
-        console.log(resp.data);
         if (resp.data) {
           displaySnackBar("success", "Applied Successfully");
           setTimeout(() => {
@@ -39,122 +40,139 @@ export default function ApplyModal({
     setSnackBarText(text);
     setSnackBarVisible(true);
   }
-  function hideSnackBar() {
-    setSnackBarVisible(false);
-  }
-  return applyClicked ? (
-    <View style={styles.container}>
-      <div className="m-3">
-        <p className="h5 mb-3 ">
-          Are you sure you want to apply to this profile
-        </p>
-        <p className="h6 py-2">
-          <b>Name: </b> {profileData.uName}
-        </p>
-
-        <p className="h6 py-2">
-          <b>Email: </b> {profileData.uEmail}
-        </p>
-        <p className="h6 py-2">
-          <b>Company : </b> {pName}
-        </p>
-        <p className="h6 py-2">
-          <b>Profile : </b> {pProfile}
-        </p>
-        <p className="h6 py-2">
-          <b>College GPA: </b> {profileData.college}
-        </p>
-        <p className="h6 py-2">
-          <b>Resume : </b>
-          <a className="text-dark" href={profileData.resume.uriResume} download>
-            {profileData.resumeName}
-          </a>
-        </p>
-        <p className="h6 py-2">
-          <b>Tenth Marks: </b> {profileData.tenth}
-        </p>
-        <p className="h6 py-2">
-          <b>12th Marks : </b> {profileData.twelve}
-        </p>
-        <p className="h6 py-2">
-          <b>Mobile : </b> {profileData.mobile}
-        </p>
-        {profileData.projects ? (
-          <>
-            <p className="h6 py-2">
-              <b>Projects : </b>
-            </p>
-            <div>
-              {profileData.projects.map((item, index) => {
-                return (
-                  <p
-                    style={{ display: "inline" }}
-                    key={index}
-                    className="h6 mx-2 py-2"
-                  >
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-dark"
-                      href={item.url}
-                    >
-                      {item.name}
-                    </a>
-                  </p>
-                );
-              })}
-            </div>
-          </>
-        ) : null}
-      </div>
-      <div
-        style={{ position: "absolute", bottom: 20, width: "100%" }}
-        className="d-flex justify-content-around"
+  return (
+    <Modal
+      open={applyClicked}
+      onClose={hideModal}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: Dimensions.get("screen").width > 768 ? "40%" : "80%",
+          bgcolor: "#c8d8e4",
+          border: "2px solid #002c3e",
+          boxShadow: 24,
+          p: 5,
+        }}
       >
-        <button
-          style={{
-            fontSize: "1.2rem",
-            borderRadius: 10,
-          }}
-          className="btn btn-danger text-white"
-          onClick={hideModal}
-        >
-          Close
-        </button>
+        <div>
+          <p className="h5 mb-3 ">
+            Are you sure you want to apply to this profile
+          </p>
+          <p className="h6 py-2">
+            <b>Name: </b> {profileData.name}
+          </p>
 
-        <button
-          style={{
-            fontSize: "1.2rem",
-            borderRadius: 10,
-            backgroundColor: "#49A0AE",
-            color: "#fff",
-          }}
-          className="btn "
-          onClick={onModalApplyClick}
+          <p className="h6 py-2">
+            <b>Email: </b> {profileData.email}
+          </p>
+          <p className="h6 py-2">
+            <b>Company : </b> {pName}
+          </p>
+          <p className="h6 py-2">
+            <b>Profile : </b> {pProfile}
+          </p>
+          <p className="h6 py-2">
+            <b>College GPA: </b> {profileData.college}
+          </p>
+          <p className="h6 py-2">
+            <b>Resume : </b>
+            <a
+              className="text-dark"
+              href={profileData.resume.uriResume}
+              download
+            >
+              {profileData.resumeName}
+            </a>
+          </p>
+          <p className="h6 py-2">
+            <b>Tenth Marks: </b> {profileData.tenth}
+          </p>
+          <p className="h6 py-2">
+            <b>12th Marks : </b> {profileData.twelve}
+          </p>
+          <p className="h6 py-2">
+            <b>Mobile : </b> {profileData.mobile}
+          </p>
+          {profileData.projects ? (
+            <>
+              <p className="h6 py-2">
+                <b>Projects : </b>
+              </p>
+              <div>
+                {profileData.projects.map((item, index) => {
+                  return (
+                    <p
+                      style={{ display: "inline" }}
+                      key={index}
+                      className="h6 mx-2 py-2"
+                    >
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-dark"
+                        href={item.url}
+                      >
+                        {item.name}
+                      </a>
+                    </p>
+                  );
+                })}
+              </div>
+            </>
+          ) : null}
+        </div>
+        <div
+          style={{ width: "100%", marginTop: "1.5rem" }}
+          className="d-flex justify-content-around"
         >
-          Apply
-        </button>
-      </div>
-      {snackBarVisible ? (
-        <SnackBar
-          isVisible={snackBarVisible}
-          text={snackBarText}
-          type={snackBarType}
-          onClose={hideSnackBar}
-        />
-      ) : null}
-    </View>
-  ) : null;
+          <button
+            style={{
+              fontSize: "1.2rem",
+              borderRadius: 10,
+            }}
+            className="btn btn-danger text-white"
+            onClick={hideModal}
+          >
+            Close
+          </button>
+
+          <button
+            style={{
+              fontSize: "1.2rem",
+              borderRadius: 10,
+              backgroundColor: "#49A0AE",
+              color: "#fff",
+            }}
+            className="btn "
+            onClick={onModalApplyClick}
+          >
+            Apply
+          </button>
+          <Snackbar
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            open={snackBarVisible}
+            autoHideDuration={3000}
+            onClose={() => {
+              setSnackBarVisible(false);
+            }}
+          >
+            <Alert
+              onClose={() => {
+                setSnackBarVisible(false);
+              }}
+              severity={snackBarType}
+            >
+              {snackBarText}
+            </Alert>
+          </Snackbar>
+        </div>
+      </Box>
+    </Modal>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: "fixed",
-    top: "5vh",
-    /* bottom: "5vh", */
-    height: "80vh",
-    width: Dimensions.get("screen").width > 768 ? "40%" : "80%",
-    backgroundColor: "#aaa",
-    borderRadius: 10,
-  },
-});

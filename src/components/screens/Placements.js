@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, Dimensions } from "react-native";
 import PlacementOppurtunity from "../customComponents/PlacementOppurtunity";
-//eslint-disable-next-line
-import SnackBar from "../customComponents/SnackBar";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ApplyModal from "../customComponents/ApplyModal";
 import axios from "axios";
@@ -25,9 +25,7 @@ export default function Placements({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
         axios
-          .get(
-            `https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`
-          )
+          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
           .then((resp) => {
             if (isMounted) {
               setPOpp([...resp.data]);
@@ -43,7 +41,6 @@ export default function Placements({ navigation }) {
   }, []);
 
   var onApplyClick = async (index) => {
-    console.log("apply is clicked");
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
 
     axios
@@ -82,11 +79,6 @@ export default function Placements({ navigation }) {
     setSnackBarVisible(true);
   }
 
-  //function to hide snackbar
-  //eslint-disable-next-line
-  function hideSnackBar() {
-    setSnackBarVisible(false);
-  }
   function hideModal() {
     setApplyClicked(false);
   }
@@ -134,14 +126,23 @@ export default function Placements({ navigation }) {
           />
         ) : null}
 
-        {snackBarVisible ? (
-          <SnackBar
-            isVisible={snackBarVisible}
-            text={snackBarText}
-            type={snackBarType}
-            onClose={hideSnackBar}
-          />
-        ) : null}
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          open={snackBarVisible}
+          autoHideDuration={3000}
+          onClose={() => {
+            setSnackBarVisible(false);
+          }}
+        >
+          <Alert
+            onClose={() => {
+              setSnackBarVisible(false);
+            }}
+            severity={snackBarType}
+          >
+            {snackBarText}
+          </Alert>
+        </Snackbar>
       </div>
     </ScrollView>
   );

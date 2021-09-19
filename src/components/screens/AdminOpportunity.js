@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import AdminPlacementOppurtunity from "../customComponents/AdminPlacementOpportunity";
-import SnackBar from "../customComponents/SnackBar";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-// import { cos } from "react-native-reanimated";
+
 
 export default function Placements({ navigation }) {
   const [pOpp, setPOpp] = useState([]);
@@ -18,9 +19,7 @@ export default function Placements({ navigation }) {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {
         axios
-          .get(
-            `https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`
-          )
+          .get(`https://placement-portal-server.herokuapp.com/placements?loggedUserId=${loggedUserId}`)
           .then((resp) => {
             if (resp.data === "Error") {
               displaySnackBar("error", "Failed to Fetch Placements");
@@ -45,19 +44,15 @@ export default function Placements({ navigation }) {
     setSnackBarVisible(true);
   }
 
-  //function to hide snackbar
-  function hideSnackBar() {
-    setSnackBarVisible(false);
-  }
-
   function markDone(index) {
     axios
-      .get(
-        `https://placement-portal-server.herokuapp.com/deletePlacements?node=${pOpp[index].id}`
-      )
+      .get(`https://placement-portal-server.herokuapp.com/deletePlacements?node=${pOpp[index].id}`)
       .then((resp) => {
         if (resp.data === "Error") {
-          displaySnackBar("error", "Failed to Fetch Placements");
+          displaySnackBar(
+            "error",
+            "Failed to Delete the Placement, Please try again"
+          );
         } else {
           setPOpp([...resp.data]);
         }
@@ -66,9 +61,7 @@ export default function Placements({ navigation }) {
 
   function getApplicants(index) {
     axios
-      .get(
-        `https://placement-portal-server.herokuapp.com/applicants?pid=${pOpp[index].id}`
-      )
+      .get(`https://placement-portal-server.herokuapp.com/applicants?pid=${pOpp[index].id}`)
       .then((resp) => {
         if (resp.data) {
           var data = resp.data;
@@ -143,14 +136,23 @@ export default function Placements({ navigation }) {
           })}
         </div>
 
-        {snackBarVisible ? (
-          <SnackBar
-            isVisible={snackBarVisible}
-            text={snackBarText}
-            type={snackBarType}
-            onClose={hideSnackBar}
-          />
-        ) : null}
+        <Snackbar
+          open={snackBarVisible}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          autoHideDuration={3000}
+          onClose={() => {
+            setSnackBarVisible(false);
+          }}
+        >
+          <Alert
+            onClose={() => {
+              setSnackBarVisible(false);
+            }}
+            severity={snackBarType}
+          >
+            {snackBarText}
+          </Alert>
+        </Snackbar>
       </div>
     </ScrollView>
   );
