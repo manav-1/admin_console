@@ -96,6 +96,7 @@ export default function Profile({ navigation }) {
   }
 
   function validateData() {
+    console.log(tenth, twelve)
     if (tenth > 100 || tenth < 0) {
       displaySnackBar("error", "10th Percentage Invalid");
       return false;
@@ -112,6 +113,7 @@ export default function Profile({ navigation }) {
       displaySnackBar("error", "Please Enter a Stream");
       return false;
     }
+    return true
   }
 
   async function saveProfile() {
