@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@kommunicate/kommunicate-chatbot-plugin": "^0.0.5",
     "@mui/material": "^5.0.0",
     "@popperjs/core": "*",
     "@react-native-async-storage/async-storage": "*",
