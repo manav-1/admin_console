@@ -84,6 +84,8 @@ export default function ApplyModal({
             <b>Resume : </b>
             <a
               className="text-dark"
+              target="_blank"
+              rel="noopener noreferrer"
               href={profileData.resume.uriResume}
               download
             >
