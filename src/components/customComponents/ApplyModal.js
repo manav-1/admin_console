@@ -17,7 +17,7 @@ export default function ApplyModal({
 }) {
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
-  const [snackBarType, setSnackBarType] = useState("");
+  const [snackBarType, setSnackBarType] = useState("error");
   async function onModalApplyClick(index) {
     const loggedUserId = await AsyncStorage.getItem("loggedUserId");
     axios

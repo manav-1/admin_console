@@ -8,8 +8,10 @@ import NewOpportunity from "../screens/NewOpportunity";
 import AdminOpportunity from "../screens/AdminOpportunity";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useHistory } from "react-router-dom";
 
 export default function PortalStack({ navigation }) {
+  const history = useHistory()
   const [component, setComponent] = useState(
     <Placements navigation={navigation} />
   );
@@ -91,7 +93,8 @@ export default function PortalStack({ navigation }) {
     try {
       await AsyncStorage.removeItem("loggedUserEmail");
       await AsyncStorage.removeItem("loggedUserId");
-      navigation.navigate("Landing");
+      // navigation.navigate("Landing");
+      history.push('/')
     } catch (exception) {}
   }
   return (

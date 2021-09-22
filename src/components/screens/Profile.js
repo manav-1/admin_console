@@ -7,9 +7,11 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import validator from "validator";
 
 export default function Profile({ navigation }) {
+  const history = useHistory();
   const [profilePic, setProfilePic] = useState({ uri: profile });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,13 +34,15 @@ export default function Profile({ navigation }) {
 
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
-  const [snackBarType, setSnackBarType] = useState("");
+  const [snackBarType, setSnackBarType] = useState("error");
 
   useEffect(() => {
     async function fetchUserProfile() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       axios
-        .get(`https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`)
+        .get(
+          `https://placement-portal-server.herokuapp.com/fetchProfile?uid=${loggedUserId}`
+        )
         .then((res) => {
           const data = res.data;
           setName(data.name);
@@ -83,7 +87,10 @@ export default function Profile({ navigation }) {
     formData.append("name", imgName);
     formData.append("uid", loggedUserId);
     axios
-      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
+      .post(
+        "https://placement-portal-server.herokuapp.com/uploadFirebase",
+        formData
+      )
       .then((response) => {
         if (response.data) {
           setProfilePic({ uri: response.data });
@@ -96,7 +103,7 @@ export default function Profile({ navigation }) {
   }
 
   function validateData() {
-    console.log(tenth, twelve)
+    console.log(tenth, twelve);
     if (tenth > 100 || tenth < 0) {
       displaySnackBar("error", "10th Percentage Invalid");
       return false;
@@ -113,7 +120,7 @@ export default function Profile({ navigation }) {
       displaySnackBar("error", "Please Enter a Stream");
       return false;
     }
-    return true
+    return true;
   }
 
   async function saveProfile() {
@@ -208,7 +215,10 @@ export default function Profile({ navigation }) {
     formData.append("name", resumeName);
     formData.append("uid", loggedUserId);
     axios
-      .post("https://placement-portal-server.herokuapp.com/uploadFirebase", formData)
+      .post(
+        "https://placement-portal-server.herokuapp.com/uploadFirebase",
+        formData
+      )
       .then((response) => {
         if (response.data) {
           setResume({ uriResume: response.data });
@@ -258,7 +268,8 @@ export default function Profile({ navigation }) {
       await AsyncStorage.removeItem("loggedUserEmail");
       await AsyncStorage.removeItem("loggedUserId");
       displaySnackBar("success", "Logged out Successfully");
-      navigation.navigate("Landing");
+      // navigation.navigate("Landing");
+      history.push('/landing');
     } catch (exception) {
       displaySnackBar("error", "Failed to log out");
     }

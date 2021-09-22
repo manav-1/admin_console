@@ -3,8 +3,10 @@ import { Dimensions } from "react-native";
 import logo from "../../assets/logo.png";
 import "../css/procedure.css";
 import { Chrono } from "react-chrono";
+import { useHistory } from "react-router-dom";
 
 export default function PlacementProcedure({ navigation }) {
+  const history = useHistory();
   const items = [
     {
       title: "01",
@@ -33,10 +35,7 @@ export default function PlacementProcedure({ navigation }) {
   ];
   return (
     <div className="procedure">
-      <button
-        onClick={() => navigation.navigate("Landing")}
-        className="header-logo"
-      >
+      <button onClick={() => history.push('/landing')} className="header-logo">
         <img src={logo} alt="Logo" />
       </button>
       <h1 className="heading-secondary">Placement Procedure</h1>

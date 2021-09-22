@@ -12,7 +12,7 @@ export default function Placements({ navigation }) {
 
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
-  const [snackBarType, setSnackBarType] = useState("");
+  const [snackBarType, setSnackBarType] = useState("error");
   const [applyClicked, setApplyClicked] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [pId, setPId] = useState(null);

@@ -5,8 +5,10 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function SignUp({ navigation }) {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +18,7 @@ export default function SignUp({ navigation }) {
 
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
-  const [snackBarType, setSnackBarType] = useState("");
+  const [snackBarType, setSnackBarType] = useState("error");
 
   function displaySnackBar(type, text) {
     setSnackBarType(type);
@@ -70,10 +72,7 @@ export default function SignUp({ navigation }) {
   }
   return (
     <div className="main-container">
-      <button
-        onClick={() => navigation.push("Landing")}
-        className="header-logo"
-      >
+      <button onClick={() => history.push('/landing')} className="header-logo">
         <img src={logo} alt="Logo" />
       </button>
       <div className="sign-container">

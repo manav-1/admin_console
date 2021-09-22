@@ -12,7 +12,7 @@ export default function Placements({ navigation }) {
 
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
-  const [snackBarType, setSnackBarType] = useState("");
+  const [snackBarType, setSnackBarType] = useState("error");
 
   useEffect(() => {
     async function fetchOpportunities() {

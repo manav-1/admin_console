@@ -1,11 +1,13 @@
 import "../css/logo.css";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import login from "../../assets/logo.gif";
 
-export default function Logo({ navigation }) {
+export default function Logo() {
+  const history = useHistory();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate("LandingStack");
+      history.push("/landing");
     }, 3000);
   });
   return (

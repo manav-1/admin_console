@@ -15,7 +15,7 @@ export default function NewOpportunity({ navigation }) {
 
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
-  const [snackBarType, setSnackBarType] = useState("");
+  const [snackBarType, setSnackBarType] = useState("error");
 
   function displaySnackBar(type, text) {
     setSnackBarType(type);

@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import logo from "../../assets/logo.png";
+
 export default function NavBar({ navigation }) {
+  const history = useHistory();
+  console.log(history);
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const [isDrop, setIsDrop] = useState(false);
 
@@ -11,13 +15,13 @@ export default function NavBar({ navigation }) {
       <button
         className="navbar-brand"
         // onClick={() => navigation.navigate("Landing")}
-        onClick={() => navigation.push("Login")}
+        onClick={() => history.push('/landing')}
       >
         <img src={logo} alt="Logo" className="header__logo" />
       </button>
       <button
         className="navbar-toggler"
-        style={{marginRight:'0.5rem'}}
+        style={{ marginRight: "0.5rem" }}
         type="button"
         onClick={handleNavCollapse}
       >
@@ -55,15 +59,16 @@ export default function NavBar({ navigation }) {
             </a>
           </li>
           <li className="nav-item pl-4">
-            <button
+            <a
               className="nav-link"
+              href="/dashboard"
               onClick={() => {
+                handleDropdownClick();
                 handleNavCollapse();
-                navigation.navigate("Dashboard");
               }}
             >
               Placement Portal
-            </button>
+            </a>
           </li>
           <li className="nav-item pl-4 dropdown">
             <button
@@ -88,16 +93,16 @@ export default function NavBar({ navigation }) {
                 </a>
               </li>
               <li className="nav-item">
-                <button
+                <a
+                  href="/procedure"
                   className="dropdown-item"
                   onClick={() => {
-                    navigation.navigate("Procedure")
                     handleDropdownClick();
                     handleNavCollapse();
                   }}
                 >
                   Placement Procedure
-                </button>
+                </a>
               </li>
               <li className="nav-item">
                 <a
