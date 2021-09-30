@@ -16,11 +16,13 @@ export default function PortalStack({ navigation }) {
   const [component, setComponent] = useState(
     <Placements navigation={navigation} />
   );
-  document.title = "Placement Portal";
+
   const [open, setOpen] = useState(true);
   const [icon, setIcon] = useState(menuOpen);
   const [isAdmin, setIsAdmin] = useState(false);
-
+  useEffect(() => {
+    document.title = "Placement Portal";
+  }, []);
   useEffect(() => {
     (async () => {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");

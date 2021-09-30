@@ -6,11 +6,12 @@ import login from "../../assets/logo.gif";
 export default function Logo() {
   const history = useHistory();
   useEffect(() => {
+    document.title = "Start@KMV, The Placement Cell";
     setTimeout(() => {
       history.push("/landing");
     }, 3000);
-  });
-  document.title = "Start@KMV, Placement Portal";
+  },[history]);
+  
   return (
     <div
       style={{ backgroundColor: "#fff", width: "100%", height: "50rem" }}

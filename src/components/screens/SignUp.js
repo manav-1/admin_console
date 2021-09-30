@@ -21,7 +21,7 @@ export default function SignUp({ navigation }) {
   const [snackBarType, setSnackBarType] = useState("error");
   useEffect(() => {
     document.title = "Placement Portal | SignUp";
-  });
+  },[]);
   function displaySnackBar(type, text) {
     setSnackBarType(type);
     setSnackBarText(text);

@@ -27,7 +27,7 @@ export default function Login({ navigation }) {
       }
     })();
     document.title = "Placement Portal | Login";
-  });
+  },[navigation]);
 
   function displaySnackBar(type, text) {
     setSnackBarType(type);

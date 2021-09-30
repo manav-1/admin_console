@@ -19,7 +19,7 @@ export default function NewOpportunity({ navigation }) {
   const [snackBarType, setSnackBarType] = useState("error");
   useEffect(() => {
     document.title = "Placement Portal | New Opportunity";
-  })
+  },[])
 
   function displaySnackBar(type, text) {
     setSnackBarType(type);

@@ -13,7 +13,7 @@ import TeamFacultySlider from "../customComponents/TeamFacultySlider";
 import Footer from "../customComponents/Footer";
 
 export default function Landing({ navigation }) {
-  document.title = "Start@KMV, Placement Portal";
+  document.title = "Start@KMV, Placement Cell KMV";
 
   return (
     <div style={{ width: "100%" }}>

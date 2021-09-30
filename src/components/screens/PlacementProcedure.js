@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 export default function PlacementProcedure({ navigation }) {
   useEffect(() => {
     document.title = "Start@KMV | Placement Procedure";
-  });
+  },[]);
   const history = useHistory();
   const items = [
     {
