@@ -20,6 +20,7 @@ export default function Placements({ navigation }) {
   const [mProfile, setMProfile] = useState(null);
 
   useEffect(() => {
+    document.title = "Placement Portal | Placements ";
     let isMounted = true; //eslint-disable-line
     async function fetchOpportunities() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");

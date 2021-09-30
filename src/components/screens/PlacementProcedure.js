@@ -1,4 +1,4 @@
-import React from "react"; //eslint-disable-line
+import React, { useEffect } from "react"; //eslint-disable-line
 import { Dimensions } from "react-native";
 import logo from "../../assets/logo.png";
 import "../css/procedure.css";
@@ -6,6 +6,9 @@ import { Chrono } from "react-chrono";
 import { useHistory } from "react-router-dom";
 
 export default function PlacementProcedure({ navigation }) {
+  useEffect(() => {
+    document.title = "Start@KMV | Placement Procedure";
+  });
   const history = useHistory();
   const items = [
     {
@@ -35,18 +38,18 @@ export default function PlacementProcedure({ navigation }) {
   ];
   return (
     <div className="procedure">
-      <button onClick={() => history.push('/landing')} className="header-logo">
+      <button onClick={() => history.push("/landing")} className="header-logo">
         <img src={logo} alt="Logo" />
       </button>
       <h1 className="heading-secondary">Placement Procedure</h1>
-      <div className="procedure-container">
-        <div className=" my-3 procedure-container-chrono">
+      <div className="procedure-container py-5">
+        <div className="w-75 mx-auto my-3 procedure-container-chrono">
           <Chrono
             cardHeight={200}
             useReadMore={false}
             items={items}
             mode={
-              Dimensions.get("screen").width > 768
+              Dimensions.get("window").width > 768
                 ? "VERTICAL_ALTERNATING"
                 : "VERTICAL"
             }

@@ -9,13 +9,14 @@ import AdminOpportunity from "../screens/AdminOpportunity";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 export default function PortalStack({ navigation }) {
-  const history = useHistory()
+  const history = useHistory();
   const [component, setComponent] = useState(
     <Placements navigation={navigation} />
   );
-
+  document.title = "Placement Portal";
   const [open, setOpen] = useState(true);
   const [icon, setIcon] = useState(menuOpen);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -24,12 +25,17 @@ export default function PortalStack({ navigation }) {
     (async () => {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       const loggedUserEmail = await AsyncStorage.getItem("loggedUserEmail");
-      if (
-        loggedUserEmail === "manav190839@keshav.du.ac.in" &&
-        loggedUserId === "YE1uMCQrJKNCXa7DUQFrHS9k2K32"
-      ) {
-        setIsAdmin(true);
-      }
+      axios
+        .post("https://placement-portal-server.herokuapp.com/checkadmin", {
+          loggedUserId,
+          loggedUserEmail,
+        })
+        .then((response) => {
+          if (response.status === 200 && response.data === "Admin") {
+            setIsAdmin(true);
+          }
+        })
+        .catch((err) => {});
     })();
     if (window.screen.width > 768) {
       if (open) {
@@ -94,7 +100,7 @@ export default function PortalStack({ navigation }) {
       await AsyncStorage.removeItem("loggedUserEmail");
       await AsyncStorage.removeItem("loggedUserId");
       // navigation.navigate("Landing");
-      history.push('/')
+      history.push("/landing");
     } catch (exception) {}
   }
   return (
@@ -126,7 +132,7 @@ export default function PortalStack({ navigation }) {
               <button onClick={PlacementClicked}>Placement Cell Admin</button>
             </>
           ) : null}
-          <button onClick={() => navigation.navigate("Landing")}>
+          <button onClick={() => history.push("/landing")}>
             Back to Website
           </button>
         </div>

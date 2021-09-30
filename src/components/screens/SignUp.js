@@ -1,6 +1,6 @@
 import "../css/style.css";
 import logo from "../../assets/logo.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,7 +19,9 @@ export default function SignUp({ navigation }) {
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("error");
-
+  useEffect(() => {
+    document.title = "Placement Portal | SignUp";
+  });
   function displaySnackBar(type, text) {
     setSnackBarType(type);
     setSnackBarText(text);
@@ -72,7 +74,7 @@ export default function SignUp({ navigation }) {
   }
   return (
     <div className="main-container">
-      <button onClick={() => history.push('/landing')} className="header-logo">
+      <button onClick={() => history.push("/landing")} className="header-logo">
         <img src={logo} alt="Logo" />
       </button>
       <div className="sign-container">

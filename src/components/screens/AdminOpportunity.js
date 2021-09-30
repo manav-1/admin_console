@@ -15,6 +15,7 @@ export default function Placements({ navigation }) {
   const [snackBarType, setSnackBarType] = useState("error");
 
   useEffect(() => {
+    document.title = "Admin Opportunities"
     async function fetchOpportunities() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       if (loggedUserId) {

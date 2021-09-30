@@ -4,7 +4,6 @@ import logo from "../../assets/logo.png";
 
 export default function NavBar({ navigation }) {
   const history = useHistory();
-  console.log(history);
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const [isDrop, setIsDrop] = useState(false);
 

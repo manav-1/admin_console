@@ -1,16 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
-import Chat from "./components/screens/Chat";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import DashNav from "./components/navigation/Dashboard";
 import Logo from "./components/screens/Logo";
 import Landing from "./components/screens/Landing";
 import PlacementProcedure from "./components/screens/PlacementProcedure";
-Kommunicate.init("39edc752b6f62edc078c926727718eefc", {
-  popupWidget: true,
-  automaticChatOpenOnNavigation: true,
-});
+import NotFound from './components/screens/NotFound';
 
 export default function App() {
   // * Added the React Router
@@ -18,31 +14,21 @@ export default function App() {
     <NavigationContainer>
       <Router>
         <Switch>
-          <Route path="/dashboard">
+          <Route exact path="/dashboard">
             <DashNav />
           </Route>
-          <Route path="/procedure">
+          <Route exact path="/procedure">
             <PlacementProcedure />
           </Route>
-          <Route path="/landing">
+          <Route exact path="/landing" title="Landing">
             <Landing />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Logo />
           </Route>
+          <Route component = {NotFound}/>
         </Switch>
-        <Chat />
       </Router>
     </NavigationContainer>
   );
-  /*  
-TODO This is a working code
- return (
-    <div>
-      <NavigationContainer>
-        <RootStack />
-      </NavigationContainer>
-      <Chat />
-    </div>
-  ); */
 }

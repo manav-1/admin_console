@@ -1,10 +1,11 @@
 import "../css/newopp.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 
 export default function NewOpportunity({ navigation }) {
+
   const [companyName, setCompanyName] = useState("");
   const [profile, setProfile] = useState("");
   const [companyImage, setCompanyImage] = useState("");
@@ -16,6 +17,9 @@ export default function NewOpportunity({ navigation }) {
   const [snackBarVisible, setSnackBarVisible] = useState(false);
   const [snackBarText, setSnackBarText] = useState("");
   const [snackBarType, setSnackBarType] = useState("error");
+  useEffect(() => {
+    document.title = "Placement Portal | New Opportunity";
+  })
 
   function displaySnackBar(type, text) {
     setSnackBarType(type);

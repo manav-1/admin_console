@@ -26,6 +26,7 @@ export default function Login({ navigation }) {
         navigation.push("Portal");
       }
     })();
+    document.title = "Placement Portal | Login";
   });
 
   function displaySnackBar(type, text) {
@@ -87,7 +88,10 @@ export default function Login({ navigation }) {
   return (
     <>
       <div className="main-container">
-        <button onClick={() => history.push('/landing')} className="header-logo">
+        <button
+          onClick={() => history.push("/landing")}
+          className="header-logo"
+        >
           <img src={logo} alt="Logo" />
         </button>
         <div className="login-container">

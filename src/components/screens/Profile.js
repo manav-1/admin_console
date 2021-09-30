@@ -37,6 +37,7 @@ export default function Profile({ navigation }) {
   const [snackBarType, setSnackBarType] = useState("error");
 
   useEffect(() => {
+    document.title = "Placement Portal | Profile";
     async function fetchUserProfile() {
       const loggedUserId = await AsyncStorage.getItem("loggedUserId");
       axios
@@ -103,7 +104,6 @@ export default function Profile({ navigation }) {
   }
 
   function validateData() {
-    console.log(tenth, twelve);
     if (tenth > 100 || tenth < 0) {
       displaySnackBar("error", "10th Percentage Invalid");
       return false;
@@ -269,7 +269,7 @@ export default function Profile({ navigation }) {
       await AsyncStorage.removeItem("loggedUserId");
       displaySnackBar("success", "Logged out Successfully");
       // navigation.navigate("Landing");
-      history.push('/landing');
+      history.push("/landing");
     } catch (exception) {
       displaySnackBar("error", "Failed to log out");
     }

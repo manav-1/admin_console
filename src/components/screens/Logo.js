@@ -10,6 +10,7 @@ export default function Logo() {
       history.push("/landing");
     }, 3000);
   });
+  document.title = "Start@KMV, Placement Portal";
   return (
     <div
       style={{ backgroundColor: "#fff", width: "100%", height: "50rem" }}
